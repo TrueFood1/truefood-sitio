@@ -182,7 +182,7 @@ section[id]{scroll-margin-top:144px}
 .prod-falta{font-size:.8125rem;color:var(--gris);font-style:italic;margin-top:.5rem}
 
 /* ==========================================================================
-   Dónde nos conseguís — la fila de logos ES la credencial
+   Dónde comprar — la fila de logos ES la credencial
    ========================================================================== */
 .donde{background:var(--hueso)}
 .cadenas{list-style:none;margin:2.2rem 0 0;padding:0;
@@ -240,17 +240,15 @@ section[id]{scroll-margin-top:144px}
 .b2b-cols{display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,3.5rem);margin-top:2.6rem}
 @media (min-width:900px){.b2b-cols{grid-template-columns:1.25fr .75fr}}
 
-.tabla-envoltura{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;min-width:0}
-table{border-collapse:collapse;width:100%;min-width:600px;font-size:.9375rem}
-caption{text-align:left;font-size:.8125rem;color:#8E927F;padding-bottom:.7rem}
-th,td{text-align:left;padding:.7rem .85rem;border-bottom:1px solid rgba(255,255,255,.14);
-      vertical-align:top;line-height:1.45}
-thead th{font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:#8E927F;
-         border-bottom-color:rgba(255,255,255,.34);white-space:nowrap}
-tbody th{font-weight:700;white-space:nowrap}
-td{font-variant-numeric:tabular-nums}
-.celda-punto{display:inline-block;width:10px;height:10px;border-radius:50%;
-             background:var(--c);margin-right:.5rem;vertical-align:.05em}
+/* Línea de contexto: lo mínimo que un comprador necesita antes de escribir.
+   El detalle de caja va en la ficha técnica, por correo. */
+.datos{list-style:none;margin:1.8rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.datos li{font-size:.9375rem;line-height:1.35;color:var(--papel);
+          border:1px solid rgba(255,255,255,.34);border-radius:2px;padding:.4em .8em}
+
+.cta{font-family:var(--display);font-weight:300;
+     font-size:clamp(1.35rem,3vw,1.85rem);line-height:1.2;letter-spacing:-.005em;
+     margin:0 0 1.8rem;max-width:22ch}
 
 /* Bloque de certificaciones: se actualiza acá y en ningún otro lado.
    Cuando lleguen BRC y NSF se sube el logo y se borra .tramite. */

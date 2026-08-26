@@ -23,6 +23,23 @@ Todo sale de `TrueFood_VisualDNA.pdf`.
 - El logo lleva la mancha. La versión sin mancha del Shopify viejo no se usa.
 - Colores por producto = colores del empaque (guía pág. 7 + ficha técnica).
 
+## Tono
+
+El sitio vende el concepto; los datos duros van por correo. El español va en
+**"tu", no voseo** — nada de "querés", "escribinos" ni "conseguís". Sin frases
+de plantilla: ni "líderes en", ni "calidad garantizada".
+
+## La ficha técnica
+
+Las specs de caja **no están en el sitio**. Viven en
+`material-marca/TrueFood-ficha-tecnica.pdf`, una página A4 bilingüe con la
+marca puesta, para adjuntar por correo. El sitio solo lleva la línea de
+contexto (congelado · vida útil 6 meses · empacado por caja) y el llamado a
+pedirla.
+
+Para regenerarla: el fuente es `ficha/ficha.html` en el scratchpad de la
+sesión. Si cambian las specs, se edita ahí y se vuelve a exportar.
+
 ## Certificaciones
 
 **BRC y NSF Gluten-Free NO llevan logo** mientras no haya certificado emitido.
