@@ -1,3 +1,7 @@
+# docs/ SI se versiona: son entregables chicos del summit (ficha tecnica,
+# QR) y el punto de tenerlos en GitHub es no perderlos si falla el disco.
+# Ojo: cuando Pages se prenda, docs/ queda descargable publicamente.
+
 # Material de origen: respaldo local, NO se publica.
 # Son ~58 MB de fotos de sesion, empaques y documentos internos. El repo es
 # publico (requisito de GitHub Pages gratis), asi que esto no va adentro.
