@@ -1,0 +1,248 @@
+/* ==========================================================================
+   True Food CR — hoja de estilo del sitio informativo
+   Todo sale del TrueFood_VisualDNA.pdf. Nada de color ni tipografía
+   se inventa acá: si no está en la guía, no está en esta hoja.
+   ========================================================================== */
+
+:root{
+  /* Paleta principal — guía, pág. 6 */
+  --lima:#E9FE60;          /* Pantone 387 C */
+  --tinta:#000000;
+  --papel:#FFFFFF;
+  --gris:#58595B;
+
+  /* Neutros de apoyo, con sesgo hacia el lima para que no se vean grises muertos */
+  --hueso:#F5F7EC;
+  --linea:#E2E6D4;
+
+  /* Paleta secundaria — es el sistema de color del empaque, guía pág. 7.
+     Cookie Dough sale de la ficha técnica (no existía cuando se hizo la guía). */
+  --c-blanco:#6BC4E8;
+  --c-semillas:#80BC00;
+  --c-frances:#F26178;
+  --c-buns:#CF63CE;
+  --c-pizza:#FF671D;
+  --c-cookie:#E166C2;
+
+  --display:"Josefin Sans","Avenir Next","Century Gothic",sans-serif;
+  --texto:"DM Sans","Helvetica Neue",Arial,sans-serif;
+
+  --aire:clamp(3.75rem,9vw,7rem);
+  --borde:clamp(1.25rem,5vw,3.5rem);
+  --ancho:1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--texto);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--c-blanco);outline-offset:3px;border-radius:2px}
+
+/* Salto al contenido, para teclado y lectores de pantalla */
+.saltar{position:absolute;left:-9999px;top:0;background:var(--tinta);color:var(--lima);
+        padding:.7rem 1.1rem;z-index:100;font-weight:700}
+.saltar:focus{left:0}
+
+h1,h2,h3{text-wrap:balance}
+h1{font-family:var(--display);font-weight:300;margin:0}
+h2{font-family:var(--display);font-weight:300;margin:0 0 1.2rem;
+   font-size:clamp(2rem,5.2vw,3.4rem);line-height:1.03;letter-spacing:-.012em}
+h3{font-family:var(--texto);font-weight:700;margin:0 0 .4rem;font-size:1.125rem}
+p{margin:0 0 1.05rem;max-width:62ch}
+p:last-child{margin-bottom:0}
+
+.seccion{padding:var(--aire) var(--borde)}
+.inner{max-width:var(--ancho);margin-inline:auto}
+.rotulo{font-size:.8125rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+        color:var(--gris);margin:0 0 1rem}
+.lede{font-size:clamp(1.0625rem,1.9vw,1.25rem);line-height:1.5;max-width:52ch}
+
+/* ==========================================================================
+   Encabezado
+   ========================================================================== */
+.nav{position:sticky;top:0;z-index:50;background:var(--papel);
+     border-bottom:1px solid var(--linea)}
+.nav-in{max-width:var(--ancho);margin-inline:auto;padding:.7rem var(--borde);
+        display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo img{width:clamp(112px,20vw,140px)}
+.idioma{display:flex;align-items:center;gap:.15rem;font-size:.8125rem;font-weight:700;
+        letter-spacing:.06em}
+.idioma a,.idioma span{padding:.3rem .5rem;border-radius:2px;text-decoration:none}
+.idioma [aria-current="true"]{background:var(--tinta);color:var(--lima)}
+.idioma a:not([aria-current]){color:var(--gris)}
+.idioma a:not([aria-current]):hover{color:var(--tinta);background:var(--hueso)}
+
+/* ==========================================================================
+   Hero — campo lima con el argumento, la miga entera abajo.
+   El texto nunca cae sobre la foto: se lee siempre y la miga se ve limpia.
+   ========================================================================== */
+.hero{background:var(--lima)}
+.hero-txt{max-width:var(--ancho);margin-inline:auto;
+          padding:clamp(2.5rem,8vw,5.5rem) var(--borde) clamp(2rem,6vw,4rem)}
+.hero h1{font-size:clamp(2.9rem,9.5vw,6.2rem);line-height:.97;letter-spacing:-.02em}
+.hero h1 span{display:block}
+.hero-sub{font-size:clamp(1rem,2.1vw,1.3125rem);line-height:1.45;color:#1E2410;
+          margin:clamp(1.1rem,3vw,1.8rem) 0 0;max-width:30ch}
+.hero-foto{width:100%;height:clamp(230px,42vh,460px);object-fit:cover;object-position:center 58%}
+
+/* ==========================================================================
+   El mantra — regla de marca: siempre en este orden
+   ========================================================================== */
+.mantra{background:var(--tinta);color:var(--papel);text-align:center}
+.mantra ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+           align-items:center;gap:.1rem}
+.mantra li{font-family:var(--display);font-weight:200;
+           font-size:clamp(2.2rem,10vw,4rem);line-height:1.14;letter-spacing:-.01em}
+@media (min-width:760px){
+  .mantra ol{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:baseline;
+             gap:.2rem 2.6rem}
+  .mantra li+li::before{content:"\00b7";color:var(--lima);margin-right:2.6rem;font-weight:400}
+}
+.mantra p{margin:clamp(1.4rem,4vw,2.2rem) auto 0;color:#B9BDB0;font-size:1rem;max-width:46ch}
+
+/* ==========================================================================
+   Productos — bolsa como se ve en el congelador + el pan servido
+   ========================================================================== */
+.productos{background:var(--papel)}
+.rejilla{display:grid;grid-template-columns:1fr;gap:clamp(1.5rem,3vw,2.2rem);margin-top:2.4rem}
+@media (min-width:620px){.rejilla{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.rejilla{grid-template-columns:repeat(3,1fr)}}
+
+.prod{display:flex;flex-direction:column;min-width:0}
+.prod-fotos{position:relative;background:var(--hueso);overflow:hidden}
+.prod-bolsa{width:100%;aspect-ratio:1;object-fit:cover}
+.prod-servido{position:absolute;right:5%;bottom:5%;width:38%;aspect-ratio:1;object-fit:cover;
+              border-radius:50%;border:5px solid var(--papel)}
+.prod-nombre{display:flex;align-items:baseline;gap:.55rem;margin:1rem 0 .2rem}
+.prod-punto{width:13px;height:13px;border-radius:50%;flex:0 0 13px;
+            background:var(--c);transform:translateY(-1px)}
+.prod h3{margin:0;font-size:1.1875rem}
+.prod-desc{font-size:1rem;line-height:1.5;margin:0 0 .7rem;color:#2A2E1E}
+.prod-specs{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem}
+.prod-specs li{font-size:.8125rem;line-height:1.3;color:var(--gris);
+               border:1px solid var(--linea);border-radius:2px;padding:.22em .5em}
+.prod-falta{font-size:.8125rem;color:var(--gris);font-style:italic;margin-top:.5rem}
+
+/* ==========================================================================
+   Dónde nos conseguís — la fila de logos ES la credencial
+   ========================================================================== */
+.donde{background:var(--hueso)}
+.cadenas{list-style:none;margin:2.2rem 0 0;padding:0;
+         display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+         background:var(--linea);border:1px solid var(--linea)}
+@media (min-width:700px){.cadenas{grid-template-columns:repeat(5,1fr)}}
+.cadenas li{background:var(--papel);display:grid;place-items:center;
+            padding:clamp(1.1rem,3vw,1.8rem) 1rem;min-height:118px}
+.cadenas img{max-height:52px;width:auto;max-width:100%;object-fit:contain}
+/* Compre Bien todavía no tiene logo: va el nombre, no un hueco */
+.cadena-txt{font-family:var(--display);font-weight:400;font-size:1.2rem;line-height:1.1;
+            text-align:center;color:var(--tinta)}
+.donde-nota{margin-top:1.4rem;font-size:.9375rem;color:var(--gris)}
+
+/* ==========================================================================
+   Sellos — solo certificaciones vigentes.
+   Las marcas de terceros se reproducen tal cual las emiten, sin recolorear.
+   ========================================================================== */
+.sellos{background:var(--papel)}
+.sellos-fila{list-style:none;margin:2.2rem 0 0;padding:0;
+             display:flex;flex-wrap:wrap;gap:clamp(1.2rem,4vw,2.4rem);align-items:center}
+.sello{width:clamp(96px,22vw,124px);flex:0 0 auto;text-align:center}
+.sello img{width:100%;border-radius:50%}
+.sello-txt{border:2px solid var(--tinta);border-radius:50%;aspect-ratio:1;
+           display:grid;place-items:center;padding:.8rem;line-height:1.15}
+.sello-txt b{display:block;font-size:clamp(.9375rem,2.4vw,1.0625rem)}
+.sello-txt span{display:block;font-size:.6875rem;color:var(--gris);margin-top:.15rem}
+.sello-pie{font-size:.75rem;color:var(--gris);margin-top:.5rem;line-height:1.3}
+
+/* ==========================================================================
+   Quiénes somos
+   ========================================================================== */
+.nosotras{background:var(--lima)}
+.nosotras-in{display:grid;grid-template-columns:1fr;gap:clamp(1.8rem,4vw,3.2rem);align-items:center}
+@media (min-width:840px){.nosotras-in{grid-template-columns:.85fr 1.15fr}}
+.nosotras img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.nosotras h2{margin-bottom:1rem}
+.nosotras p{color:#1E2410}
+.firma{font-family:var(--display);font-weight:300;font-size:clamp(1.3rem,3vw,1.75rem);
+       line-height:1.25;margin-top:1.6rem}
+.credenciales{list-style:none;margin:1.6rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.credenciales li{background:var(--tinta);color:var(--lima);font-size:.8125rem;font-weight:700;
+                 letter-spacing:.05em;text-transform:uppercase;padding:.35em .7em;border-radius:2px}
+
+/* ==========================================================================
+   Distribución y exportación — la sección del comprador
+   ========================================================================== */
+.b2b{background:var(--tinta);color:var(--papel)}
+.b2b h2{color:var(--papel)}
+.b2b .rotulo{color:#8E927F}
+.b2b .lede{color:#D6DAC8}
+.b2b-cols{display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,3.5rem);margin-top:2.6rem}
+@media (min-width:900px){.b2b-cols{grid-template-columns:1.25fr .75fr}}
+
+.tabla-envoltura{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;min-width:0}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.9375rem}
+caption{text-align:left;font-size:.8125rem;color:#8E927F;padding-bottom:.7rem}
+th,td{text-align:left;padding:.7rem .85rem;border-bottom:1px solid rgba(255,255,255,.14);
+      vertical-align:top;line-height:1.45}
+thead th{font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:#8E927F;
+         border-bottom-color:rgba(255,255,255,.34);white-space:nowrap}
+tbody th{font-weight:700;white-space:nowrap}
+td{font-variant-numeric:tabular-nums}
+.celda-punto{display:inline-block;width:10px;height:10px;border-radius:50%;
+             background:var(--c);margin-right:.5rem;vertical-align:.05em}
+
+/* Bloque de certificaciones: se actualiza acá y en ningún otro lado.
+   Cuando lleguen BRC y NSF se sube el logo y se borra .tramite. */
+.certs{margin-top:2rem;border-left:3px solid var(--lima);padding-left:1.1rem}
+.certs ul{list-style:none;margin:0 0 .8rem;padding:0}
+.certs li{font-size:1rem;line-height:1.55}
+.certs li::before{content:"·";color:var(--lima);font-weight:700;margin-right:.5rem}
+.tramite{font-size:.9375rem;color:#B9BDB0;margin:0}
+
+.contactos{display:grid;gap:1.4rem}
+.tarjeta{border:1px solid rgba(255,255,255,.24);padding:1.2rem 1.3rem}
+.tarjeta .nom{font-weight:700;font-size:1.0625rem;line-height:1.3}
+.tarjeta .cargo{font-size:.8125rem;letter-spacing:.07em;text-transform:uppercase;
+                color:var(--lima);margin-top:.15rem}
+.tarjeta a{display:block;margin-top:.6rem;font-size:.9375rem;text-decoration:none;
+           border-bottom:1px solid rgba(255,255,255,.3);width:fit-content;
+           word-break:break-word}
+.tarjeta a:hover{border-bottom-color:var(--lima);color:var(--lima)}
+.b2b-foto{width:100%;aspect-ratio:4/3;object-fit:cover;margin-top:1.4rem}
+
+/* ==========================================================================
+   Contacto y pie
+   ========================================================================== */
+.contacto{background:var(--hueso)}
+.enlaces{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1px;
+         background:var(--linea);border:1px solid var(--linea)}
+@media (min-width:700px){.enlaces{grid-template-columns:repeat(3,1fr)}}
+.enlaces li{background:var(--papel)}
+.enlaces a{display:block;padding:1.3rem 1.4rem;text-decoration:none}
+.enlaces a:hover{background:var(--lima)}
+.enlaces .que{display:block;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;
+                 color:var(--gris);line-height:1.4}
+.enlaces .val{display:block;font-weight:700;font-size:1.0625rem;margin-top:.2rem;word-break:break-word}
+
+.pie{background:var(--tinta);color:#B9BDB0;padding:clamp(2.4rem,6vw,3.6rem) var(--borde)}
+.pie-in{max-width:var(--ancho);margin-inline:auto;display:flex;flex-wrap:wrap;
+        gap:1.6rem 2.4rem;align-items:flex-start;justify-content:space-between}
+.pie img{width:132px}
+.pie p{font-size:.875rem;margin:0;max-width:40ch}
+.pie a{color:var(--lima)}

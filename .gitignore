@@ -1,0 +1,9 @@
+# Material de origen: respaldo local, NO se publica.
+# Son ~58 MB de fotos de sesion, empaques y documentos internos. El repo es
+# publico (requisito de GitHub Pages gratis), asi que esto no va adentro.
+# Respaldalo aparte, en Drive.
+material-shopify/
+material-marca/
+material-nuevo/
+
+.DS_Store
