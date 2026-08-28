@@ -386,3 +386,8 @@ section[id]{scroll-margin-top:144px}
   .pie-sellos{gap:1rem;padding:1.2rem 1rem}
   .pie-sellos ul{gap:.9rem;justify-content:center}
 }
+
+/* Contacto: el bloque de Fundadoras no necesita tanto aire */
+.b2b{padding-block:calc(var(--aire) * .62)}
+.b2b h2{margin-bottom:1.6rem}
+.contactos-anchos{margin-top:0}
