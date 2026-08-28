@@ -350,3 +350,39 @@ section[id]{scroll-margin-top:144px}
 .prod-hero{align-items:start}
 .prod-hero-txt{padding-top:1.5rem}
 .tabla-ficha .sub{display:block;font-size:.75rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--gris);opacity:.8;margin-top:.2rem}
+
+/* ====================================================================
+   SITIO DE VARIAS PÁGINAS — carrusel, "lo que nos hace diferentes",
+   y la tira de sellos del pie.
+   ==================================================================== */
+.carrusel{position:relative;background:var(--tinta)}
+.diapos{list-style:none;margin:0;padding:0;position:relative;aspect-ratio:1800/1201}
+.diapo{position:absolute;inset:0;opacity:0;transition:opacity .7s ease}
+.diapo.activa{opacity:1}
+.diapo img{width:100%;height:100%;object-fit:cover;display:block}
+.puntos{position:absolute;left:0;right:0;bottom:1rem;display:flex;justify-content:center;gap:.5rem}
+.punto-carr{width:9px;height:9px;border-radius:50%;border:0;padding:0;cursor:pointer;
+            background:rgba(255,255,255,.5);transition:background .2s,transform .2s}
+.punto-carr.activo{background:var(--lima);transform:scale(1.25)}
+.punto-carr:focus-visible{outline:3px solid var(--lima);outline-offset:3px}
+
+.diferentes{background:var(--hueso)}
+.dif-lista{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+           gap:2rem 2.4rem;margin:2.4rem 0 0;padding:0}
+.dif-lista h3{font-family:"Josefin Sans",sans-serif;font-weight:400;font-size:1.25rem;
+              margin:0 0 .45rem;padding-top:.9rem;border-top:3px solid var(--lima)}
+.dif-lista p{margin:0;font-size:.9375rem;line-height:1.65}
+
+.pie-sellos{border-bottom:1px solid #2A2A2A;padding:1.5rem 1.5rem;display:flex;
+            align-items:center;justify-content:center;gap:1.6rem;flex-wrap:wrap}
+.pie-sellos>img{width:64px;height:auto;background:#fff;border-radius:3px;padding:5px}
+.pie-sellos ul{list-style:none;display:flex;flex-wrap:wrap;gap:1.4rem;margin:0;padding:0}
+.pie-sellos li{font-size:.75rem;line-height:1.35;color:#B9BDB0}
+.pie-sellos b{display:block;color:#fff;font-size:.8125rem;font-weight:500}
+.contactos-anchos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;max-width:760px}
+
+@media (max-width:640px){
+  .dif-lista{gap:1.6rem}
+  .pie-sellos{gap:1rem;padding:1.2rem 1rem}
+  .pie-sellos ul{gap:.9rem;justify-content:center}
+}

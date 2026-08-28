@@ -3,17 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>True Food — Pan de verdad, libre de gluten | Costa Rica</title>
-<meta name="description" content="Panes congelados libres de gluten, hechos con ingredientes reales. Nos encuentras en los congelados de Auto Mercado, Walmart, Más x Menos, BM y Compre Bien.">
+<title>True Food &mdash; Pan de verdad, sin gluten | Costa Rica</title>
+<meta name="description" content="Panes congelados sin gluten, hechos con ingredientes reales. En los congeladores de Auto Mercado, Walmart, Más x Menos, BM y Compre Bien.">
 <link rel="canonical" href="https://truefoodcr.com/">
-<link rel="alternate" hreflang="es" href="https://truefoodcr.com/">
-<link rel="alternate" hreflang="en" href="https://truefoodcr.com/en/">
-<link rel="alternate" hreflang="x-default" href="https://truefoodcr.com/">
 <link rel="icon" href="assets/img/logo-sec-lima.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="True Food — Pan de verdad, libre de gluten">
-<meta property="og:description" content="Panes congelados libres de gluten, hechos con ingredientes reales. En los congeladores de los supermercados de Costa Rica.">
-<meta property="og:url" content="https://truefoodcr.com/">
+<meta property="og:title" content="True Food &mdash; Pan de verdad, sin gluten | Costa Rica">
+<meta property="og:description" content="Panes congelados sin gluten, hechos con ingredientes reales. En los congeladores de Auto Mercado, Walmart, Más x Menos, BM y Compre Bien.">
 <meta property="og:image" content="https://truefoodcr.com/assets/img/og.jpg">
 <meta property="og:locale" content="es_CR">
 <meta name="twitter:card" content="summary_large_image">
@@ -23,7 +19,7 @@
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-<a class="saltar" href="#inicio">Saltar al contenido</a>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 
 <header class="nav">
   <div class="nav-in">
@@ -36,39 +32,72 @@
     </nav>
     <nav class="secciones" aria-label="Secciones del sitio">
       <ul>
-        <li><a href="#productos">Productos</a></li>
-        <li><a href="#donde">D&oacute;nde comprar</a></li>
-        <li><a href="#sellos">Certificaciones</a></li>
-        <li><a href="#nosotras">Historia</a></li>
-        <li><a href="#b2b">Exportaci&oacute;n</a></li>
+        <li><a href="./" aria-current="page">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="donde-comprar.html">Dónde comprar</a></li>
+        <li><a href="historia.html">Historia</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<main id="inicio">
-
-  <!-- ====================================================================
-       1 · HERO
-       El titular vive SOLO acá. Para cambiarlo, se cambia esta línea
-       y su equivalente en /en/index.html.
-       ==================================================================== -->
+<main id="contenido">
+  <!-- ================================================================
+       1 · PORTADA — titular sobre lima, y debajo las fotos que rotan
+       ================================================================ -->
   <section class="hero">
     <div class="hero-txt">
       <h1><span>Pan de verdad.</span><span>Sin gluten.</span></h1>
       <p class="hero-sub">Hecho con los mejores ingredientes, naturalmente libres de gluten. En los congeladores del supermercado.</p>
     </div>
-    <img class="hero-foto"
-         src="assets/img/hero-panes-1800.jpg"
-         srcset="assets/img/hero-panes-900.jpg 900w, assets/img/hero-panes-1800.jpg 1800w"
-         sizes="100vw"
-         width="1800" height="1201"
-         alt="Panes True Food vistos desde arriba: hogazas rebanadas, buns, baguettes y pan de semillas">
   </section>
 
-  <!-- ====================================================================
+  <section class="carrusel" aria-roledescription="carrusel" aria-label="Fotos de productos True Food">
+    <ul class="diapos">
+      <li class="diapo activa">
+        <img src="assets/img/carrusel/panes.jpg"
+             srcset="assets/img/carrusel/panes-900.jpg 900w, assets/img/carrusel/panes.jpg 1800w"
+             sizes="100vw" width="1800" height="1201"
+             alt="Panes True Food vistos desde arriba: hogazas rebanadas, buns, baguettes y pan de semillas">
+      </li>
+      <li class="diapo">
+        <img src="assets/img/carrusel/aguacate.jpg"
+             srcset="assets/img/carrusel/aguacate-900.jpg 900w, assets/img/carrusel/aguacate.jpg 1800w"
+             sizes="100vw" width="1800" height="1201"
+             loading="lazy" alt="Tostada de pan True Food con aguacate, rábano y queso fresco">
+      </li>
+      <li class="diapo">
+        <img src="assets/img/carrusel/hamburguesa.jpg"
+             srcset="assets/img/carrusel/hamburguesa-900.jpg 900w, assets/img/carrusel/hamburguesa.jpg 1800w"
+             sizes="100vw" width="1800" height="1201"
+             loading="lazy" alt="Hamburguesa armada con un bun de True Food">
+      </li>
+      <li class="diapo">
+        <img src="assets/img/carrusel/tostadas-francesas.jpg"
+             srcset="assets/img/carrusel/tostadas-francesas-900.jpg 900w, assets/img/carrusel/tostadas-francesas.jpg 1800w"
+             sizes="100vw" width="1800" height="1201"
+             loading="lazy" alt="Torre de tostadas francesas con frutos rojos y miel">
+      </li>
+      <li class="diapo">
+        <img src="assets/img/carrusel/salmon.jpg"
+             srcset="assets/img/carrusel/salmon-900.jpg 900w, assets/img/carrusel/salmon.jpg 1800w"
+             sizes="100vw" width="1800" height="1201"
+             loading="lazy" alt="Pan francés abierto con salmón, huevo y eneldo">
+      </li>
+    </ul>
+    <div class="puntos" role="group" aria-label="Elegir foto">
+      <button type="button" class="punto-carr activo" data-i="0" aria-label="Foto 1 de 5"></button>
+      <button type="button" class="punto-carr" data-i="1" aria-label="Foto 2 de 5"></button>
+      <button type="button" class="punto-carr" data-i="2" aria-label="Foto 3 de 5"></button>
+      <button type="button" class="punto-carr" data-i="3" aria-label="Foto 4 de 5"></button>
+      <button type="button" class="punto-carr" data-i="4" aria-label="Foto 5 de 5"></button>
+    </div>
+  </section>
+
+  <!-- ================================================================
        2 · EL MANTRA — regla de marca: siempre en este orden
-       ==================================================================== -->
+       ================================================================ -->
   <section class="seccion mantra" aria-labelledby="t-mantra">
     <div class="inner">
       <h2 id="t-mantra" class="rotulo" style="color:#8E927F">Nuestro mantra</h2>
@@ -77,223 +106,87 @@
         <li>saludable</li>
         <li>gluten free</li>
       </ol>
-      <p>True Food es una forma de vivir: comer bien y sentirse bien, sin renunciar a nada. Y empieza por la primera regla — si no es divino, no es True Food.</p>
+      <p>True Food es una forma de vivir: comer bien y sentirse bien, sin renunciar a nada. Y empieza por la primera regla &mdash; si no es divino, no es True Food.</p>
     </div>
   </section>
 
-  <!-- ====================================================================
-       3 · LOS SEIS PRODUCTOS
-       ==================================================================== -->
-  <section class="seccion productos" id="productos" aria-labelledby="t-prod">
+  <!-- ================================================================
+       3 · LO QUE NOS HACE DIFERENTES
+       ⚠️ BORRADOR — escrito con datos verificados, falta la voz de las
+       fundadoras. Se reemplaza cuando Andrea pase los cinco argumentos
+       de calidad de la nota de revista.
+       ================================================================ -->
+  <section class="seccion diferentes" aria-labelledby="t-dif">
     <div class="inner">
-      <p class="rotulo">Los productos</p>
-      <h2 id="t-prod">Nuestros productos</h2>
-      <p class="lede">Del congelador directo a calentar.</p>
+      <p class="rotulo">Lo que nos hace diferentes</p>
+      <h2 id="t-dif">Primero tiene que estar rico.</h2>
+      <p class="lede">Si no es divino, no es True Food. Esa es la primera regla, y de ahí sale todo lo dem&aacute;s.</p>
 
-      <div class="rejilla">
-
-        <article class="prod prod-link" style="--c:var(--c-blanco)">
-          <div class="prod-fotos">
-            <img class="prod-bolsa" src="assets/img/bolsa-blanco.jpg" width="880" height="880" loading="lazy" alt="Bolsa celeste de Pan Blanco de True Food"></div>
-          <div class="prod-nombre"><span class="prod-punto" aria-hidden="true"></span><h3><a href="producto/pan-blanco.html">Pan Blanco</a></h3></div>
-          <p class="prod-desc">Libre de gluten, lácteos y nueces.</p>
-        </article>
-
-        <article class="prod prod-link" style="--c:var(--c-semillas)">
-          <div class="prod-fotos">
-            <img class="prod-bolsa" src="assets/img/bolsa-semillas.jpg" width="880" height="880" loading="lazy" alt="Bolsa verde de Pan de Semillas de True Food"></div>
-          <div class="prod-nombre"><span class="prod-punto" aria-hidden="true"></span><h3><a href="producto/pan-de-semillas.html">Pan de Semillas</a></h3></div>
-          <p class="prod-desc">Vegano. Libre de gluten, lácteos y nueces.</p>
-        </article>
-
-        <article class="prod prod-link" style="--c:var(--c-frances)">
-          <div class="prod-fotos">
-            <img class="prod-bolsa" src="assets/img/bolsa-frances.jpg" width="880" height="880" loading="lazy" alt="Bolsa rosada de Pan Francés de True Food"></div>
-          <div class="prod-nombre"><span class="prod-punto" aria-hidden="true"></span><h3><a href="producto/pan-frances.html">Pan Francés</a></h3></div>
-          <p class="prod-desc">Libre de gluten, lácteos y nueces.</p>
-        </article>
-
-        <article class="prod prod-link" style="--c:var(--c-buns)">
-          <div class="prod-fotos">
-            <img class="prod-bolsa" src="assets/img/bolsa-buns.jpg" width="880" height="880" loading="lazy" alt="Bolsa morada de Buns de True Food, empaque nuevo"></div>
-          <div class="prod-nombre"><span class="prod-punto" aria-hidden="true"></span><h3><a href="producto/buns.html">Buns</a></h3></div>
-          <p class="prod-desc">Libre de gluten, lácteos y nueces.</p>
-        </article>
-
-        <article class="prod prod-link" style="--c:var(--c-pizza)">
-          <div class="prod-fotos">
-            <img class="prod-bolsa" src="assets/img/bolsa-pizza.jpg" width="880" height="1022" loading="lazy" alt="Caja naranja de Pizza Crust de True Food"></div>
-          <div class="prod-nombre"><span class="prod-punto" aria-hidden="true"></span><h3><a href="producto/pizza-crust.html">Pizza Crust</a></h3></div>
-          <p class="prod-desc">Libre de gluten, lácteos y nueces.</p>
-        </article>
-
-        <article class="prod prod-link" style="--c:var(--c-cookie)">
-          <div class="prod-fotos prod-fotos--izq">
-            <img class="prod-bolsa" src="assets/img/bolsa-cookie.jpg" width="880" height="1173" loading="lazy" alt="Envase rosado de Cookie Dough de chocolate de True Food"></div>
-          <div class="prod-nombre"><span class="prod-punto" aria-hidden="true"></span><h3><a href="producto/cookie-dough.html">Cookie Dough</a></h3></div>
-          <p class="prod-desc">Libre de gluten, lácteos y nueces.</p>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       4 · DÓNDE NOS CONSEGUÍS
-       ==================================================================== -->
-  <section class="seccion donde" id="donde" aria-labelledby="t-donde">
-    <div class="inner">
-      <p class="rotulo">Dónde comprar</p>
-      <h2 id="t-donde">Estamos en los congeladores de tu supermercado.</h2>
-      <p class="lede">También en restaurantes como Franco, Simple, Negroni, Árbol de Seda, Chez Christophe y Momo Café.</p>
-
-      <ul class="cadenas">
-        <li><img src="assets/img/cadena-auto-mercado.png" width="454" height="209" loading="lazy" alt="Auto Mercado"></li>
-        <li><img src="assets/img/cadena-walmart.png" width="515" height="179" loading="lazy" alt="Walmart"></li>
-        <li><img src="assets/img/cadena-mas-x-menos.png" width="300" height="68" loading="lazy" alt="Más x Menos"></li>
-        <li><img class="logo-cuadrado" src="assets/img/cadena-bm.png" width="520" height="520" loading="lazy" alt="BM Supermercados"></li>
-        <li><img src="assets/img/cadena-compre-bien.png" width="520" height="133" loading="lazy" alt="Compre Bien Supermercados"></li>
-      </ul>
-      <p class="donde-nota">Los logos son propiedad de cada cadena y se muestran únicamente para indicar dónde encontrar el producto.</p>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       5 · SELLOS — solo certificaciones vigentes
-       ==================================================================== -->
-  <section class="seccion sellos" id="sellos" aria-labelledby="t-sellos">
-    <div class="inner">
-      <p class="rotulo">Certificaciones</p>
-      <h2 id="t-sellos">Lo que respalda cada lote</h2>
-      <p class="lede">Pruebas mensuales en superficies y producto final. Trazabilidad completa de cada lote.</p>
-
-      <ul class="sellos-fila">
-        <li class="sello">
-          <img class="sello-gf" src="assets/img/sello-gf-certified.svg" width="217" height="217" alt="Sello GF Certified del Gluten-Free Food Program">
-          <p class="sello-pie">Gluten-Free Food Program &middot; 5 ppm</p>
+      <ul class="dif-lista">
+        <li>
+          <h3>Certificados a 5&nbsp;ppm</h3>
+          <p>El est&aacute;ndar internacional para decir &laquo;gluten free&raquo; son 20&nbsp;ppm. Nosotras estamos certificadas a la cuarta parte de eso.</p>
         </li>
-        <li class="sello">
-          <img src="assets/img/sello-kosher.png" width="300" height="300" loading="lazy" alt="Sello Kosher Parve del Rabinato Ortodoxo de Costa Rica">
-          <p class="sello-pie">Kosher Parve</p>
+        <li>
+          <h3>Planta propia</h3>
+          <p>Producimos nosotras, en Costa Rica, con trazabilidad completa de cada lote. Nada se fabrica afuera.</p>
         </li>
-        <li class="sello">
-          <div class="sello-txt"><span><b>HACCP</b><span>Plan vigente</span></span></div>
-          <p class="sello-pie">Inocuidad</p>
+        <li>
+          <h3>Se prueba todos los meses</h3>
+          <p>Pruebas de laboratorio en superficies y en producto terminado, mes a mes. No es una certificaci&oacute;n y ya.</p>
         </li>
-        <li class="sello">
-          <div class="sello-txt"><span><b>Libre Venta</b><span>Apostillado</span></span></div>
-          <p class="sello-pie">Ministerio de Salud</p>
+        <li>
+          <h3>Ingredientes de verdad</h3>
+          <p>Harina de avena certificada libre de gluten, aceite de oliva, huevo. Sin l&aacute;cteos y sin nueces.</p>
         </li>
       </ul>
+
+      <p class="cta-vuelta"><a href="productos.html">Ver los productos</a></p>
     </div>
   </section>
 
-  <!-- ====================================================================
-       6 · QUIÉNES SOMOS
-       ==================================================================== -->
-  <section class="seccion nosotras" id="nosotras" aria-labelledby="t-nos">
-    <div class="inner nosotras-in">
-      <img src="assets/img/fundadoras.jpg" width="1100" height="1467" loading="lazy" alt="Andrea Fernández y Lorena Madrid, fundadoras de True Food">
-      <div>
-        <p class="rotulo" style="color:#4A5220">Quiénes somos</p>
-        <h2 id="t-nos">Nuestra historia</h2>
-        <p>True Food nace del amor de una mamá. Cuando Santiago, el hijo menor de Andrea, empezó con alergias e intolerancias alimentarias, ella hizo lo que haría cualquier madre: buscar respuestas. En ese camino descubrió que el problema no era solo lo que comía, sino cómo su cuerpo reaccionaba a ciertos alimentos, entre ellos el gluten.</p>
-        <p>Lo que empezó como un ajuste en casa terminó cambiando la vida de la familia, y dando origen a un negocio que hoy ayuda a cientos de personas. Junto a su amiga Lorena Madrid, Andrea armó True Food para demostrar que sí se puede tener un estilo de vida delicioso, saludable y gluten free.</p>
-        <p class="firma">«Porque lo que es bueno es real, y lo real se siente.»</p>
-        <ul class="credenciales">
-          <li>Fundado por mujeres</li>
-          <li>Kosher Parve</li>
-          <li>Hecho en Costa Rica</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       7 · DISTRIBUCIÓN Y EXPORTACIÓN  (ancla /#b2b — no cambiar el id)
-       ==================================================================== -->
-  <section class="seccion b2b" id="b2b" aria-labelledby="t-b2b">
-    <div class="inner">
-      <p class="rotulo">Distribución y exportación</p>
-      <h2 id="t-b2b">¿Quieres distribuir True Food?</h2>
-      <p class="lede">Producto congelado, elaborado en nuestra planta en Costa Rica, con trazabilidad completa de cada lote.</p>
-
-      <ul class="datos">
-        <li>Congelado</li>
-        <li>Vida útil 6 meses</li>
-        <li>Empacado por caja</li>
-        <li>Avena certificada libre de gluten</li>
-      </ul>
-
-      <div class="b2b-cols">
-        <div>
-          <p class="cta">Escríbenos y te mandamos la ficha técnica.</p>
-
-          <!-- BLOQUE DE CERTIFICACIONES — se actualiza SOLO acá.
-               Cuando BRC emita el certificado: se agrega a la lista y se
-               borra el párrafo .tramite. Nada más.
-               El gluten free lo certifica Gluten-Free Food Program
-               (cert. P1589, vence 25-ago-2027). El LOGO va solo cuando
-               el certificador mande el archivo oficial: hasta entonces,
-               texto. NUNCA usar el sello de NSF: no son ellos. -->
-          <div class="certs">
-            <ul>
-              <li>Gluten-Free Certified &mdash; Gluten-Free Food Program &middot; 5 ppm</li>
-              <li>Kosher Parve — Rabinato Ortodoxo de Costa Rica</li>
-              <li>HACCP — plan vigente</li>
-              <li>Certificado de Libre Venta apostillado</li>
-            </ul>
-            <p class="tramite">Auditoría BRC completada — certificación en trámite.</p>
-          </div>
-        </div>
-        <div>
-          <p class="rotulo" style="margin-bottom:.9rem">Contacto directo</p>
-          <div class="contactos">
-            <div class="tarjeta">
-              <div class="nom">Andrea Fernández Leboreiro</div>
-              <div class="cargo">Co-fundadora</div>
-              <a href="mailto:andrea@truefoodcr.com">andrea@truefoodcr.com</a>
-              <a href="https://wa.me/50671369029">+506 7136-9029 · WhatsApp</a>
-            </div>
-            <div class="tarjeta">
-              <div class="nom">Lorena Madrid</div>
-              <div class="cargo">Co-fundadora</div>
-              <a href="mailto:lorena@truefoodcr.com">lorena@truefoodcr.com</a>
-              <a href="https://wa.me/50671015569">+506 7101-5569 · WhatsApp</a>
-            </div>
-          </div>
-          <img class="b2b-foto" src="assets/img/b2b-tarimas.jpg" width="1100" height="1467" loading="lazy" alt="Tarimas de producto True Food listas para despacho">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       8 · CONTACTO
-       ==================================================================== -->
-  <section class="seccion contacto" id="contacto" aria-labelledby="t-cont">
-    <div class="inner">
-      <p class="rotulo">Contacto</p>
-      <h2 id="t-cont">Escríbenos.</h2>
-      <ul class="enlaces">
-        <li><a href="https://www.instagram.com/truefood.cr/"><span class="que">Instagram</span><span class="val">@truefood.cr</span></a></li>
-        <li><a href="mailto:info@truefoodcr.com"><span class="que">Correo</span><span class="val">info@truefoodcr.com</span></a></li>
-        <li><a href="https://wa.me/50671369029"><span class="que">WhatsApp</span><span class="val">+506 7136-9029</span></a></li>
-      </ul>
-    </div>
-  </section>
+  <!-- ================================================================
+       4 · TESTIMONIOS
+       ⚠️ VACÍA A PROPÓSITO. Los testimonios del sitio viejo NO se usan:
+       se dieron para una tienda en línea y reusarlos es otro
+       consentimiento (decisión de Andrea, 25-ago-2026).
+       Cuando haya testimonios nuevos, van acá.
+       ================================================================ -->
 
 </main>
 
 <footer class="pie">
+  <div class="pie-sellos">
+    <img src="assets/img/sello-gf-certified.svg" width="217" height="217" loading="lazy" alt="Sello GF Certified del Gluten-Free Food Program">
+    <ul><li><b>Gluten-Free Food Program</b><span>5 ppm</span></li><li><b>Kosher Parve</b><span>Rabinato Ortodoxo</span></li><li><b>HACCP</b><span>Plan vigente</span></li><li><b>Libre Venta</b><span>Apostillado</span></li></ul>
+  </div>
   <div class="pie-in">
     <img src="assets/img/logo-sec-lima.png" width="420" height="391" loading="lazy" alt="True Food">
-    <p>True Food CR S.A. · San José, Costa Rica<br>
+    <p>True Food CR S.A. &middot; San Jos&eacute;, Costa Rica<br>
        Delicioso, saludable y gluten free.</p>
-    <p>© 2026 True Food CR S.A.<br>
+    <p>&copy; 2026 True Food CR S.A.<br>
        <a href="en/" hreflang="en" lang="en">English</a></p>
   </div>
 </footer>
 
+<script>
+(function(){
+  var diapos = document.querySelectorAll('.carrusel .diapo');
+  var puntos = document.querySelectorAll('.carrusel .punto-carr');
+  if (diapos.length < 2) return;
+  var i = 0, timer = null;
+  var lento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function ir(n){
+    diapos[i].classList.remove('activa'); puntos[i].classList.remove('activo');
+    i = (n + diapos.length) % diapos.length;
+    diapos[i].classList.add('activa'); puntos[i].classList.add('activo');
+  }
+  function arrancar(){ if (!lento) timer = setInterval(function(){ ir(i+1); }, 5000); }
+  puntos.forEach(function(b){
+    b.addEventListener('click', function(){ clearInterval(timer); ir(+b.dataset.i); arrancar(); });
+  });
+  arrancar();
+})();
+</script>
 </body>
 </html>
