@@ -251,7 +251,8 @@ section[id]{scroll-margin-top:144px}
      margin:0 0 1.8rem;max-width:22ch}
 
 /* Bloque de certificaciones: se actualiza acá y en ningún otro lado.
-   Cuando lleguen BRC y NSF se sube el logo y se borra .tramite. */
+   Cuando llegue BRC se agrega a la lista y se borra .tramite.
+   El gluten free ya está certificado por Gluten-Free Food Program. */
 .certs{margin-top:2rem;border-left:3px solid var(--lima);padding-left:1.1rem}
 .certs ul{list-style:none;margin:0 0 .8rem;padding:0}
 .certs li{font-size:1rem;line-height:1.55}

@@ -42,10 +42,18 @@ sesión. Si cambian las specs, se edita ahí y se vuelve a exportar.
 
 ## Certificaciones
 
-**BRC y NSF Gluten-Free NO llevan logo** mientras no haya certificado emitido.
-Van como línea de texto en la sección B2B, en el bloque `.certs` — un solo
-lugar en cada idioma. Cuando lleguen los certificados: se agrega el logo a la
-lista `<ul>` y se borra el párrafo `.tramite`.
+El gluten free lo certifica **Gluten-Free Food Program** (GFFP), certificado
+`P1589`, emitido 26-ago-2026, vence 25-ago-2027, umbral **5 ppm**.
+⚠️ **No es NSF.** El sello de NSF no se usa nunca: no son ellos quienes
+certifican.
+
+**El logo de GFFP NO se usa** hasta que el certificador mande el archivo
+oficial. Mientras tanto va como línea de texto.
+
+**BRC sigue en trámite** y tampoco lleva logo. Va como línea de texto en la
+sección B2B, en el bloque `.certs` — un solo lugar en cada idioma. Cuando
+llegue el certificado: se agrega a la lista `<ul>` y se borra el párrafo
+`.tramite`.
 
 ## Publicar
 
