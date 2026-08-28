@@ -60,7 +60,7 @@ col.c4{width:19%} col.c5{width:10%}   col.c6{width:14.5%} col.c7{width:14%}
 .calc{font-size:7pt;color:#58595B;margin:2.5mm 0 0}
 
 /* ── bloque de abajo ── */
-.abajo{display:flex;gap:9mm;margin-top:8mm}
+.abajo{display:flex;gap:9mm;margin-top:6mm}
 .col{flex:1 1 0;min-width:0}
 .col h2{font-family:"Josefin Sans",sans-serif;font-weight:300;font-size:12.5pt;
         margin:0 0 2.5mm;line-height:1.1}
@@ -77,6 +77,11 @@ col.c4{width:19%} col.c5{width:10%}   col.c6{width:14.5%} col.c7{width:14%}
 .pie{position:absolute;left:13mm;right:13mm;bottom:10mm;
      border-top:.5pt solid #DEE2CE;padding-top:3mm;
      display:flex;justify-content:space-between;gap:6mm;font-size:7pt;color:#58595B}
+.codigos{margin-top:4mm}
+.codigos th,.codigos td{padding-top:1.4mm;padding-bottom:1.4mm}
+.codigos caption{padding-bottom:1.8mm}
+.codigos col.k1{width:34%} .codigos col.k2{width:33%} .codigos col.k3{width:33%}
+.cod{font-variant-numeric:tabular-nums;letter-spacing:.02em}
 </style>
 </head>
 <body>
@@ -100,7 +105,7 @@ col.c4{width:19%} col.c5{width:10%}   col.c6{width:14.5%} col.c7{width:14%}
   </div>
 
   <table>
-    <caption>Todos los productos se despachan congelados. Libres de gluten, lácteos y nueces.</caption>
+    <caption>Todos los productos se despachan congelados. Libres de gluten, lácteos y nueces. Elaborados con avena certificada libre de gluten.</caption>
     <colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"><col class="c6"><col class="c7"></colgroup>
     <thead>
       <tr>
@@ -124,6 +129,21 @@ col.c4{width:19%} col.c5{width:10%}   col.c6{width:14.5%} col.c7{width:14%}
     </tbody>
   </table>
   <p class="calc">Peso neto por caja = peso del empaque × empaques por caja. No incluye el peso del cartón.</p>
+  <table class="codigos">
+    <caption>Códigos de barras</caption>
+    <colgroup><col class="k1"><col class="k2"><col class="k3"></colgroup>
+    <thead><tr><th>Producto</th><th>EAN empaque (GTIN-13)</th><th>Código de caja (GTIN-14)</th></tr></thead>
+    <tbody>
+      <tr style="--c:#6BC4E8"><th><span class="punto"></span>Pan Blanco</th><td class="cod">7443036920004</td><td class="cod">17443036920001</td></tr>
+      <tr style="--c:#80BC00"><th><span class="punto"></span>Pan de Semillas</th><td class="cod">7443036920011</td><td class="cod">17443036920018</td></tr>
+      <tr style="--c:#F26178"><th><span class="punto"></span>Pan Francés</th><td class="cod">7443036920028</td><td class="cod">17443036920025</td></tr>
+      <tr style="--c:#CF63CE"><th><span class="punto"></span>Buns</th><td class="cod">7443036920035</td><td class="cod">17443036920032</td></tr>
+      <tr style="--c:#FF671D"><th><span class="punto"></span>Pizza Crust</th><td class="cod">7443036920042</td><td class="cod">07443036920103</td></tr>
+      <tr style="--c:#FD98D1"><th><span class="punto"></span>Cookie Dough</th><td class="cod">7443036920110</td><td class="cod">27443036920114</td></tr>
+    </tbody>
+  </table>
+  <p class="calc">El EAN identifica el empaque que se vende; el código de caja identifica la caja máster.</p>
+
 
   <div class="abajo">
     <div class="col">
@@ -178,7 +198,7 @@ col.c4{width:19%} col.c5{width:10%}   col.c6{width:14.5%} col.c7{width:14%}
   </div>
 
   <table>
-    <caption>All products ship frozen. Free of gluten, dairy and nuts.</caption>
+    <caption>All products ship frozen. Free of gluten, dairy and nuts. Made with certified gluten-free oats.</caption>
     <colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"><col class="c6"><col class="c7"></colgroup>
     <thead>
       <tr>
@@ -202,6 +222,21 @@ col.c4{width:19%} col.c5{width:10%}   col.c6{width:14.5%} col.c7{width:14%}
     </tbody>
   </table>
   <p class="calc">Net weight per case = pack weight × packs per case. Carton weight not included.</p>
+  <table class="codigos">
+    <caption>Barcodes</caption>
+    <colgroup><col class="k1"><col class="k2"><col class="k3"></colgroup>
+    <thead><tr><th>Product</th><th>Unit EAN (GTIN-13)</th><th>Case code (GTIN-14)</th></tr></thead>
+    <tbody>
+      <tr style="--c:#6BC4E8"><th><span class="punto"></span>White Bread</th><td class="cod">7443036920004</td><td class="cod">17443036920001</td></tr>
+      <tr style="--c:#80BC00"><th><span class="punto"></span>Seeded Bread</th><td class="cod">7443036920011</td><td class="cod">17443036920018</td></tr>
+      <tr style="--c:#F26178"><th><span class="punto"></span>French Bread</th><td class="cod">7443036920028</td><td class="cod">17443036920025</td></tr>
+      <tr style="--c:#CF63CE"><th><span class="punto"></span>Buns</th><td class="cod">7443036920035</td><td class="cod">17443036920032</td></tr>
+      <tr style="--c:#FF671D"><th><span class="punto"></span>Pizza Crust</th><td class="cod">7443036920042</td><td class="cod">07443036920103</td></tr>
+      <tr style="--c:#FD98D1"><th><span class="punto"></span>Cookie Dough</th><td class="cod">7443036920110</td><td class="cod">27443036920114</td></tr>
+    </tbody>
+  </table>
+  <p class="calc">The EAN identifies the consumer pack; the case code identifies the master case.</p>
+
 
   <div class="abajo">
     <div class="col">
