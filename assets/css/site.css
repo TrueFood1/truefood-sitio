@@ -349,3 +349,4 @@ section[id]{scroll-margin-top:144px}
 /* el encabezado de producto no necesita tanto aire cuando la foto es alta */
 .prod-hero{align-items:start}
 .prod-hero-txt{padding-top:1.5rem}
+.tabla-ficha .sub{display:block;font-size:.75rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--gris);opacity:.8;margin-top:.2rem}
