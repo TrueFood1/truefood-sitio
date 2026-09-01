@@ -83,7 +83,7 @@ p:last-child{margin-bottom:0}
 .nav-in{max-width:var(--ancho);margin-inline:auto;padding:.6rem var(--borde) 0;
         display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1rem}
 .nav-logo{order:1;flex:0 0 auto}
-.nav-logo img{width:clamp(108px,20vw,136px)}
+.nav-logo img{height:clamp(50px,10vw,62px);width:auto}
 .idioma{order:2;margin-left:auto;display:flex;align-items:center;gap:.15rem;
         font-size:.8125rem;font-weight:700;letter-spacing:.06em}
 .secciones{order:3;flex:1 0 100%;min-width:0}
@@ -177,13 +177,10 @@ body.con-portada .nav:not(.solida) .idioma a:not([aria-current]):hover{color:#ff
 body.con-portada .nav:not(.solida) .idioma [aria-current="true"]{background:var(--lima);color:var(--tinta)}
 body.con-portada .nav:not(.solida) .secciones::after{background:none}
 
-/* Dos logos superpuestos: el negro para fondo blanco, el de FOOD en blanco
-   para cuando la barra esta sobre la foto. Se cruzan con opacidad, sin saltos. */
-.nav-logo{position:relative;display:block}
-.nav-logo img{transition:opacity .35s ease}
-.nav-logo .logo-claro{position:absolute;left:0;top:0;opacity:0}
-body.con-portada .nav:not(.solida) .nav-logo .logo-claro{opacity:1}
-body.con-portada .nav:not(.solida) .nav-logo .logo-oscuro{opacity:0}
+/* El logo redondo trae su propia mancha lima, asi que el mismo archivo se lee
+   sobre la foto de la portada y sobre el blanco del resto. Sin cambio de
+   version, sin cruce de opacidades. */
+.nav-logo{display:block}
 
 /* ==========================================================================
    El mantra — regla de marca: siempre en este orden
