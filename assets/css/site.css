@@ -385,7 +385,12 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
 .prod h3 a,.miga a,.lista-otros a,.cta-vuelta a,.pie a{text-decoration:none}
 .prod h3 a:hover,.prod h3 a:focus-visible,.miga a:hover,.lista-otros a:hover,
 .cta-vuelta a:hover,.pie a:hover{text-decoration:underline;text-underline-offset:3px}
-.prod-link{cursor:pointer}
+/* La tarjeta entera entra al producto, foto incluida. En vez de envolver todo
+   en un <a> —que duplicaria el destino para lectores de pantalla y para
+   Google— se estira el enlace del nombre sobre la tarjeta con un
+   pseudo-elemento. Sigue habiendo un solo enlace real. */
+.prod-link{position:relative}
+.prod-link h3 a::after{content:"";position:absolute;inset:0}
 .prod-link:hover .prod-fotos{filter:brightness(.97)}
 .prod-link:hover h3 a{text-decoration:underline;text-underline-offset:3px}
 /* el encabezado de producto no necesita tanto aire cuando la foto es alta */
