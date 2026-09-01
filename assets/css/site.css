@@ -424,17 +424,19 @@ body.con-portada .nav:not(.solida) .nav-logo .logo-oscuro{opacity:0}
               color:rgba(255,255,255,.95);text-shadow:0 1px 16px rgba(0,0,0,.55)}
 
 
-.pie-sellos{border-bottom:1px solid #2A2A2A;padding:1.5rem 1.5rem;display:flex;
-            align-items:center;justify-content:center;gap:1.6rem;flex-wrap:wrap}
-.pie-sellos>img{width:64px;height:auto;background:#fff;border-radius:3px;padding:5px}
-.pie-sellos ul{list-style:none;display:flex;flex-wrap:wrap;gap:1.4rem;margin:0;padding:0}
-.pie-sellos li{font-size:.75rem;line-height:1.35;color:#B9BDB0}
-.pie-sellos b{display:block;color:#fff;font-size:.8125rem;font-weight:500}
+/* Tira de sellos del pie: solo las marcas, sin texto.
+   Los dos sellos son de color sobre transparente y el pie es negro, asi que
+   cada uno va sobre su propia placa blanca. Se igualan por ALTO, no por
+   ancho: uno es cuadrado y el otro redondo, y por ancho se ven disparejos. */
+.pie-sellos{border-bottom:1px solid #2A2A2A;padding:1.7rem 1.5rem;display:flex;
+            align-items:center;justify-content:center;gap:1.25rem;flex-wrap:wrap}
+.pie-sellos .sello{width:auto;height:74px;background:#fff;border-radius:6px;
+                   padding:8px;box-sizing:content-box}
 .contactos-anchos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;max-width:760px}
 
 @media (max-width:640px){
-    .pie-sellos{gap:1rem;padding:1.2rem 1rem}
-  .pie-sellos ul{gap:.9rem;justify-content:center}
+  .pie-sellos{gap:.9rem;padding:1.3rem 1rem}
+  .pie-sellos .sello{height:58px;padding:7px}
 }
 
 /* Contacto: el bloque de Fundadoras no necesita tanto aire */
