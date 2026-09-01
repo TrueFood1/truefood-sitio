@@ -158,13 +158,8 @@ section[id]{scroll-margin-top:144px}
              margin:clamp(1rem,2.4vw,1.6rem) auto 0;max-width:44ch;
              color:rgba(255,255,255,.94);text-shadow:0 1px 18px rgba(0,0,0,.55)}
 
-/* En celular la portada recorta muchisimo el ancho: de la foto del aguacate
-   solo quedaba el rabano y el queso, sin nada de pan. Se corre el foco hacia
-   la tostada de la mano, que si lleva la miga visible. En pantalla ancha la
-   foto entra casi entera, asi que ahi se deja centrada. */
-@media (max-width:700px){
-  .portada .diapo img.foco-tostada{object-position:72% 42%}
-}
+/* <picture> mete un elemento de por medio: sin esto la foto no llena la caja. */
+.portada .diapo picture{position:absolute;inset:0;display:block}
 
 .portada .puntos{position:absolute;left:0;right:0;bottom:clamp(1.5rem,4.5vh,3rem);z-index:2;
                  display:flex;justify-content:center;gap:.55rem}
