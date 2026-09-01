@@ -394,20 +394,32 @@ body.con-portada .nav:not(.solida) .nav-logo .logo-oscuro{opacity:0}
 .tabla-ficha .sub{display:block;font-size:.75rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--gris);opacity:.8;margin-top:.2rem}
 
 /* ====================================================================
-   SITIO DE VARIAS PÁGINAS — carrusel, "lo que nos hace diferentes",
-   y la tira de sellos del pie.
+   Puntos del carrusel de la portada y tira de sellos del pie.
    ==================================================================== */
 .punto-carr{width:10px;height:10px;border-radius:50%;border:0;padding:0;cursor:pointer;
             background:rgba(255,255,255,.5);transition:background .2s,transform .2s}
 .punto-carr.activo{background:var(--lima);transform:scale(1.25)}
 .punto-carr:focus-visible{outline:3px solid var(--lima);outline-offset:3px}
 
-.diferentes{background:var(--hueso)}
-.dif-lista{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-           gap:2rem 2.4rem;margin:2.4rem 0 0;padding:0}
-.dif-lista h3{font-family:"Josefin Sans",sans-serif;font-weight:400;font-size:1.25rem;
-              margin:0 0 .45rem;padding-top:.9rem;border-top:3px solid var(--lima)}
-.dif-lista p{margin:0;font-size:.9375rem;line-height:1.65}
+/* ==========================================================================
+   Banda "Comida real" — foto a todo lo ancho con el texto encima.
+   Replica la seccion de la pagina actual de Shopify (pedido de Lorena).
+   ========================================================================== */
+.banda{position:relative;display:flex;align-items:center;justify-content:center;
+       min-height:clamp(400px,48vw,700px);overflow:hidden;background:var(--tinta)}
+.banda-foto{position:absolute;inset:0;width:100%;height:100%;max-width:none;
+            object-fit:cover;object-position:center}
+/* Sin velo, el texto blanco se pierde en la harina clara del pan. */
+.banda-velo{position:absolute;inset:0;background:rgba(30,19,10,.44)}
+.banda-txt{position:relative;z-index:2;color:#fff;text-align:center;
+           padding:clamp(3rem,8vw,5.5rem) var(--borde);max-width:1020px;margin-inline:auto}
+.banda-txt h2{margin:0;color:#fff;font-size:clamp(1.8rem,3.9vw,3rem);line-height:1.12;
+              text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.banda-punto{font-size:1.5rem;line-height:1;margin:.85rem 0 1.35rem;opacity:.8;max-width:none}
+.banda-txt p:not(.banda-punto){margin:0 auto;max-width:68ch;
+              font-size:clamp(1rem,1.55vw,1.15rem);line-height:1.62;
+              color:rgba(255,255,255,.95);text-shadow:0 1px 16px rgba(0,0,0,.55)}
+
 
 .pie-sellos{border-bottom:1px solid #2A2A2A;padding:1.5rem 1.5rem;display:flex;
             align-items:center;justify-content:center;gap:1.6rem;flex-wrap:wrap}
@@ -418,8 +430,7 @@ body.con-portada .nav:not(.solida) .nav-logo .logo-oscuro{opacity:0}
 .contactos-anchos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;max-width:760px}
 
 @media (max-width:640px){
-  .dif-lista{gap:1.6rem}
-  .pie-sellos{gap:1rem;padding:1.2rem 1rem}
+    .pie-sellos{gap:1rem;padding:1.2rem 1rem}
   .pie-sellos ul{gap:.9rem;justify-content:center}
 }
 
