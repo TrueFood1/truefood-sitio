@@ -327,11 +327,16 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
                  color:var(--gris);line-height:1.4}
 .enlaces .val{display:block;font-weight:700;font-size:1.0625rem;margin-top:.2rem;word-break:break-word}
 
-.pie{background:var(--tinta);color:#B9BDB0;padding:clamp(2.4rem,6vw,3.6rem) var(--borde)}
-.pie-in{max-width:var(--ancho);margin-inline:auto;display:flex;flex-wrap:wrap;
-        gap:1.6rem 2.4rem;align-items:flex-start;justify-content:space-between}
-.pie img{width:132px}
-.pie p{font-size:.875rem;margin:0;max-width:40ch}
+/* El pie va todo centrado en una sola columna: los sellos arriba, el logo
+   debajo y el texto al final. Antes el logo iba a la izquierda y el
+   copyright a la derecha, y se veia montado. */
+.pie{background:var(--tinta);color:#B9BDB0;
+     padding:clamp(2.4rem,6vw,3.6rem) var(--borde) clamp(2.8rem,7vw,4.2rem)}
+.pie-in{max-width:var(--ancho);margin-inline:auto;
+        display:flex;flex-direction:column;align-items:center;text-align:center;
+        gap:1.5rem}
+.pie-logo{width:96px}
+.pie p{font-size:.875rem;margin:0;max-width:46ch;line-height:1.7}
 .pie a{color:var(--lima)}
 
 /* ====================================================================
@@ -438,14 +443,14 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
    Los dos sellos son de color sobre transparente y el pie es negro, asi que
    cada uno va sobre su propia placa blanca. Se igualan por ALTO, no por
    ancho: uno es cuadrado y el otro redondo, y por ancho se ven disparejos. */
-.pie-sellos{border-bottom:1px solid #2A2A2A;padding:1.7rem 1.5rem;display:flex;
+.pie-sellos{border-bottom:1px solid #2A2A2A;padding:.4rem 1.5rem 2.6rem;display:flex;
             align-items:center;justify-content:center;gap:1.25rem;flex-wrap:wrap}
 .pie-sellos .sello{width:auto;height:74px;background:#fff;border-radius:6px;
                    padding:8px;box-sizing:content-box}
 .contactos-anchos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;max-width:760px}
 
 @media (max-width:640px){
-  .pie-sellos{gap:.9rem;padding:1.3rem 1rem}
+  .pie-sellos{gap:.9rem;padding:.2rem 1rem 2rem}
   .pie-sellos .sello{height:58px;padding:7px}
 }
 
