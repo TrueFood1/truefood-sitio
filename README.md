@@ -47,13 +47,15 @@ El gluten free lo certifica **Gluten-Free Food Program** (GFFP), certificado
 ⚠️ **No es NSF.** El sello de NSF no se usa nunca: no son ellos quienes
 certifican.
 
-**El logo de GFFP NO se usa** hasta que el certificador mande el archivo
-oficial. Mientras tanto va como línea de texto.
+El logo oficial de GFFP ya llegó y está montado (`sello-gf-certified.svg`).
 
-**BRC sigue en trámite** y tampoco lleva logo. Va como línea de texto en la
-sección B2B, en el bloque `.certs` — un solo lugar en cada idioma. Cuando
-llegue el certificado: se agrega a la lista `<ul>` y se borra el párrafo
-`.tramite`.
+**BRCGS START!** está certificado — confirmado por Lorena el 1-sep-2026 — y
+lleva sello: `sello-brcgs.png`, junto a GFFP y Kosher en la tira del pie y en
+las páginas de producto.
+⚠️ **Ese archivo salió de una nota de blog, no del paquete de marca de BRCGS.**
+Hay que reemplazarlo por el oficial cuando llegue; el nombre del archivo no
+cambia. Falta también anotar acá el número de certificado y el vencimiento,
+como los tiene GFFP.
 
 ## Publicar
 
