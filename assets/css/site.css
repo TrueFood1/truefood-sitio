@@ -355,7 +355,7 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
    caiga justo debajo del nombre; en pantalla ancha la rejilla la manda a la
    derecha y los datos suben a la izquierda. */
 .prod-hero{display:grid;grid-template-columns:1fr 1fr;align-items:start;
-           gap:1.2rem 3rem;max-width:1180px;margin:0 auto;padding:2rem 1.5rem 3.5rem}
+           gap:1.9rem 3rem;max-width:1180px;margin:0 auto;padding:2rem 1.5rem 3.5rem}
 .prod-hero img{width:100%;height:auto;border-radius:4px}
 .prod-hero h1{font-family:"Josefin Sans",sans-serif;font-weight:300;
               font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.02;margin:0 0 .9rem}
@@ -369,6 +369,12 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
 .prod-sellos .sello{width:auto;height:62px;background:none;padding:0}
 
 @media (min-width:761px){
+  /* grid-template-rows es lo que evita el hueco: sin el, la columna de fotos
+     cruza las dos filas y estira la primera para repartir su alto, dejando
+     un vacio enorme entre el chip de Congelado e Ingredientes. Con "auto 1fr"
+     la fila del nombre mide lo que mide su contenido y la segunda absorbe
+     todo lo que sobra. */
+  .prod-hero{grid-template-rows:auto 1fr}
   .prod-hero-txt  {grid-column:1;grid-row:1}
   .prod-hero-datos{grid-column:1;grid-row:2}
   .prod-hero-fotos{grid-column:2;grid-row:1 / span 2}
