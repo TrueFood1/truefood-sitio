@@ -34,7 +34,7 @@ de plantilla: ni "líderes en", ni "calidad garantizada".
 Las specs de caja **no están en el sitio**. Viven en
 `material-marca/TrueFood-ficha-tecnica.pdf`, una página A4 bilingüe con la
 marca puesta, para adjuntar por correo. El sitio solo lleva la línea de
-contexto (congelado · vida útil 6 meses · empacado por caja) y el llamado a
+contexto (congelado · vida útil 9 meses · empacado por caja) y el llamado a
 pedirla.
 
 Para regenerarla: el fuente es `ficha/ficha.html` en el scratchpad de la
