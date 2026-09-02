@@ -333,6 +333,7 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
 .pie{background:var(--tinta);color:#B9BDB0;
      padding:clamp(2.4rem,6vw,3.6rem) var(--borde) clamp(2.8rem,7vw,4.2rem)}
 .pie-in{max-width:var(--ancho);margin-inline:auto;
+        margin-top:clamp(2rem,6vw,2.8rem);
         display:flex;flex-direction:column;align-items:center;text-align:center;
         gap:1.5rem}
 .pie-logo{width:96px}
