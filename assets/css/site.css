@@ -470,4 +470,15 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
 /* Contacto: el bloque de Fundadoras no necesita tanto aire */
 .b2b{padding-block:calc(var(--aire) * .62)}
 .b2b h2{margin-bottom:1.6rem}
+
+/* Contacto y Fundadoras son un solo bloque, no dos secciones distintas: entre
+   los dos se sumaban las dos separaciones completas y quedaban 181 px de aire.
+   Se aprieta solo ese par —con clase propia— para no tocar el sitio en ingles,
+   que usa las mismas clases con otra estructura. */
+.contacto.pega-fundadoras{padding-bottom:clamp(1.6rem,4vw,2.4rem)}
+.b2b-fundadoras{padding-top:clamp(2.4rem,5vw,3.4rem);
+                padding-bottom:clamp(1rem,2.5vw,1.6rem)}
+/* Fundadoras y el pie son los dos negros y se leen como un solo bloque: el
+   espacio de abajo de la seccion mas el de arriba del pie dejaban 127 px de
+   negro vacio entre las tarjetas y los sellos. */
 .contactos-anchos{margin-top:0}
