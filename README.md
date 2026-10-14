@@ -66,6 +66,25 @@ Los enlaces de idioma usan rutas absolutas (`/` y `/en/`), así que el sitio
 tiene que servirse desde la raíz de un dominio. Con `truefoodcr.com` apuntado
 por `CNAME` funciona; desde una subcarpeta de github.io, no.
 
+## Blog
+
+Solo en español. Los artículos son archivos `.md` en `blog/articulos/`; el
+formato exacto está en `blog/PLANTILLA_ARTICULO.md`. Nadie edita a mano
+`blog.html` ni `blog/*.html`: los arma `blog/armar.py` desde cero en cada corrida.
+
+- La Action `.github/workflows/blog.yml` corre en cada push que toque `blog/`.
+  En una rama arma solo las páginas de los artículos, para revisarlas en el
+  pull request. En `main` rearma también `blog.html` y pide a Pages que publique.
+- `borrador: si` no publica nada. Ojo: el repo es público, así que el texto de un
+  borrador se puede leer en GitHub aunque no esté en el sitio.
+- Vista previa local, con borradores, fuera del repo:
+  `pip install -r blog/requirements.txt` y luego
+  `python3 blog/armar.py --borradores --salida /carpeta/copia-del-sitio`.
+
+⚠️ **El menú vive copiado en doce lugares:** las once páginas en español y
+`blog/plantillas/pagina.html`, que es el encabezado y el pie de todo el blog.
+Si cambia el menú, cambia en los doce. Las páginas en inglés no llevan Blog.
+
 ## DNS — el sábado 29 de agosto
 
 Se cambian **solo** los registros que apuntan el sitio.
