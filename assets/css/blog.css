@@ -20,7 +20,11 @@
 @media (min-width:720px){
   .blog-item.con-foto{grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:2rem;align-items:center}
 }
-.blog-vacio{margin-top:2.4rem;color:var(--gris)}
+.blog-vacio{margin-top:2.4rem;padding-top:1.7rem;border-top:1px solid var(--linea);
+            font-size:clamp(1.0625rem,1.9vw,1.25rem);line-height:1.5}
+.blog-vacio a{text-decoration:underline;text-decoration-color:var(--lima);
+              text-decoration-thickness:3px;text-underline-offset:3px}
+.blog-vacio a:hover{background:var(--lima)}
 
 /* --- Un articulo (blog/*.html) --- */
 .pagina-blog .miga{max-width:46rem;padding-inline:var(--borde)}

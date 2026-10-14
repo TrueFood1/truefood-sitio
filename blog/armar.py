@@ -199,7 +199,8 @@ def pagina_lista(plantilla, articulos):
                    MARCA_BORRADOR if a["borrador"] else "", a["nombre"], e(a["titulo"]), e(a["descripcion"])))
         lista = '    <ul class="blog-lista">\n%s\n    </ul>' % "\n".join(filas)
     else:
-        lista = '    <p class="blog-vacio">Pronto, los primeros art&iacute;culos.</p>'
+        lista = ('    <p class="blog-vacio">Muy pronto, historias para antojarse. Mientras tanto, '
+                 '<a href="productos.html">conoce nuestros productos</a>.</p>')
 
     contenido = (
         '  <section class="seccion blog-cab" aria-labelledby="t-blog">\n'
