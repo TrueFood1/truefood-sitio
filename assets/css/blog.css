@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Blog — solo lo cargan blog.html y blog/*.html.
+   Va aparte de site.css para que las paginas existentes no cambien en nada.
+   Colores y tipografias salen de las variables de site.css; nada nuevo.
+   ========================================================================== */
+
+/* --- La lista (blog.html) --- */
+.blog-cab h1{font-size:clamp(2.4rem,6.4vw,4.2rem);line-height:1.02;letter-spacing:-.012em;margin-bottom:1rem}
+.blog-lista{list-style:none;margin:clamp(2rem,5vw,3rem) 0 0;padding:0;border-bottom:1px solid var(--linea)}
+.blog-item{position:relative;display:grid;gap:1.1rem;padding:1.7rem 0;border-top:1px solid var(--linea)}
+.blog-item .rotulo{margin-bottom:.35rem}
+.blog-item h2{font-size:clamp(1.55rem,3.6vw,2.2rem);line-height:1.1;margin:0 0 .55rem}
+.blog-item h2 a{text-decoration:none}
+/* toda la fila es el enlace, como las tarjetas de producto */
+.blog-item h2 a::after{content:"";position:absolute;inset:0}
+.blog-item:hover h2 a{text-decoration:underline;text-decoration-color:var(--lima);
+                      text-decoration-thickness:3px;text-underline-offset:4px}
+.blog-item p:last-child{color:#2A2E1E}
+.blog-foto{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--hueso)}
+@media (min-width:720px){
+  .blog-item.con-foto{grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:2rem;align-items:center}
+}
+.blog-vacio{margin-top:2.4rem;color:var(--gris)}
+
+/* --- Un articulo (blog/*.html) --- */
+.pagina-blog .miga{max-width:46rem;padding-inline:var(--borde)}
+.articulo{max-width:46rem;margin-inline:auto;padding-top:clamp(1.4rem,4vw,2.4rem);
+          overflow-wrap:break-word}
+.articulo h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.05;letter-spacing:-.01em;margin:0 0 1.1rem}
+.articulo .lede{color:#2A2E1E}
+.articulo-foto{width:100%;aspect-ratio:16/9;object-fit:cover;margin:2rem 0 0;background:var(--hueso)}
+
+.articulo-cuerpo{margin-top:2.2rem}
+.articulo-cuerpo p{max-width:none}
+.articulo-cuerpo h2{font-size:clamp(1.55rem,3.6vw,2.1rem);line-height:1.12;margin:2.4rem 0 .8rem}
+.articulo-cuerpo h3{margin-top:1.8rem}
+.articulo-cuerpo ul,.articulo-cuerpo ol{margin:0 0 1.05rem;padding-left:1.3rem}
+.articulo-cuerpo li{margin-bottom:.35rem}
+.articulo-cuerpo li::marker{color:var(--gris)}
+.articulo-cuerpo a{text-decoration:underline;text-decoration-color:var(--lima);
+                   text-decoration-thickness:3px;text-underline-offset:3px}
+.articulo-cuerpo a:hover{background:var(--lima)}
+.articulo-cuerpo img{width:100%;margin:1.8rem 0;background:var(--hueso)}
+.articulo-cuerpo blockquote{margin:1.8rem 0;padding-left:1.1rem;border-left:3px solid var(--lima);
+                            font-family:var(--display);font-weight:300;font-size:1.35rem;line-height:1.4}
+.articulo-cuerpo hr{border:0;border-top:1px solid var(--linea);margin:2.2rem 0}
+/* tablas y codigo se deslizan dentro de su caja; la pagina nunca se desborda */
+.articulo-cuerpo table{display:block;overflow-x:auto;border-collapse:collapse;margin:1.4rem 0}
+.articulo-cuerpo th,.articulo-cuerpo td{text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--linea)}
+.articulo-cuerpo pre{overflow-x:auto;background:var(--hueso);padding:1rem;font-size:.9rem}
+.articulo .cta-vuelta{margin-top:2.6rem}
+
+/* Solo se ve en la vista previa local con --borradores */
+.marca-borrador{display:inline-block;margin-left:.6rem;padding:.05rem .5rem;
+                background:var(--tinta);color:var(--lima);font-weight:700;letter-spacing:.08em}

@@ -1,0 +1,83 @@
+# Arma las paginas del blog desde blog/articulos/*.md (ver blog/PLANTILLA_ARTICULO.md).
+#
+# - En una rama (la de un articulo propuesto): arma solo blog/<articulo>.html y lo
+#   agrega a la rama, para revisarlo en el pull request. blog.html no se toca,
+#   asi dos articulos pendientes nunca chocan en ese archivo.
+# - En main (al aprobar un pull request): rearma todo desde cero, incluido
+#   blog.html, y le pide a Pages que publique.
+#
+# Los commits que hace esta Action no la vuelven a disparar (GitHub no corre
+# workflows por pushes hechos con GITHUB_TOKEN).
+
+name: Blog
+
+on:
+  push:
+    paths:
+      - "blog/**"
+      - ".github/workflows/blog.yml"
+
+# Escribir en el repo (contents) y pedir publicacion (pages), solo con el token
+# de esta corrida. No hace falta ninguna clave guardada.
+permissions:
+  contents: write
+  pages: write
+
+# Una corrida a la vez por rama: si se aprueban dos articulos seguidos, la
+# segunda espera a la primera y arranca desde lo que esta dejo.
+concurrency:
+  group: blog-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  armar:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r blog/requirements.txt
+
+      - name: Armar y guardar
+        id: guardar
+        env:
+          RAMA: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "$RAMA" = "main" ]; then MODO=""; else MODO="--solo-articulos"; fi
+
+          # Hasta 3 intentos: si alguien empujo a la rama mientras tanto, se
+          # vuelve a la punta de la rama y se arma de nuevo desde cero.
+          for intento in 1 2 3; do
+            git fetch origin "$RAMA"
+            git reset --hard "origin/$RAMA"
+            python blog/armar.py $MODO
+            git add -A blog.html blog
+            if git diff --cached --quiet; then
+              echo "Nada cambio: las paginas ya estaban al dia."
+              exit 0
+            fi
+            git commit -m "blog: rearmar paginas desde los articulos"
+            if git push origin "HEAD:$RAMA"; then
+              echo "empujado=si" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "La rama se movio; intento $intento de 3."
+          done
+          echo "No se pudo guardar despues de 3 intentos." >&2
+          exit 1
+
+      # Garantia: no todas las veces un push hecho por la Action dispara la
+      # publicacion de Pages, asi que se pide explicito.
+      - name: Pedir publicacion a Pages
+        if: github.ref_name == 'main' && steps.guardar.outputs.empujado == 'si'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
