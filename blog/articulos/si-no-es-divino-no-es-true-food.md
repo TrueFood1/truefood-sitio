@@ -43,4 +43,4 @@ Se ve en una tostada de Pan Blanco con mantequilla derritiéndose un lunes cualq
 
 Como todo vive en el congelador, lo tienes listo cuando se te antoje, no solo el día que vas al súper.
 
-Nos encuentras en los congeladores de Auto Mercado, Walmart, Más x Menos, MegaSuper, BM y Compre Bien. Pruébalo y nos cuentas. Ya sabes la regla: si no es divino, no es True Food.
+Nos encuentras en los congeladores de [Auto Mercado](https://automercado.cr/), [Walmart](https://www.walmart.co.cr/), [Más x Menos](https://www.masxmenos.cr/), [MegaSuper](https://www.megasuper.com/), [BM](https://bm.cr/) y [Compre Bien](https://comprebien.cr/). Pruébalo y nos cuentas. Ya sabes la regla: si no es divino, no es True Food.
