@@ -6,8 +6,15 @@
 # - En main (al aprobar un pull request): rearma todo desde cero, incluido
 #   blog.html, y le pide a Pages que publique.
 #
-# Los commits que hace esta Action no la vuelven a disparar (GitHub no corre
-# workflows por pushes hechos con GITHUB_TOKEN).
+# MAIN SOLO ENTRA POR PULL REQUEST (15-oct-2026). Esta Action es la unica excepcion:
+# en main empuja con una DEPLOY KEY que la regla deja pasar. La llave privada vive
+# como secreto del entorno `publicar-main`, que solo la rama main puede usar: una
+# rama propuesta (aunque cambie este archivo) no la puede leer.
+# En las ramas sigue empujando con el token de la corrida, como siempre.
+#
+# Los commits que hace esta Action con el token no la vuelven a disparar. Los que
+# hace en main con la deploy key si la disparan una vez mas: esa corrida encuentra
+# "Nada cambio" y termina sin empujar.
 
 name: Blog
 
@@ -17,8 +24,7 @@ on:
       - "blog/**"
       - ".github/workflows/blog.yml"
 
-# Escribir en el repo (contents) y pedir publicacion (pages), solo con el token
-# de esta corrida. No hace falta ninguna clave guardada.
+# Escribir en las ramas (contents) y pedir publicacion (pages) con el token de la corrida.
 permissions:
   contents: write
   pages: write
@@ -30,8 +36,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  armar:
-    if: github.actor != 'github-actions[bot]'
+  # Rama de un articulo propuesto: arma solo su pagina, con el token de la corrida.
+  articulo:
+    if: github.actor != 'github-actions[bot]' && github.ref_name != 'main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,39 +52,74 @@ jobs:
       - run: pip install -r blog/requirements.txt
 
       - name: Armar y guardar
-        id: guardar
         env:
           RAMA: ${{ github.ref_name }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ "$RAMA" = "main" ]; then MODO=""; else MODO="--solo-articulos"; fi
-
-          # Hasta 3 intentos: si alguien empujo a la rama mientras tanto, se
-          # vuelve a la punta de la rama y se arma de nuevo desde cero.
           for intento in 1 2 3; do
             git fetch origin "$RAMA"
             git reset --hard "origin/$RAMA"
-            python blog/armar.py $MODO
+            python blog/armar.py --solo-articulos
             git add -A blog.html blog
             if git diff --cached --quiet; then
               echo "Nada cambio: las paginas ya estaban al dia."
               exit 0
             fi
             git commit -m "blog: rearmar paginas desde los articulos"
-            if git push origin "HEAD:$RAMA"; then
-              echo "empujado=si" >> "$GITHUB_OUTPUT"
-              exit 0
-            fi
+            if git push origin "HEAD:$RAMA"; then exit 0; fi
             echo "La rama se movio; intento $intento de 3."
           done
           echo "No se pudo guardar despues de 3 intentos." >&2
           exit 1
 
-      # Garantia: no todas las veces un push hecho por la Action dispara la
-      # publicacion de Pages, asi que se pide explicito.
+  # main: rearma todo y empuja con la deploy key del entorno publicar-main.
+  publicar:
+    if: github.actor != 'github-actions[bot]' && github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    environment: publicar-main
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          ssh-key: ${{ secrets.BLOG_DEPLOY_KEY }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r blog/requirements.txt
+
+      - name: Armar y guardar
+        id: guardar
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Hasta 3 intentos: si alguien empujo a main mientras tanto, se
+          # vuelve a la punta y se arma de nuevo desde cero.
+          for intento in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            python blog/armar.py
+            git add -A blog.html blog
+            if git diff --cached --quiet; then
+              echo "Nada cambio: las paginas ya estaban al dia."
+              exit 0
+            fi
+            git commit -m "blog: rearmar paginas desde los articulos"
+            if git push origin HEAD:main; then
+              echo "empujado=si" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "main se movio; intento $intento de 3."
+          done
+          echo "No se pudo guardar despues de 3 intentos." >&2
+          exit 1
+
+      # Garantia: no todas las veces un push dispara la publicacion de Pages,
+      # asi que se pide explicito.
       - name: Pedir publicacion a Pages
-        if: github.ref_name == 'main' && steps.guardar.outputs.empujado == 'si'
+        if: steps.guardar.outputs.empujado == 'si'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
