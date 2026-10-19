@@ -207,7 +207,7 @@ def pagina_lista(plantilla, articulos):
         '    <div class="inner">\n'
         '    <h1 id="t-blog">Blog</h1>\n'
         '    <p class="lede">Recetas, ideas y lo que vamos aprendiendo sobre comer delicioso, '
-        'saludable y gluten free.</p>\n'
+        'saludable y Gluten Free.</p>\n'
         '%s\n'
         '    </div>\n'
         '  </section>'
@@ -215,7 +215,7 @@ def pagina_lista(plantilla, articulos):
 
     return llenar(plantilla, {
         "titulo_pagina": "Blog &mdash; True Food",
-        "descripcion": "Recetas, ideas y novedades de True Food: delicioso, saludable y gluten free.",
+        "descripcion": "Recetas, ideas y novedades de True Food: delicioso, saludable y Gluten Free.",
         "canonical": SITIO + "/blog.html",
         "og_type": "website",
         "og_image": SITIO + "/assets/img/og.jpg",
