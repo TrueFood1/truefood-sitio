@@ -45,8 +45,6 @@
                    text-decoration-thickness:3px;text-underline-offset:3px}
 .articulo-cuerpo a:hover{background:var(--lima)}
 .articulo-cuerpo img{width:100%;margin:1.8rem 0;background:var(--hueso)}
-/* El sello GFFP transparente va sobre blanco, en ES y EN. */
-.articulo-cuerpo img[src$="gffp-gluten-free.png"]{background:#fff}
 .articulo-cuerpo blockquote{margin:1.8rem 0;padding-left:1.1rem;border-left:3px solid var(--lima);
                             font-family:var(--display);font-weight:300;font-size:1.35rem;line-height:1.4}
 .articulo-cuerpo hr{border:0;border-top:1px solid var(--linea);margin:2.2rem 0}
