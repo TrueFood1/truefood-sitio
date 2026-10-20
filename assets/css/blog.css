@@ -5,6 +5,7 @@
    ========================================================================== */
 
 /* --- La lista (blog.html) --- */
+.blog-cab .lede{max-width:none}
 .blog-cab h1{font-size:clamp(2.4rem,6.4vw,4.2rem);line-height:1.02;letter-spacing:-.012em;margin-bottom:1rem}
 .blog-lista{list-style:none;margin:clamp(2rem,5vw,3rem) 0 0;padding:0;border-bottom:1px solid var(--linea)}
 .blog-item{position:relative;display:grid;gap:1.1rem;padding:1.7rem 0;border-top:1px solid var(--linea)}
