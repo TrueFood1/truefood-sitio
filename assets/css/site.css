@@ -252,6 +252,8 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
 @media (max-width:699px){.cadenas li:last-child{grid-column:1 / -1}}
 .cadenas li{background:var(--papel);display:grid;place-items:center;
             padding:clamp(1.1rem,3vw,1.8rem) 1rem;min-height:118px}
+.cadenas a{display:grid;place-items:center;width:100%;min-height:66px}
+.cadenas a:focus-visible{outline:2px solid var(--tinta);outline-offset:6px}
 .cadenas img{max-height:50px;width:auto;max-width:100%;object-fit:contain}
 /* El logo de BM es una caja azul, no un wordmark suelto. A la misma altura que
    los demás pesa menos de lo que debería, así que se le da un poco más. */
