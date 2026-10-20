@@ -4,6 +4,6 @@
 .nav-editorial .nav-logo,.menu-head .nav-logo{order:0}.nav-editorial .secciones{order:1}.nav-actions{order:2}.nav-editorial .idioma a,body.con-portada .nav.nav-editorial .idioma a{color:#000!important;background:none!important}.nav-editorial .idioma [aria-current="true"]{font-weight:700!important}.menu-head .nav-logo{margin:0}.editorial-detail .prod-hero-fotos{align-self:start}
 
 /* Current centered home hero, with only the requested emphasis and CTA. */
-.portada-txt .hero-gluten-bold{font-weight:600}.portada .editorial-ctas{justify-content:center;margin-top:24px}.portada .editorial-ctas a{font-family:var(--texto)}
+.portada .editorial-ctas{justify-content:center;margin-top:24px}.portada .editorial-ctas a{font-family:var(--texto)}
 
 .con-portada .portada{height:calc(100svh - 88px)}.catalog-buy{display:inline-flex;gap:8px;align-items:center;font-size:14px;font-weight:700;color:#000;margin-top:14px;text-decoration:underline;text-underline-offset:4px}@media(max-width:1039px){.con-portada .portada{height:calc(100svh - 75px)}}
