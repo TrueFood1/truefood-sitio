@@ -17,31 +17,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/editorial.css">
 </head>
 <body class="con-portada">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<header class="nav">
-  <div class="nav-in">
-    <a class="nav-logo" href="./" aria-label="True Food, inicio">
-      <img src="assets/img/logo-circulo.png" alt="True Food" width="429" height="400">
-    </a>
-    <nav class="idioma" aria-label="Idioma">
-      <a href="./" aria-current="true" lang="es">ES</a>
-      <a href="en/" lang="en" hreflang="en">EN</a>
-    </nav>
-    <nav class="secciones" aria-label="Secciones del sitio">
-      <ul>
-        <li><a href="./" aria-current="page">Inicio</a></li>
-        <li><a href="productos.html">Productos</a></li>
-        <li><a href="donde-comprar.html">Dónde comprar</a></li>
-        <li><a href="historia.html">Historia</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<header class="nav nav-editorial"><div class="nav-editorial-in"><a aria-label="True Food, inicio" class="nav-logo" href="./">
+<img alt="True Food" height="400" src="assets/img/logo-circulo.png" width="429"/>
+</a><nav aria-label="Secciones del sitio" class="secciones">
+<ul>
+<li><a aria-current="page" href="./">Inicio</a></li>
+<li><a href="productos.html">Productos</a></li>
+
+<li><a href="historia.html">Historia</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+</nav><div class="nav-actions"><nav aria-label="Idioma" class="idioma">
+<a aria-current="true" href="./" lang="es">ES</a>
+<a href="en/" hreflang="en" lang="en">EN</a>
+</nav><a class="nav-buy" href="donde-comprar.html">Dónde comprar</a><button type="button" class="nav-menu-open" aria-expanded="false" aria-controls="site-menu">Menú <span aria-hidden="true">☰</span></button></div></div></header>
+<dialog id="site-menu" class="site-menu" aria-label="Menú"><div class="menu-head"><a aria-label="True Food, inicio" class="nav-logo" href="./">
+<img alt="True Food" height="400" src="assets/img/logo-circulo.png" width="429"/>
+</a><button type="button" class="nav-menu-close">Cerrar <span aria-hidden="true">×</span></button></div><nav class="menu-links" aria-label="Menú"><a href="./" aria-current="page"><span aria-hidden="true">01</span>Inicio</a><a href="productos.html"><span aria-hidden="true">02</span>Productos</a><a href="historia.html"><span aria-hidden="true">03</span>Historia</a><a href="blog.html"><span aria-hidden="true">04</span>Blog</a><a href="contacto.html"><span aria-hidden="true">05</span>Contacto</a></nav><div class="menu-foot"><a class="nav-buy" href="donde-comprar.html">Dónde comprar</a><nav aria-label="Idioma" class="idioma">
+<a aria-current="true" href="./" lang="es">ES</a>
+<a href="en/" hreflang="en" lang="en">EN</a>
+</nav></div></dialog>
 
 <main id="contenido">
   <!-- ================================================================
@@ -50,7 +51,18 @@
        ================================================================ -->
   <section class="portada" aria-roledescription="carrusel" aria-label="Fotos de productos True Food">
     <ul class="diapos">
-      <li class="diapo activa">
+<li class="diapo activa">
+        <picture>
+          <source media="(max-width:700px)"
+                  srcset="assets/img/carrusel/tostadas-francesas-vert-720.jpg 720w, assets/img/carrusel/tostadas-francesas-vert.jpg 1080w"
+                  sizes="100vw">
+          <img src="assets/img/carrusel/tostadas-francesas.jpg"
+               srcset="assets/img/carrusel/tostadas-francesas-900.jpg 900w, assets/img/carrusel/tostadas-francesas.jpg 1800w"
+               sizes="100vw" width="1800" height="1200"
+               fetchpriority="high"
+               alt="Torre de tostadas francesas hechas con pan True Food, con frutos rojos y miel">
+        </picture>
+      </li><li class="diapo">
         <picture>
           <source media="(max-width:700px)"
                   srcset="assets/img/carrusel/panes-vert-720.jpg 720w, assets/img/carrusel/panes-vert.jpg 1080w"
@@ -60,20 +72,7 @@
                sizes="100vw" width="1800" height="1201"
                alt="Panes True Food vistos desde arriba: hogazas rebanadas, buns, baguettes y pan de semillas">
         </picture>
-      </li>
-      <li class="diapo">
-        <picture>
-          <source media="(max-width:700px)"
-                  srcset="assets/img/carrusel/tostadas-francesas-vert-720.jpg 720w, assets/img/carrusel/tostadas-francesas-vert.jpg 1080w"
-                  sizes="100vw">
-          <img src="assets/img/carrusel/tostadas-francesas.jpg"
-               srcset="assets/img/carrusel/tostadas-francesas-900.jpg 900w, assets/img/carrusel/tostadas-francesas.jpg 1800w"
-               sizes="100vw" width="1800" height="1200"
-               loading="lazy"
-               alt="Torre de tostadas francesas hechas con pan True Food, con frutos rojos y miel">
-        </picture>
-      </li>
-      <li class="diapo">
+      </li><li class="diapo">
         <picture>
           <source media="(max-width:700px)"
                   srcset="assets/img/carrusel/pan-frances-vert-720.jpg 720w, assets/img/carrusel/pan-frances-vert.jpg 1080w"
@@ -84,8 +83,7 @@
                loading="lazy"
                alt="Panes franceses True Food enharinados, reci&eacute;n horneados">
         </picture>
-      </li>
-      <li class="diapo">
+      </li><li class="diapo">
         <picture>
           <source media="(max-width:700px)"
                   srcset="assets/img/carrusel/aguacate-vert-720.jpg 720w, assets/img/carrusel/aguacate-vert.jpg 1080w"
@@ -96,8 +94,7 @@
                loading="lazy"
                alt="Tostadas de pan True Food con aguacate, r&aacute;bano y queso fresco">
         </picture>
-      </li>
-      <li class="diapo">
+      </li><li class="diapo">
         <picture>
           <source media="(max-width:700px)"
                   srcset="assets/img/carrusel/salmon-vert-720.jpg 720w, assets/img/carrusel/salmon-vert.jpg 1080w"
@@ -108,12 +105,11 @@
                loading="lazy"
                alt="Pan franc&eacute;s abierto con salm&oacute;n, huevo y eneldo">
         </picture>
-      </li>
-    </ul>
+      </li></ul>
     <div class="portada-velo" aria-hidden="true"></div>
     <div class="portada-txt">
       <h1><span>Pan de verdad.</span><span>Sin gluten.</span></h1>
-      <p class="portada-sub">Hecho con los mejores ingredientes, naturalmente libres&nbsp;de&nbsp;gluten.</p>
+      <p class="portada-sub">Hecho con los mejores ingredientes, naturalmente libres&nbsp;de&nbsp;gluten.</p><div class="editorial-ctas"><a class="editorial-primary" href="productos.html">Productos</a><a class="editorial-secondary" href="donde-comprar.html">Dónde comprar</a></div>
     </div>
     <div class="puntos" role="group" aria-label="Elegir foto">
       <button type="button" class="punto-carr activo" data-i="0" aria-label="Foto 1 de 5"></button>
@@ -227,5 +223,6 @@
   addEventListener('resize', revisar);
 })();
 </script>
+<script src="assets/js/menu.js" defer></script>
 </body>
 </html>
