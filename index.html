@@ -51,18 +51,7 @@
        ================================================================ -->
   <section class="portada" aria-roledescription="carrusel" aria-label="Fotos de productos True Food">
     <ul class="diapos">
-<li class="diapo activa">
-        <picture>
-          <source media="(max-width:700px)"
-                  srcset="assets/img/carrusel/tostadas-francesas-vert-720.jpg 720w, assets/img/carrusel/tostadas-francesas-vert.jpg 1080w"
-                  sizes="100vw">
-          <img src="assets/img/carrusel/tostadas-francesas.jpg"
-               srcset="assets/img/carrusel/tostadas-francesas-900.jpg 900w, assets/img/carrusel/tostadas-francesas.jpg 1800w"
-               sizes="100vw" width="1800" height="1200"
-               fetchpriority="high"
-               alt="Torre de tostadas francesas hechas con pan True Food, con frutos rojos y miel">
-        </picture>
-      </li><li class="diapo">
+      <li class="diapo activa">
         <picture>
           <source media="(max-width:700px)"
                   srcset="assets/img/carrusel/panes-vert-720.jpg 720w, assets/img/carrusel/panes-vert.jpg 1080w"
@@ -72,7 +61,20 @@
                sizes="100vw" width="1800" height="1201"
                alt="Panes True Food vistos desde arriba: hogazas rebanadas, buns, baguettes y pan de semillas">
         </picture>
-      </li><li class="diapo">
+      </li>
+      <li class="diapo">
+        <picture>
+          <source media="(max-width:700px)"
+                  srcset="assets/img/carrusel/tostadas-francesas-vert-720.jpg 720w, assets/img/carrusel/tostadas-francesas-vert.jpg 1080w"
+                  sizes="100vw">
+          <img src="assets/img/carrusel/tostadas-francesas.jpg"
+               srcset="assets/img/carrusel/tostadas-francesas-900.jpg 900w, assets/img/carrusel/tostadas-francesas.jpg 1800w"
+               sizes="100vw" width="1800" height="1200"
+               loading="lazy"
+               alt="Torre de tostadas francesas hechas con pan True Food, con frutos rojos y miel">
+        </picture>
+      </li>
+      <li class="diapo">
         <picture>
           <source media="(max-width:700px)"
                   srcset="assets/img/carrusel/pan-frances-vert-720.jpg 720w, assets/img/carrusel/pan-frances-vert.jpg 1080w"
@@ -83,7 +85,8 @@
                loading="lazy"
                alt="Panes franceses True Food enharinados, reci&eacute;n horneados">
         </picture>
-      </li><li class="diapo">
+      </li>
+      <li class="diapo">
         <picture>
           <source media="(max-width:700px)"
                   srcset="assets/img/carrusel/aguacate-vert-720.jpg 720w, assets/img/carrusel/aguacate-vert.jpg 1080w"
@@ -94,7 +97,8 @@
                loading="lazy"
                alt="Tostadas de pan True Food con aguacate, r&aacute;bano y queso fresco">
         </picture>
-      </li><li class="diapo">
+      </li>
+      <li class="diapo">
         <picture>
           <source media="(max-width:700px)"
                   srcset="assets/img/carrusel/salmon-vert-720.jpg 720w, assets/img/carrusel/salmon-vert.jpg 1080w"
@@ -105,11 +109,12 @@
                loading="lazy"
                alt="Pan franc&eacute;s abierto con salm&oacute;n, huevo y eneldo">
         </picture>
-      </li></ul>
+      </li>
+    </ul>
     <div class="portada-velo" aria-hidden="true"></div>
     <div class="portada-txt">
-      <h1><span>Pan de verdad.</span><span>Sin gluten.</span></h1>
-      <p class="portada-sub">Hecho con los mejores ingredientes, naturalmente libres&nbsp;de&nbsp;gluten.</p><div class="editorial-ctas"><a class="editorial-primary" href="productos.html">Productos</a><a class="editorial-secondary" href="donde-comprar.html">Dónde comprar</a></div>
+      <h1><span>Pan de verdad.</span><span class="hero-gluten-bold">Sin gluten.</span></h1>
+      <p class="portada-sub">Hecho con los mejores ingredientes, naturalmente libres&nbsp;de&nbsp;gluten.</p><div class="editorial-ctas"><a class="editorial-primary" href="donde-comprar.html">Dónde comprar</a></div>
     </div>
     <div class="puntos" role="group" aria-label="Elegir foto">
       <button type="button" class="punto-carr activo" data-i="0" aria-label="Foto 1 de 5"></button>
