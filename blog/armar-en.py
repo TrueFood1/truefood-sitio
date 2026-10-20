@@ -32,6 +32,7 @@ for f in sorted(folder.glob('*.md')):
  p=root/'blog'/(es+'.html')
  if p.exists():
   s=p.read_text().replace('href="../en/" lang="en" hreflang="en"','href="../en/blog/'+a['nombre']+'.html" lang="en" hreflang="en"')
+  s=s.replace('href="../en/" hreflang="en" lang="en"','href="../en/blog/'+a['nombre']+'.html" hreflang="en" lang="en"')
   s=s.replace('</head>',f'<link rel="alternate" hreflang="en" href="https://truefoodcr.com/en/blog/{a["nombre"]}.html">\n</head>')
   p.write_text(s)
 if True:
@@ -50,6 +51,6 @@ if True:
 # Pair the ES blog index with EN too, including branch previews.
 p=root/'blog.html'
 if p.exists():
- s=p.read_text().replace('href="en/" lang="en" hreflang="en"','href="en/blog.html" lang="en" hreflang="en"')
+ s=p.read_text().replace('href="en/" lang="en" hreflang="en"','href="en/blog.html" lang="en" hreflang="en"').replace('href="en/" hreflang="en" lang="en"','href="en/blog.html" hreflang="en" lang="en"')
  p.write_text(s)
 print('English blog built:' ,len(items),'articles')
