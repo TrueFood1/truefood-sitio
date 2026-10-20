@@ -265,6 +265,14 @@ def main():
     if not args.solo_articulos:
         (salida / "blog.html").write_text(pagina_lista(plantilla, publicables), encoding="utf-8")
 
+    # English counterpart uses the same reviewed ES parser and runs after ES pages.
+    if (RAIZ_REPO / "blog/articulos-en/equivalencias.json").exists() and salida == RAIZ_REPO:
+        import subprocess
+        cmd = [sys.executable, str(RAIZ_REPO / "blog/armar-en.py")]
+        if args.solo_articulos:
+            cmd.append("--solo-articulos")
+        subprocess.run(cmd, check=True)
+
     saltados = len(articulos) - len(publicables)
     print("Blog armado: %d articulo(s) publicado(s), %d borrador(es) sin publicar%s."
           % (len(publicables), saltados, "" if not args.solo_articulos else ", blog.html sin tocar"))
