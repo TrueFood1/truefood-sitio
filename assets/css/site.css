@@ -243,6 +243,7 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
    Dónde comprar — la fila de logos ES la credencial
    ========================================================================== */
 .donde{background:var(--hueso)}
+.pagina-donde .donde{background:var(--papel)}
 .cadenas{list-style:none;margin:2.2rem 0 0;padding:0;
          display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
          background:var(--linea);border:1px solid var(--linea)}
