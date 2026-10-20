@@ -43,7 +43,9 @@ if True:
  h=h.replace('https://truefoodcr.com/blog.html','https://truefoodcr.com/en/blog.html')
  h=h.replace('Recetas, ideas y lo que vamos aprendiendo sobre comer delicioso, saludable y Gluten Free.','Recipes, ideas and what we learn about eating delicious, healthy and Gluten Free.')
  h=h.replace('Recetas, ideas y novedades de True Food: delicioso, saludable y Gluten Free.','Recipes, ideas and news from True Food: delicious, healthy and Gluten Free.')
- for a in items:h=h.replace(b['fecha_larga'](a['fecha']),a['fecha'].strftime('%B %d, %Y').replace(' 0',' '))
+ for a in items:
+  short = '%d %s %d' % (a['fecha'].day, b['MESES'][a['fecha'].month-1][:3], a['fecha'].year)
+  h=h.replace(short,a['fecha'].strftime('%b %d, %Y').replace(' 0',' '))
  (root/'en/blog.html').write_text(h)
 # Pair the ES blog index with EN too, including branch previews.
 p=root/'blog.html'
