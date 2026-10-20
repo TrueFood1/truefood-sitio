@@ -7,3 +7,13 @@
 .portada .editorial-ctas{justify-content:center;margin-top:24px}.portada .editorial-ctas a{font-family:var(--texto)}
 
 .con-portada .portada{height:calc(100svh - 88px)}.catalog-buy{display:inline-flex;gap:8px;align-items:center;font-size:14px;font-weight:700;color:#000;margin-top:14px;text-decoration:underline;text-underline-offset:4px}@media(max-width:1039px){.con-portada .portada{height:calc(100svh - 75px)}}
+
+/* Home: original full-screen photo and overlaid header. Other pages stay white. */
+body.con-portada .nav.nav-editorial{position:fixed;left:0;right:0;top:0;background:transparent;border-bottom-color:transparent}
+body.con-portada .nav.nav-editorial.solida{background:#000;border-bottom-color:#333}
+body.con-portada .nav.nav-editorial .secciones a,body.con-portada .nav.nav-editorial .idioma a{color:#fff!important}
+body.con-portada .nav-menu-open{color:#fff;border-color:#fff;background:transparent}
+body.con-portada .portada{height:100svh}
+.nav-menu-open:focus,.nav-menu-close:focus{outline:2px solid var(--lima);outline-offset:4px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--lima);outline-offset:4px}
+body.con-portada .nav-menu-open:focus{outline-color:#fff}
