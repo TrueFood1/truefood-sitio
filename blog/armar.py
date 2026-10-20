@@ -181,22 +181,31 @@ def pagina_lista(plantilla, articulos):
     e = html.escape
     if articulos:
         filas = []
-        for a in articulos:
-            foto = ""
-            if a["foto"]:
-                foto = ('<img class="blog-foto" src="%s" alt="%s" loading="lazy">'
-                        % (e(a["foto"]), e(a["foto_alt"])))
+        # Flavor first for the reviewed list. Future articles follow by date.
+        first = ["si-no-es-divino-no-es-true-food", "if-its-not-delicious-its-not-true-food",
+                 "comer-gluten-free-hoy", "eating-gluten-free-today",
+                 "certificado-gluten-free", "certified-gluten-free"]
+        ordered = sorted(articulos, key=lambda a: first.index(a["nombre"]) if a["nombre"] in first else len(first))
+        for a in ordered:
+            seal = a["nombre"] in ("certificado-gluten-free", "certified-gluten-free")
+            photo = "assets/img/blog/gffp-list.png" if seal else a["foto"]
+            if not photo:
+                photo = {"if-its-not-delicious-its-not-true-food":"assets/img/servido-frances.jpg",
+                         "eating-gluten-free-today":"assets/img/servido-blanco.jpg"}.get(a["nombre"], "")
+            alt = "Gluten-Free Food Program" if seal else (a["foto_alt"] or "True Food, served")
+            foto = ('<div class="blog-miniatura%s"><img src="%s" alt="%s" loading="lazy"></div>'
+                    % (" sello-articulo" if seal else "", e(photo), e(alt))) if photo else ""
             filas.append(
-                '      <li class="blog-item%s">\n'
+                '      <li class="blog-item">\n'
                 '        %s\n'
-                '        <div>\n'
-                '          <p class="rotulo"><time datetime="%s">%s</time>%s</p>\n'
+                '        <div class="blog-texto">\n'
+                '          <time datetime="%s">%s</time>\n'
                 '          <h2><a href="blog/%s.html">%s</a></h2>\n'
-                '          <p>%s</p>\n'
-                '        </div>\n'
+                '          <p class="blog-extracto">%s</p>\n'
+                '        </div><span class="blog-flecha" aria-hidden="true">↗</span>\n'
                 '      </li>'
-                % (" con-foto" if foto else "", foto, a["fecha"].isoformat(), fecha_larga(a["fecha"]),
-                   MARCA_BORRADOR if a["borrador"] else "", a["nombre"], e(a["titulo"]), e(a["descripcion"])))
+                % (foto, a["fecha"].isoformat(), ("%d %s %d" % (a["fecha"].day, MESES[a["fecha"].month - 1][:3], a["fecha"].year)),
+                   a["nombre"], e(a["titulo"]), e(a["descripcion"])))
         lista = '    <ul class="blog-lista">\n%s\n    </ul>' % "\n".join(filas)
     else:
         lista = ('    <p class="blog-vacio">Muy pronto, historias para antojarse. Mientras tanto, '
