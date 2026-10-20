@@ -1,15 +1,15 @@
 ---
 titulo: Si no es divino, no es True Food
 fecha: 2026-10-14
-descripcion: Delicioso, saludable y gluten free, en ese orden. Te contamos por qué nuestro mantra empieza por el sabor y cómo se vive en cada producto True Food.
+descripcion: Delicioso, saludable y Gluten Free, en ese orden. Te contamos por qué nuestro mantra empieza por el sabor y cómo se vive en cada producto True Food.
 foto: assets/img/servido-frances.jpg
 foto_alt: Rebanadas de pan francés True Food servidas en un plato
 borrador: no
 ---
 
-True Food nació con una idea fija: hacer comida gluten free que se disfrute de verdad. No la versión “aceptable”, no la que cumple. La que te hace volver a la cocina por otra.
+True Food nació con una idea fija: hacer comida Gluten Free que se disfrute de verdad. No la versión “aceptable”, no la que cumple. La que te hace volver a la cocina por otra.
 
-Cuando nos sentamos a definir qué queríamos que fuera la marca, nos salieron tres palabras, y nos salieron en un orden que no hemos cambiado desde entonces: delicioso, saludable y gluten free.
+Cuando nos sentamos a definir qué queríamos que fuera la marca, nos salieron tres palabras, y nos salieron en un orden que no hemos cambiado desde entonces: delicioso, saludable y Gluten Free.
 
 ## Primero, realmente delicioso
 
@@ -25,15 +25,15 @@ Escogemos ingredientes de calidad, los mejores que podemos conseguir, y dejamos 
 
 Al final, se trata de comer bien y sentirte bien, sin tener que escoger entre una cosa y la otra.
 
-## Y también, gluten free
+## Y también, Gluten Free
 
-Todos nuestros productos son gluten free, y no por moda. Es una decisión consciente que tomamos desde el primer día, para quienes lo necesitan y para quienes simplemente quieren sentirse bien con lo que comen.
+Todos nuestros productos son [Gluten Free](comer-gluten-free-hoy.html), y no por moda. Es una decisión consciente que tomamos desde el primer día, para quienes lo necesitan y para quienes simplemente quieren sentirse bien con lo que comen.
 
-Y como es una decisión que nos tomamos en serio, la respaldamos: contamos con la certificación GFFP, un sello que verifica que lo que decimos en el empaque se cumple en cada producto. Así puedes servir True Food en la mesa con toda la confianza, sin que nadie se quede viendo el pan de lejos.
+Y como es una decisión que nos tomamos en serio, la respaldamos: contamos con la [certificación GFFP](certificado-gluten-free.html), un sello que verifica que lo que decimos en el empaque se cumple en cada producto. Así puedes servir True Food en la mesa con toda la confianza, sin que nadie se quede viendo el pan de lejos.
 
 ## Por qué el orden importa
 
-Si algo no es rico, lo demás no importa: nadie repite una tostada por la etiqueta. Por eso el sabor va primero, la calidad lo acompaña y el gluten free viene incluido, sin cobrarte nada en sabor.
+Si algo no es rico, lo demás no importa: nadie repite una tostada por la etiqueta. Por eso el sabor va primero, la calidad lo acompaña y el Gluten Free viene incluido, sin cobrarte nada en sabor.
 
 Ese orden es nuestro filtro para todo: cada receta nueva, cada ajuste en la panadería, cada producto que decidimos sacar.
 
