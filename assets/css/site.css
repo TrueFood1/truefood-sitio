@@ -468,13 +468,10 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
               color:rgba(255,255,255,.95);text-shadow:0 1px 16px rgba(0,0,0,.55)}
 
 
-/* Tira de sellos del pie: solo las marcas, sin texto.
-   Los dos sellos son de color sobre transparente y el pie es negro, asi que
-   cada uno va sobre su propia placa blanca. Se igualan por ALTO, no por
-   ancho: uno es cuadrado y el otro redondo, y por ancho se ven disparejos. */
+/* Sellos del pie sobre blanco, sin marco; mismos tamaños y separación. */
 .pie-sellos{border-bottom:1px solid var(--linea);padding:.4rem 1.5rem 2.6rem;display:flex;
             align-items:center;justify-content:center;gap:1.25rem;flex-wrap:wrap}
-.pie-sellos .sello{width:auto;height:74px;background:#fff;border:1px solid var(--linea);border-radius:6px;
+.pie-sellos .sello{width:auto;height:74px;background:#fff;border:1px solid transparent;border-radius:0;
                    padding:8px;box-sizing:content-box}
 .contactos-anchos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;max-width:760px}
 
