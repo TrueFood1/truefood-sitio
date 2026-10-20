@@ -20,32 +20,33 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/blog.css">
+<link rel="stylesheet" href="assets/css/editorial.css">
 </head>
 <body class="pagina-blog">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
 <!-- El menu vive copiado en cada pagina del sitio. Si cambia, cambia tambien aca. -->
-<header class="nav">
-  <div class="nav-in">
-    <a class="nav-logo" href="./" aria-label="True Food, inicio">
-      <img src="assets/img/logo-circulo.png" alt="True Food" width="429" height="400">
-    </a>
-    <nav class="idioma" aria-label="Idioma">
-      <a href="blog.html" aria-current="true" lang="es">ES</a>
-      <a href="en/blog.html" lang="en" hreflang="en">EN</a>
-    </nav>
-    <nav class="secciones" aria-label="Secciones del sitio">
-      <ul>
-        <li><a href="./">Inicio</a></li>
-        <li><a href="productos.html">Productos</a></li>
-        <li><a href="donde-comprar.html">Dónde comprar</a></li>
-        <li><a href="historia.html">Historia</a></li>
-        <li><a href="blog.html" aria-current="page">Blog</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<header class="nav nav-editorial"><div class="nav-editorial-in"><a aria-label="True Food, inicio" class="nav-logo" href="./">
+<img alt="True Food" height="400" src="assets/img/logo-circulo.png" width="429"/>
+</a><nav aria-label="Secciones del sitio" class="secciones">
+<ul>
+<li><a href="./">Inicio</a></li>
+<li><a href="productos.html">Productos</a></li>
+
+<li><a href="historia.html">Historia</a></li>
+<li><a aria-current="page" href="blog.html">Blog</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+</nav><div class="nav-actions"><nav aria-label="Idioma" class="idioma">
+<a aria-current="true" href="blog.html" lang="es">ES</a>
+<a href="en/blog.html" hreflang="en" lang="en">EN</a>
+</nav><a class="nav-buy" href="donde-comprar.html">Dónde comprar</a><button type="button" class="nav-menu-open" aria-expanded="false" aria-controls="site-menu">Menú <span aria-hidden="true">☰</span></button></div></div></header>
+<dialog id="site-menu" class="site-menu" aria-label="Menú"><div class="menu-head"><a aria-label="True Food, inicio" class="nav-logo" href="./">
+<img alt="True Food" height="400" src="assets/img/logo-circulo.png" width="429"/>
+</a><button type="button" class="nav-menu-close">Cerrar <span aria-hidden="true">×</span></button></div><nav class="menu-links" aria-label="Menú"><a href="./"><span aria-hidden="true">01</span>Inicio</a><a href="productos.html"><span aria-hidden="true">02</span>Productos</a><a href="historia.html"><span aria-hidden="true">03</span>Historia</a><a href="blog.html" aria-current="page"><span aria-hidden="true">04</span>Blog</a><a href="contacto.html"><span aria-hidden="true">05</span>Contacto</a></nav><div class="menu-foot"><a class="nav-buy" href="donde-comprar.html">Dónde comprar</a><nav aria-label="Idioma" class="idioma">
+<a aria-current="true" href="blog.html" lang="es">ES</a>
+<a href="en/blog.html" hreflang="en" lang="en">EN</a>
+</nav></div></dialog>
 
 <main id="contenido">
   <section class="seccion blog-cab" aria-labelledby="t-blog">
@@ -96,9 +97,10 @@
     <p>True Food CR S.A. &middot; San Jos&eacute;, Costa Rica<br>
        Delicioso, saludable y Gluten Free.</p>
     <p>&copy; 2026 True Food CR S.A. &nbsp;&middot;&nbsp;
-       <a href="en/" hreflang="en" lang="en">English</a></p>
+       <a href="en/blog.html" hreflang="en" lang="en">English</a></p>
   </div>
 </footer>
 
+<script src="assets/js/menu.js" defer></script>
 </body>
 </html>

@@ -21,31 +21,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/editorial.css">
 </head>
 <body class="con-portada">
 <a class="saltar" href="#contenido">Skip to content</a>
 
-<header class="nav">
-  <div class="nav-in">
-    <a class="nav-logo" href="./" aria-label="True Food, home">
-      <img src="../assets/img/logo-circulo.png" alt="True Food" width="429" height="400">
-    </a>
-    <nav class="idioma" aria-label="Language">
-      <a href="../" lang="es" hreflang="es">ES</a>
-      <a href="./" aria-current="true" lang="en">EN</a>
-    </nav>
-    <nav class="secciones" aria-label="Site sections">
-      <ul>
-        <li><a href="./" aria-current="page">Home</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="where-to-buy.html">Where to buy</a></li>
-        <li><a href="story.html">Story</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<header class="nav nav-editorial"><div class="nav-editorial-in"><a aria-label="True Food, home" class="nav-logo" href="./">
+<img alt="True Food" height="400" src="../assets/img/logo-circulo.png" width="429"/>
+</a><nav aria-label="Site sections" class="secciones">
+<ul>
+<li><a aria-current="page" href="./">Home</a></li>
+<li><a href="products.html">Products</a></li>
+
+<li><a href="story.html">Story</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav><div class="nav-actions"><nav aria-label="Language" class="idioma">
+<a href="../" hreflang="es" lang="es">ES</a>
+<a aria-current="true" href="./" lang="en">EN</a>
+</nav><a class="nav-buy" href="where-to-buy.html">Where to buy</a><button type="button" class="nav-menu-open" aria-expanded="false" aria-controls="site-menu">Menu <span aria-hidden="true">☰</span></button></div></div></header>
+<dialog id="site-menu" class="site-menu" aria-label="Menu"><div class="menu-head"><a aria-label="True Food, home" class="nav-logo" href="./">
+<img alt="True Food" height="400" src="../assets/img/logo-circulo.png" width="429"/>
+</a><button type="button" class="nav-menu-close">Close <span aria-hidden="true">×</span></button></div><nav class="menu-links" aria-label="Menu"><a href="./" aria-current="page"><span aria-hidden="true">01</span>Home</a><a href="products.html"><span aria-hidden="true">02</span>Products</a><a href="story.html"><span aria-hidden="true">03</span>Story</a><a href="blog.html"><span aria-hidden="true">04</span>Blog</a><a href="contact.html"><span aria-hidden="true">05</span>Contact</a></nav><div class="menu-foot"><a class="nav-buy" href="where-to-buy.html">Where to buy</a><nav aria-label="Language" class="idioma">
+<a href="../" hreflang="es" lang="es">ES</a>
+<a aria-current="true" href="./" lang="en">EN</a>
+</nav></div></dialog>
 
 <main id="contenido">
   <!-- ================================================================
@@ -117,7 +118,7 @@
     <div class="portada-velo" aria-hidden="true"></div>
     <div class="portada-txt">
       <h1><span>Real Bread.</span><span>Gluten Free.</span></h1>
-      <p class="portada-sub">Made with the best ingredients, naturally gluten&nbsp;free.</p>
+      <p class="portada-sub">Made with the best ingredients, naturally gluten&nbsp;free.</p><div class="editorial-ctas"><a class="editorial-primary" href="where-to-buy.html">Where to buy</a></div>
     </div>
     <div class="puntos" role="group" aria-label="Choose a photo">
       <button type="button" class="punto-carr activo" data-i="0" aria-label="Photo 1 of 5"></button>
@@ -232,5 +233,6 @@
 })();
 </script>
 
+<script src="../assets/js/menu.js" defer></script>
 </body>
 </html>
