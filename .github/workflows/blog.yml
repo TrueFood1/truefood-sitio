@@ -102,6 +102,12 @@ jobs:
             git reset --hard origin/main
             python blog/armar.py
             git add -A blog.html blog
+            # Pestanas del blog: existen solo con recetas publicadas (o hay que borrarlas).
+            for f in recetas.html articulos.html; do
+              if [ -e "$f" ] || git ls-files --error-unmatch "$f" >/dev/null 2>&1; then
+                git add -A -- "$f"
+              fi
+            done
             if git diff --cached --quiet; then
               echo "Nada cambio: las paginas ya estaban al dia."
               exit 0

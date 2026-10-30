@@ -4,6 +4,9 @@
 Todo se genera desde cero en cada corrida, nunca editando encima:
   - blog/<nombre>.html  una pagina por articulo publicado
   - blog.html           la lista, mas nuevo primero
+  - recetas.html        solo las recetas, y articulos.html solo los articulos
+                        (pestanas Todo / Recetas / Articulos; existen solo si hay
+                        al menos una receta publicada, si no se borran)
 
 Los articulos con `borrador: si` no generan nada. Si un articulo pasa a
 borrador o se borra su .md, su pagina desaparece en la siguiente corrida.
@@ -34,7 +37,12 @@ ARTICULOS = RAIZ_REPO / "blog" / "articulos"
 PLANTILLA = RAIZ_REPO / "blog" / "plantillas" / "pagina.html"
 
 OBLIGATORIOS = ("titulo", "fecha", "descripcion")
-PERMITIDOS = OBLIGATORIOS + ("foto", "foto_alt", "borrador")
+PERMITIDOS = OBLIGATORIOS + ("foto", "foto_alt", "borrador", "categoria")
+CATEGORIAS = ("articulo", "receta")
+# Pestanas de la lista: (categoria o None para todo, rotulo, archivo en la raiz del sitio).
+VISTAS = ((None, "Todo", "blog.html"),
+          ("receta", "Recetas", "recetas.html"),
+          ("articulo", "Art&iacute;culos", "articulos.html"))
 MESES = ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
          "agosto", "septiembre", "octubre", "noviembre", "diciembre")
 # El sitio no lleva scripts de terceros; un articulo tampoco.
@@ -89,6 +97,10 @@ def leer_articulo(ruta):
     if borrador not in ("si", "sí", "no"):
         raise ErrorArticulo("borrador va como  si  o  no")
 
+    categoria = datos.get("categoria", "articulo").lower()
+    if categoria not in CATEGORIAS:
+        raise ErrorArticulo("categoria va como  receta  o  articulo  (si falta, vale articulo)")
+
     foto = datos.get("foto", "")
     if foto:
         foto = foto.lstrip("/")
@@ -116,6 +128,7 @@ def leer_articulo(ruta):
         "foto": foto,
         "foto_alt": datos.get("foto_alt", ""),
         "borrador": borrador != "no",
+        "categoria": categoria,
         "cuerpo": cuerpo,
     }
 
@@ -147,20 +160,26 @@ def pagina_articulo(plantilla, a):
     if a["foto"]:
         foto = ('    <img class="articulo-foto" src="%s%s" alt="%s">\n'
                 % (raiz, e(a["foto"]), e(a["foto_alt"])))
+    miga, vuelta = "", "Todos los art&iacute;culos"
+    if a["categoria"] == "receta":
+        miga = '<a href="../recetas.html">Recetas</a> <span aria-hidden="true">/</span> '
+        vuelta = "Todas las recetas"
     contenido = (
         '  <nav class="miga" aria-label="Ruta"><a href="../blog.html">Blog</a> '
-        '<span aria-hidden="true">/</span> %(titulo)s</nav>\n'
+        '<span aria-hidden="true">/</span> %(miga)s%(titulo)s</nav>\n'
         '  <article class="seccion articulo">\n'
         '    <p class="rotulo"><time datetime="%(iso)s">%(larga)s</time>%(marca)s</p>\n'
         '    <h1>%(titulo)s</h1>\n'
         '    <p class="lede">%(desc)s</p>\n'
         '%(foto)s'
         '    <div class="articulo-cuerpo">\n%(cuerpo)s\n    </div>\n'
-        '    <p class="cta-vuelta"><a href="../blog.html">&larr; Todos los art&iacute;culos</a></p>\n'
+        '    <p class="cta-vuelta"><a href="../%(vuelta_url)s">&larr; %(vuelta)s</a></p>\n'
         '  </article>'
     ) % {"titulo": e(a["titulo"]), "iso": a["fecha"].isoformat(), "larga": fecha_larga(a["fecha"]),
          "desc": e(a["descripcion"]), "foto": foto, "cuerpo": cuerpo,
-         "marca": MARCA_BORRADOR if a["borrador"] else ""}
+         "marca": MARCA_BORRADOR if a["borrador"] else "",
+         "miga": miga, "vuelta": vuelta,
+         "vuelta_url": "recetas.html" if a["categoria"] == "receta" else "blog.html"}
 
     imagen = "%s/%s" % (SITIO, a["foto"] or "assets/img/og.jpg")
     return llenar(plantilla, {
@@ -177,8 +196,13 @@ def pagina_articulo(plantilla, a):
     })
 
 
-def pagina_lista(plantilla, articulos):
+def pagina_lista(plantilla, articulos, vista=None, pestanas=False):
+    """La lista del blog. Sin pestanas es la de siempre (y la que usa armar-en.py).
+    Con pestanas, `vista` es None (Todo), "receta" o "articulo"."""
     e = html.escape
+    archivo = next(v[2] for v in VISTAS if v[0] == vista)
+    if vista:
+        articulos = [a for a in articulos if a["categoria"] == vista]
     if articulos:
         filas = []
         # Flavor first for the reviewed list. Future articles follow by date.
@@ -195,43 +219,62 @@ def pagina_lista(plantilla, articulos):
             alt = "Gluten-Free Food Program" if seal else (a["foto_alt"] or "True Food, served")
             foto = ('<div class="blog-miniatura%s"><img src="%s" alt="%s" loading="lazy"></div>'
                     % (" sello-articulo" if seal else "", e(photo), e(alt))) if photo else ""
+            rotulo = ('<span class="blog-categoria">Receta</span>'
+                      if pestanas and vista is None and a["categoria"] == "receta" else "")
             filas.append(
                 '      <li class="blog-item">\n'
                 '        %s\n'
                 '        <div class="blog-texto">\n'
-                '          <time datetime="%s">%s</time>\n'
+                '          <time datetime="%s">%s</time>%s\n'
                 '          <h2><a href="blog/%s.html">%s</a></h2>\n'
                 '          <p class="blog-extracto">%s</p>\n'
                 '        </div><span class="blog-flecha" aria-hidden="true">↗</span>\n'
                 '      </li>'
                 % (foto, a["fecha"].isoformat(), ("%d %s %d" % (a["fecha"].day, MESES[a["fecha"].month - 1][:3], a["fecha"].year)),
-                   a["nombre"], e(a["titulo"]), e(a["descripcion"])))
+                   rotulo, a["nombre"], e(a["titulo"]), e(a["descripcion"])))
         lista = '    <ul class="blog-lista">\n%s\n    </ul>' % "\n".join(filas)
+    elif vista == "receta":
+        lista = ('    <p class="blog-vacio">Muy pronto, recetas para antojarse. Mientras tanto, '
+                 '<a href="productos.html">conoce nuestros productos</a>.</p>')
     else:
         lista = ('    <p class="blog-vacio">Muy pronto, historias para antojarse. Mientras tanto, '
                  '<a href="productos.html">conoce nuestros productos</a>.</p>')
 
+    nav = ""
+    if pestanas:
+        # Sin JS: cada pestana es una pagina propia, armada por este script.
+        nav = ('    <nav class="blog-pestanas" aria-label="Secciones del blog">\n%s\n    </nav>\n'
+               % "\n".join('      <a href="%s"%s>%s</a>'
+                           % (arch, ' aria-current="page"' if cat == vista else "", rot)
+                           for cat, rot, arch in VISTAS))
     contenido = (
         '  <section class="seccion blog-cab" aria-labelledby="t-blog">\n'
         '    <div class="inner">\n'
         '    <h1 id="t-blog">Blog</h1>\n'
         '    <p class="lede">Recetas, ideas y lo que vamos aprendiendo sobre comer delicioso, '
         'saludable y Gluten Free.</p>\n'
-        '%s\n'
+        '%s%s\n'
         '    </div>\n'
         '  </section>'
-    ) % lista
+    ) % (nav, lista)
 
+    titulo, desc = "Blog", "Recetas, ideas y novedades de True Food: delicioso, saludable y Gluten Free."
+    if vista == "receta":
+        titulo = "Recetas"
+        desc = "Recetas con los panes y galletas de True Food, del congelador a la mesa: delicioso, saludable y Gluten Free."
+    elif vista == "articulo":
+        titulo = "Art&iacute;culos"
+        desc = "Ideas, historias y novedades de True Food: delicioso, saludable y Gluten Free."
     return llenar(plantilla, {
-        "titulo_pagina": "Blog &mdash; True Food",
-        "descripcion": "Recetas, ideas y novedades de True Food: delicioso, saludable y Gluten Free.",
-        "canonical": SITIO + "/blog.html",
+        "titulo_pagina": titulo + " &mdash; True Food",
+        "descripcion": desc,
+        "canonical": SITIO + "/" + archivo,
         "og_type": "website",
         "og_image": SITIO + "/assets/img/og.jpg",
         "extra_head": "",
         "raiz": "",
         "inicio": "./",
-        "yo": "blog.html",
+        "yo": archivo,
         "contenido": contenido,
     })
 
@@ -272,7 +315,17 @@ def main():
     for a in publicables:
         (carpeta / (a["nombre"] + ".html")).write_text(pagina_articulo(plantilla, a), encoding="utf-8")
     if not args.solo_articulos:
-        (salida / "blog.html").write_text(pagina_lista(plantilla, publicables), encoding="utf-8")
+        # Las pestanas aparecen recien con la primera receta publicada; hasta entonces
+        # blog.html queda igual que siempre y recetas.html / articulos.html no existen.
+        if any(a["categoria"] == "receta" for a in publicables):
+            for cat, _, arch in VISTAS:
+                (salida / arch).write_text(pagina_lista(plantilla, publicables, cat, pestanas=True),
+                                           encoding="utf-8")
+        else:
+            (salida / "blog.html").write_text(pagina_lista(plantilla, publicables), encoding="utf-8")
+            for _, _, arch in VISTAS[1:]:
+                if (salida / arch).is_file():
+                    (salida / arch).unlink()
 
     # English counterpart uses the same reviewed ES parser and runs after ES pages.
     if (RAIZ_REPO / "blog/articulos-en/equivalencias.json").exists() and salida == RAIZ_REPO:

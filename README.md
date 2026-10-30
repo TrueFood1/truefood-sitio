@@ -75,6 +75,8 @@ formato exacto está en `blog/PLANTILLA_ARTICULO.md`. Nadie edita a mano
 - La Action `.github/workflows/blog.yml` corre en cada push que toque `blog/`.
   En una rama arma solo las páginas de los artículos, para revisarlas en el
   pull request. En `main` rearma también `blog.html` y pide a Pages que publique.
+- `categoria: receta` manda el artículo a la pestaña Recetas (`recetas.html`); ver
+  la plantilla. Ni `recetas.html` ni `articulos.html` se editan a mano.
 - `borrador: si` no publica nada. Ojo: el repo es público, así que el texto de un
   borrador se puede leer en GitHub aunque no esté en el sitio.
 - Vista previa local, con borradores, fuera del repo:

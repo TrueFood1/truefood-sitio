@@ -24,6 +24,7 @@ fecha: 2026-10-20
 descripcion: Una frase de 120 a 160 caracteres. Sale en Google, al compartir por WhatsApp y en la lista del blog.
 foto: assets/img/blog/tostada-francesa.jpg
 foto_alt: Tostada francesa con fresas sobre un plato blanco
+categoria: receta
 borrador: no
 ---
 
@@ -44,9 +45,26 @@ Más texto, con un [enlace](/productos.html) si hace falta.
 | `foto`        | no            | Ruta desde la raíz del sitio, dentro de `assets/img/`. Si no hay, al compartir sale la foto general del sitio. |
 | `foto_alt`    | sí, si hay foto | Qué se ve en la foto, para lectores de pantalla. |
 | `borrador`    | no            | `si` o `no`. Con `si` el artículo no se publica. Si falta, vale `no`. |
+| `categoria`   | no            | `receta` o `articulo`. Si falta, vale `articulo`. Decide en qué pestaña sale. |
 
 Ningún otro campo se acepta: si el encabezado trae uno desconocido, el blog no se arma
 y la Action marca el error.
+
+## Recetas y artículos
+
+La lista del blog tiene tres pestañas: **Todo** (`blog.html`), **Recetas**
+(`recetas.html`) y **Artículos** (`articulos.html`). Son páginas aparte que arma
+`blog/armar.py`, sin JavaScript. Las pestañas aparecen recién cuando hay al menos
+una receta publicada; mientras no haya, `blog.html` es la lista de siempre.
+
+En **Todo**, las recetas llevan el rótulo «Receta» junto a la fecha. En la página
+de una receta, la ruta de arriba dice *Blog / Recetas* y el enlace del final lleva
+a todas las recetas.
+
+Una receta usa el mismo formato que cualquier artículo. La forma que mejor se lee:
+dos o tres frases que antojen, `## Ingredientes` (lista con `-`), `## Cómo se hace`
+(pasos con `1.`), un tip y el cierre con el producto y dónde conseguirlo. Las
+cantidades salen de la receta real; si no se sabe una, no se inventa.
 
 ## El texto
 
