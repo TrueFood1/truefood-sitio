@@ -3,6 +3,8 @@ titulo: Apple Cookie Sundae
 fecha: 2026-10-30
 descripcion: Manzana horneada con canela, nuestro Cookie Dough recién salido del horno y helado derritiéndose encima. Lo mejor de un apple pie y una galleta en un postre.
 categoria: receta
+foto: assets/img/blog/apple-cookie-sundae.jpg
+foto_alt: Apple Cookie Sundae en un molde de vidrio, con la galleta dorada y una bola de helado encima, junto al pote de Cookie Dough True Food y una manzana
 borrador: si
 ---
 
@@ -23,6 +25,9 @@ La manzana queda calientita y suave, la galleta doradita por fuera y suave por d
 1. Precalienta el horno a 175 °C (350 °F).
 2. Pon las rodajas de manzana en un molde apto para horno.
 3. Espolvorea la canela y el azúcar morena sobre la manzana.
+
+    ![Rodajas de manzana con canela y azúcar morena en el molde, antes de cubrirlas con el Cookie Dough](assets/img/blog/apple-cookie-sundae-manzanas.jpg)
+
 4. Cubre con el Cookie Dough.
 5. Hornea de 10 a 12 minutos, hasta que el Cookie Dough esté doradito por fuera y suave por dentro.
 6. Sácalo del horno y, todavía calientito, ponle la bola de helado encima.
