@@ -1,14 +1,14 @@
 ---
-titulo: Tarta crujiente de queso de cabra y prosciutto
+titulo: Tarta de queso de cabra y prosciutto sin gluten
 fecha: 2026-10-30
-descripcion: Una base crujiente de Pan de Semillas, crema de queso de cabra con limón y miel, y prosciutto encima. Una tarta fácil que se arma con una sola rebanada de pan.
+descripcion: Receta de tarta sin gluten con base crujiente de Pan de Semillas, crema de queso de cabra con limón y miel, y prosciutto. Un aperitivo fácil para recibir.
 categoria: receta
 foto: assets/img/blog/tarta-queso-de-cabra-prosciutto.jpg
 foto_alt: Tarta de queso de cabra sobre base crujiente de Pan de Semillas, con prosciutto y flores comestibles encima
-borrador: si
+borrador: no
 ---
 
-No es por exagerar, pero tienes que hacer esto. Una base crujiente hecha con Pan de Semillas, una crema de queso de cabra con limón y orégano, y prosciutto con un hilo de miel encima. Es demasiado fácil y la combinación es una locura.
+No es por exagerar, pero tienes que hacer esto. Una base crujiente hecha con Pan de Semillas, una crema de queso de cabra con limón y orégano, y prosciutto con un hilo de miel encima: un aperitivo sin gluten que se arma con una sola rebanada de pan. Es demasiado fácil y la combinación es una locura.
 
 ## Ingredientes
 

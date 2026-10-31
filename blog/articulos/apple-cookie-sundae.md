@@ -1,14 +1,14 @@
 ---
-titulo: Apple Cookie Sundae
+titulo: Apple Cookie Sundae, postre sin gluten
 fecha: 2026-10-30
-descripcion: Manzana horneada con canela, nuestro Cookie Dough recién salido del horno y helado derritiéndose encima. Lo mejor de un apple pie y una galleta en un postre.
+descripcion: Postre sin gluten de manzana horneada con canela, Cookie Dough True Food recién salido del horno y helado encima. Una receta fácil: 12 minutos de horno.
 categoria: receta
 foto: assets/img/blog/apple-cookie-sundae.jpg
-foto_alt: Apple Cookie Sundae en un molde de vidrio, con la galleta dorada y una bola de helado encima, junto al pote de Cookie Dough True Food y una manzana
-borrador: si
+foto_alt: Apple Cookie Sundae sin gluten en molde de vidrio, con galleta dorada y helado, junto al pote de Cookie Dough True Food
+borrador: no
 ---
 
-Manzana horneada, una galleta de chocolate chips recién salida del horno y helado derritiéndose encima. Es lo mejor de un apple pie y de una galleta recién hecha, en un solo postre.
+Manzana horneada, una galleta de chocolate chips recién salida del horno y helado derritiéndose encima. Es lo mejor de un apple pie y de una galleta recién hecha, en un solo postre. Un postre sin gluten, fácil y con pocos ingredientes.
 
 La manzana queda calientita y suave, la galleta doradita por fuera y suave por dentro, y el helado se derrite encima: caliente, frío y gooey al mismo tiempo. Simple y demasiado rico.
 
