@@ -3,6 +3,8 @@ titulo: Aperitivo de tocineta caramelizada con miel y queso crema
 fecha: 2026-10-30
 descripcion: Tocineta dorada lentamente, caramelizada con miel sobre una cama de queso crema, para servir con pan bien tostado. Un aperitivo especial con 4 ingredientes.
 categoria: receta
+foto: assets/img/blog/aperitivo-tocineta-miel.jpg
+foto_alt: Plato de queso crema cubierto de tocineta y nueces caramelizadas con miel, con tostadas de pan al lado
 borrador: si
 ---
 
