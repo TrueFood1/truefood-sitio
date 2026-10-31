@@ -158,8 +158,10 @@ def pagina_articulo(plantilla, a):
 
     foto = ""
     if a["foto"]:
-        foto = ('    <img class="articulo-foto" src="%s%s" alt="%s">\n'
-                % (raiz, e(a["foto"]), e(a["foto_alt"])))
+        # Las fotos de receta salen del celular, verticales: un recorte 16:9 les corta el plato.
+        clase = "articulo-foto receta" if a["categoria"] == "receta" else "articulo-foto"
+        foto = ('    <img class="%s" src="%s%s" alt="%s">\n'
+                % (clase, raiz, e(a["foto"]), e(a["foto_alt"])))
     miga, vuelta = "", "Todos los art&iacute;culos"
     if a["categoria"] == "receta":
         miga = '<a href="../recetas.html">Recetas</a> <span aria-hidden="true">/</span> '
