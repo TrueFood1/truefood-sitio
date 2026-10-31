@@ -15,7 +15,7 @@ Son cuatro ingredientes. Eso es todo. De verdad.
 ## Ingredientes
 
 - 180 g de tocineta
-- 200 g de nueces picadas, o semillas de calabaza tostadas (mira el tip)
+- 200 g de nueces picadas
 - 4 cucharadas de miel, y un poquito más para servir
 - Queso crema
 - Una pizca de sal marina
@@ -24,7 +24,7 @@ Son cuatro ingredientes. Eso es todo. De verdad.
 ## Cómo se hace
 
 1. Cocina la tocineta a fuego bajo hasta que suelte toda su grasita y quede bien doradita.
-2. Saca un poco de la grasa del sartén y agrega las nueces (o las semillas) y la miel.
+2. Saca un poco de la grasa del sartén y agrega las nueces y la miel.
 3. Sigue cocinando a fuego bajo, sin dejar de mezclar, hasta que todo se caramelice y quede pegajosito, dorado y crujiente.
 4. En un plato hondo, haz una cama de queso crema.
 5. Pon la mezcla de tocineta encima, agrega un poquito más de miel y una pizca de sal marina.
@@ -32,9 +32,7 @@ Son cuatro ingredientes. Eso es todo. De verdad.
 
 ## Un tip
 
-La versión original de esta receta la hicimos con nueces. Nuestros panes no llevan nueces, así que si quieres una mesa sin nueces, cámbialas por semillas de calabaza tostadas.
-
-Y el queso crema: nosotras lo pasamos primero por el procesador para que quedara más cremoso, pero puedes usarlo tal como viene.
+El queso crema: nosotras lo pasamos primero por el procesador para que quedara más cremoso, pero puedes usarlo tal como viene.
 
 ## Dónde conseguir el pan
 
