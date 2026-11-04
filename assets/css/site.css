@@ -504,7 +504,8 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
 /* Carrusel de fotos de producto (bolsa, servido, tabla nutricional).
    Todas las fotos van en el mismo cuadro y sin recortar: la tabla es vertical,
    asi que cada foto se ajusta adentro sobre el fondo hueso. */
-.carrusel{position:relative;display:block}
+.carrusel{position:relative;display:block;min-width:0;max-width:100%}
+.prod-hero > *{min-width:0}
 .car-pista{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
            overscroll-behavior-x:contain;scrollbar-width:none;border-radius:4px;background:var(--hueso)}
 .car-pista::-webkit-scrollbar{display:none}
@@ -518,3 +519,17 @@ body.con-portada .nav:not(.solida) .secciones::after{background:none}
 .car-puntos{display:flex;justify-content:center;gap:8px;margin-top:.8rem}
 .car-puntos span{width:8px;height:8px;border-radius:50%;background:#C9CCC0}
 .car-puntos span.on{background:var(--tinta)}
+/* En el diseño editorial la ficha pinta la bolsa como un círculo chico sobre la
+   foto servida (img:first-child). Dentro del carrusel eso solo vale para la
+   primera lámina; las demás muestran la bolsa y la tabla completas. */
+.editorial-detail .prod-hero-fotos.carrusel img,
+.editorial-detail .prod-hero-fotos.carrusel img:first-child,
+.editorial-detail .prod-hero-fotos.carrusel img:nth-child(2){position:static;width:100%;height:100%;
+  aspect-ratio:auto;object-fit:contain;border:0;border-radius:0;background:none}
+.carrusel .car-portada{position:relative}
+.editorial-detail .prod-hero-fotos.carrusel .car-portada > img:first-child,
+.prod-hero .carrusel .car-portada > img:first-child{object-fit:cover}
+.editorial-detail .prod-hero-fotos.carrusel img.car-badge,
+.carrusel img.car-badge{position:absolute;bottom:16px;right:16px;width:24%;height:auto;aspect-ratio:1;
+  object-fit:contain;border:6px solid #fff;border-radius:50%;background:#fff}
+.carrusel .car-pista{background:#fff}
