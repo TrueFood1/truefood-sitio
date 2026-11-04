@@ -48,9 +48,15 @@
       <a class="detail-buy" href="../donde-comprar.html">Dónde comprar</a>
     </div>
 
-    <div class="prod-hero-fotos">
-      <img src="../assets/img/bolsa-blanco.jpg" width="880" height="880" alt="Empaque de Pan Blanco de True Food">
-      <img src="../assets/img/servido-blanco.jpg" width="880" height="880" loading="lazy" alt="Pan Blanco servido">
+    <div class="prod-hero-fotos carrusel" aria-roledescription="carrusel" aria-label="Fotos del producto">
+      <div class="car-pista" tabindex="0">
+        <figure class="car-item"><img src="../assets/img/bolsa-blanco.jpg" width="880" height="880" alt="Empaque de Pan Blanco de True Food"></figure>
+        <figure class="car-item"><img src="../assets/img/servido-blanco.jpg" width="880" height="880" loading="lazy" alt="Pan Blanco servido"></figure>
+        <figure class="car-item"><img src="../assets/img/tabla-blanco.jpg" width="880" height="1100" loading="lazy" alt="Tabla nutricional"></figure>
+      </div>
+      <button class="car-flecha car-ant" type="button" aria-label="Foto anterior">&lsaquo;</button>
+      <button class="car-flecha car-sig" type="button" aria-label="Foto siguiente">&rsaquo;</button>
+      <div class="car-puntos" aria-hidden="true"><span></span><span></span><span></span></div>
     </div>
 
     <div class="prod-hero-datos">
@@ -118,5 +124,6 @@
 </footer>
 
 <script src="../assets/js/menu.js" defer></script>
+<script src="../assets/js/carrusel.js" defer></script>
 </body>
 </html>

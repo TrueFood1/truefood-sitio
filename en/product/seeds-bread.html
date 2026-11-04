@@ -55,9 +55,15 @@
       <a class="detail-buy" href="../../en/where-to-buy.html">Where to buy</a>
     </div>
 
-    <div class="prod-hero-fotos">
-      <img src="../../assets/img/bolsa-semillas.jpg" width="880" height="880" alt="True Food Seeds Bread packaging">
-      <img src="../../assets/img/servido-semillas.jpg" width="880" height="880" loading="lazy" alt="True Food Seeds Bread toast with avocado, held in hand">
+    <div class="prod-hero-fotos carrusel" aria-roledescription="carrusel" aria-label="Product photos">
+      <div class="car-pista" tabindex="0">
+        <figure class="car-item"><img src="../../assets/img/bolsa-semillas.jpg" width="880" height="880" alt="True Food Seeds Bread packaging"></figure>
+        <figure class="car-item"><img src="../../assets/img/servido-semillas.jpg" width="880" height="880" loading="lazy" alt="True Food Seeds Bread toast with avocado, held in hand"></figure>
+        <figure class="car-item"><img src="../../assets/img/tabla-semillas.jpg" width="880" height="1100" loading="lazy" alt="Nutrition facts"></figure>
+      </div>
+      <button class="car-flecha car-ant" type="button" aria-label="Photo previous">&lsaquo;</button>
+      <button class="car-flecha car-sig" type="button" aria-label="Photo next">&rsaquo;</button>
+      <div class="car-puntos" aria-hidden="true"><span></span><span></span><span></span></div>
     </div>
 
     <div class="prod-hero-datos">
@@ -125,5 +131,6 @@
 </footer>
 
 <script src="../../assets/js/menu.js" defer></script>
+<script src="../../assets/js/carrusel.js" defer></script>
 </body>
 </html>
