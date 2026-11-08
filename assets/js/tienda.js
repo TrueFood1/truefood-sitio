@@ -20,13 +20,12 @@
   var BROWNIE = { id: 'brownie', n: 'Premezcla para Brownie', p: 4800 };
 
   var ERRORES = {
-    'tienda:referencia_repetida': 'Ese número de comprobante ya se usó en otro pedido. Revísalo.',
     'tienda:total_distinto': 'Un precio cambió. Recarga la página y vuelve a armar tu pedido.',
     'tienda:producto': 'Uno de los productos ya no está disponible. Recarga la página.',
     'tienda:falta_direccion': 'Escribe la dirección de entrega.',
     'tienda:sin_comprobante': 'No pudimos guardar tu comprobante. Inténtalo de nuevo.',
     'tienda:sin_productos': 'Escoge al menos un producto.',
-    'tienda:datos': 'Revisa tus datos: nombre, teléfono y número de comprobante.'
+    'tienda:datos': 'Revisa tus datos: nombre y teléfono.'
   };
 
   var $ = function (id) { return document.getElementById(id); };
@@ -107,7 +106,6 @@
     if ($('nombre').value.trim().length < 2) return 'Escribe tu nombre.';
     if ($('tel').value.replace(/\D/g, '').length < 8) return 'Escribe un teléfono de 8 dígitos.';
     if (entrega() === 'envio' && !$('dir').value.trim()) return 'Escribe la dirección de entrega.';
-    if ($('ref').value.trim().length < 4) return 'Escribe el número de comprobante de tu pago.';
     if (!archivo) return 'Adjunta el comprobante de tu pago.';
     if (!EXT[archivo.type]) return 'El comprobante tiene que ser una foto o un PDF.';
     if (archivo.size > MAX_ARCHIVO) return 'El comprobante pesa más de 5 MB.';
@@ -129,7 +127,6 @@
         entrega: entrega(),
         direccion: entrega() === 'envio' ? $('dir').value.trim() : null,
         metodo_pago: document.querySelector('input[name=metodo]:checked').value,
-        referencia: $('ref').value.trim(),
         comprobante_path: path,
         total_crc: c.total,
         lineas: todos.filter(function (p) { return cant[p.id] > 0; })
