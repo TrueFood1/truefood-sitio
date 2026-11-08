@@ -10,12 +10,12 @@
 
   // Solo para mostrar: el total que vale lo recalcula tienda_crear_pedido().
   var PRODUCTOS = [
-    { id: 'blanco', n: 'Pan Blanco', d: 'Por unidad', p: 5500, img: 'assets/img/bolsa-blanco.jpg' },
-    { id: 'semillas', n: 'Pan de Semillas', d: 'Por unidad', p: 6000, img: 'assets/img/bolsa-semillas.jpg' },
-    { id: 'frances', n: 'Pan Francés', d: 'Paquete de 4', p: 4800, img: 'assets/img/bolsa-frances.jpg' },
-    { id: 'buns', n: 'Pan de Hamburguesa', d: 'Paquete de 4', p: 5500, img: 'assets/img/bolsa-buns.jpg' },
-    { id: 'pizza', n: 'Pizza Crust', d: 'Paquete de 2', p: 5400, img: 'assets/img/bolsa-pizza.jpg' },
-    { id: 'cookie', n: 'Cookie Dough', d: 'Pote de 340 g', p: 4500, img: 'assets/img/bolsa-cookie.jpg' }
+    { id: 'blanco', url: 'producto/pan-blanco.html', n: 'Pan Blanco', d: 'Por unidad', p: 5500, img: 'assets/img/bolsa-blanco.jpg' },
+    { id: 'semillas', url: 'producto/pan-de-semillas.html', n: 'Pan de Semillas', d: 'Por unidad', p: 6000, img: 'assets/img/bolsa-semillas.jpg' },
+    { id: 'frances', url: 'producto/pan-frances.html', n: 'Pan Francés', d: 'Paquete de 4', p: 4800, img: 'assets/img/bolsa-frances.jpg' },
+    { id: 'buns', url: 'producto/buns.html', n: 'Pan de Hamburguesa', d: 'Paquete de 4', p: 5500, img: 'assets/img/bolsa-buns.jpg' },
+    { id: 'pizza', url: 'producto/pizza-crust.html', n: 'Pizza Crust', d: 'Paquete de 2', p: 5400, img: 'assets/img/bolsa-pizza.jpg' },
+    { id: 'cookie', url: 'producto/cookie-dough.html', n: 'Cookie Dough', d: 'Pote de 340 g', p: 4500, img: 'assets/img/bolsa-cookie.jpg' }
   ];
   var BROWNIE = { id: 'brownie', n: 'Premezcla para Brownie', p: 4800 };
 
@@ -43,7 +43,7 @@
   $('brownie-paso').innerHTML = paso(BROWNIE);
   $('tienda-lista').innerHTML = PRODUCTOS.map(function (p) {
     return '<div class="tienda-prod"><img src="' + p.img + '" alt="" width="64" height="64" loading="lazy">' +
-      '<div><div class="tienda-n">' + p.n + '</div><div class="tienda-d">' + p.d + '</div><div class="tienda-p">' + fmt(p.p) + '</div></div>' +
+      '<div><div class="tienda-n"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.n + '</a></div><div class="tienda-d">' + p.d + '</div><div class="tienda-p">' + fmt(p.p) + '</div></div>' +
       paso(p) + '</div>';
   }).join('');
 

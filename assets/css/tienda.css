@@ -50,3 +50,4 @@
 @media (max-width:360px){.tienda-estrella{grid-template-columns:1fr}.tienda-estrella figure{max-width:190px}}
 @media (max-width:380px){.tienda-prod{grid-template-columns:48px minmax(0,1fr) auto;gap:.6rem}.tienda-prod img{width:48px;height:48px}.tienda-n{font-size:.875rem;overflow-wrap:anywhere}.tienda-paso{gap:.1rem}}
 #l-dir[hidden]{display:none}
+.tienda-n a,#t-brownie a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
