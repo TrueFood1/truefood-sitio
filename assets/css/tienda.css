@@ -49,3 +49,4 @@
 .tienda-ticket button:disabled{opacity:.5;cursor:default}
 @media (max-width:360px){.tienda-estrella{grid-template-columns:1fr}.tienda-estrella figure{max-width:190px}}
 @media (max-width:380px){.tienda-prod{grid-template-columns:48px minmax(0,1fr) auto;gap:.6rem}.tienda-prod img{width:48px;height:48px}.tienda-n{font-size:.875rem;overflow-wrap:anywhere}.tienda-paso{gap:.1rem}}
+#l-dir[hidden]{display:none}

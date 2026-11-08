@@ -10,8 +10,8 @@
 
   // Solo para mostrar: el total que vale lo recalcula tienda_crear_pedido().
   var PRODUCTOS = [
-    { id: 'blanco', n: 'Pan Blanco', d: 'Suave y esponjoso', p: 5500, img: 'assets/img/bolsa-blanco.jpg' },
-    { id: 'semillas', n: 'Pan de Semillas', d: 'Bolsa', p: 6000, img: 'assets/img/bolsa-semillas.jpg' },
+    { id: 'blanco', n: 'Pan Blanco', d: 'Por unidad', p: 5500, img: 'assets/img/bolsa-blanco.jpg' },
+    { id: 'semillas', n: 'Pan de Semillas', d: 'Por unidad', p: 6000, img: 'assets/img/bolsa-semillas.jpg' },
     { id: 'frances', n: 'Pan Francés', d: 'Paquete de 4', p: 4800, img: 'assets/img/bolsa-frances.jpg' },
     { id: 'buns', n: 'Pan de Hamburguesa', d: 'Paquete de 4', p: 5500, img: 'assets/img/bolsa-buns.jpg' },
     { id: 'pizza', n: 'Pizza Crust', d: 'Paquete de 2', p: 5400, img: 'assets/img/bolsa-pizza.jpg' },
@@ -120,6 +120,23 @@
     var id = crypto.randomUUID();
     var path = id + '/comprobante.' + EXT[archivo.type];
 
+    // Se arma antes de subir: el carrito puede cambiar mientras sube el archivo.
+    var pedido = JSON.stringify({
+      p: {
+        id: id,
+        nombre: $('nombre').value.trim(),
+        telefono: $('tel').value.trim(),
+        entrega: entrega(),
+        direccion: entrega() === 'envio' ? $('dir').value.trim() : null,
+        metodo_pago: document.querySelector('input[name=metodo]:checked').value,
+        referencia: $('ref').value.trim(),
+        comprobante_path: path,
+        total_crc: c.total,
+        lineas: todos.filter(function (p) { return cant[p.id] > 0; })
+          .map(function (p) { return { id: p.id, cant: cant[p.id] }; })
+      }
+    });
+
     var sube = await fetch(SUPA_URL + '/storage/v1/object/' + BUCKET + '/' + path, {
       method: 'POST',
       headers: Object.assign(auth(), { 'Content-Type': archivo.type }),
@@ -130,21 +147,7 @@
     var res = await fetch(SUPA_URL + '/rest/v1/rpc/tienda_crear_pedido', {
       method: 'POST',
       headers: Object.assign(auth(), { 'Content-Type': 'application/json' }),
-      body: JSON.stringify({
-        p: {
-          id: id,
-          nombre: $('nombre').value.trim(),
-          telefono: $('tel').value.trim(),
-          entrega: entrega(),
-          direccion: entrega() === 'envio' ? $('dir').value.trim() : null,
-          metodo_pago: document.querySelector('input[name=metodo]:checked').value,
-          referencia: $('ref').value.trim(),
-          comprobante_path: path,
-          total_crc: c.total,
-          lineas: todos.filter(function (p) { return cant[p.id] > 0; })
-            .map(function (p) { return { id: p.id, cant: cant[p.id] }; })
-        }
-      })
+      body: pedido
     });
     var cuerpo = await res.json().catch(function () { return {}; });
     if (!res.ok) throw ERRORES[cuerpo.message] ? { texto: ERRORES[cuerpo.message] } : { fuera: true };
