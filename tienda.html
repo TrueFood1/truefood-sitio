@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tienda en línea &mdash; True Food</title>
+<meta name="description" content="Pide pan Gluten Free congelado directo de la planta de True Food. Recoge en Belén o recíbelo en el GAM.">
+<link rel="canonical" href="https://truefoodcr.com/tienda.html">
+<link rel="icon" href="assets/img/logo-circulo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tienda en línea &mdash; True Food">
+<meta property="og:description" content="Pide pan Gluten Free congelado directo de la planta de True Food. Recoge en Belén o recíbelo en el GAM.">
+<meta property="og:image" content="https://truefoodcr.com/assets/img/og.jpg">
+<meta property="og:locale" content="es_CR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/editorial.css">
+<link rel="stylesheet" href="assets/css/tienda.css">
+</head>
+<body class="pagina-tienda">
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="nav nav-editorial"><div class="nav-editorial-in"><a aria-label="True Food, inicio" class="nav-logo" href="./">
+<img alt="True Food" height="400" src="assets/img/logo-circulo.png" width="429"/>
+</a><nav aria-label="Secciones del sitio" class="secciones">
+<ul>
+<li><a href="./">Inicio</a></li>
+<li><a href="productos.html">Productos</a></li>
+
+<li><a href="historia.html">Historia</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+</nav><div class="nav-actions"><nav aria-label="Idioma" class="idioma">
+<a aria-current="true" href="tienda.html" lang="es">ES</a>
+<a href="en/where-to-buy.html" hreflang="en" lang="en">EN</a>
+</nav><a class="nav-buy" href="donde-comprar.html">Dónde comprar</a><button type="button" class="nav-menu-open" aria-expanded="false" aria-controls="site-menu">Menú <span aria-hidden="true">☰</span></button></div></div></header>
+<dialog id="site-menu" class="site-menu" aria-label="Menú"><div class="menu-head"><a aria-label="True Food, inicio" class="nav-logo" href="./">
+<img alt="True Food" height="400" src="assets/img/logo-circulo.png" width="429"/>
+</a><button type="button" class="nav-menu-close">Cerrar <span aria-hidden="true">×</span></button></div><nav class="menu-links" aria-label="Menú"><a href="./"><span aria-hidden="true">01</span>Inicio</a><a href="productos.html"><span aria-hidden="true">02</span>Productos</a><a href="historia.html"><span aria-hidden="true">03</span>Historia</a><a href="blog.html"><span aria-hidden="true">04</span>Blog</a><a href="contacto.html"><span aria-hidden="true">05</span>Contacto</a></nav><div class="menu-foot"><a class="nav-buy" href="donde-comprar.html">Dónde comprar</a></div></dialog>
+
+<main id="contenido">
+  <section class="seccion tienda" aria-labelledby="t-tienda">
+    <div class="inner">
+      <p class="rotulo">Tienda en l&iacute;nea &middot; hasta el 18 de diciembre</p>
+      <h1 id="t-tienda">Pide tu pan Gluten Free directo de la planta.</h1>
+      <p class="lede">Escoge, paga por SINPE M&oacute;vil o transferencia, y recoges o te lo llevamos.</p>
+
+      <div id="tienda-listo" class="tienda-bloque tienda-listo" role="status" hidden>
+        <h2>Recibimos tu pedido <span id="listo-numero"></span></h2>
+        <p>Total: <b id="listo-total"></b></p>
+        <p>Estamos confirmando tu pago. Una transferencia de otro banco puede tardar hasta 1 d&iacute;a h&aacute;bil.</p>
+        <p>Dudas: <a href="https://wa.me/50671369029" target="_blank" rel="noopener">WhatsApp 7136-9029</a></p>
+      </div>
+
+      <form id="tienda-form" novalidate>
+        <section class="tienda-bloque tienda-estrella" aria-labelledby="t-brownie">
+          <figure>
+            <img id="brownie-img" src="assets/img/brownie-frente.jpg" alt="Bolsa de la Premezcla para Brownie de True Food" width="500" height="690">
+            <div class="tienda-lados" role="group" aria-label="Ver la bolsa">
+              <button type="button" aria-pressed="true" data-lado="frente">Frente</button>
+              <button type="button" aria-pressed="false" data-lado="atras">Atr&aacute;s</button>
+            </div>
+          </figure>
+          <div>
+            <h2 id="t-brownie">Premezcla para Brownie</h2>
+            <p>Un brownie fudge h&uacute;medo y s&uacute;per chocolatoso, con chocolate 70%. Gluten Free y Vegano. Solo le agregas 2 bananos y agua.</p>
+            <div class="tienda-p">&#8353;4.800 &middot; 300 g</div>
+            <div id="brownie-paso"></div>
+          </div>
+        </section>
+
+        <section class="tienda-bloque" aria-labelledby="t-panes">
+          <h2 id="t-panes">Del congelador</h2>
+          <div id="tienda-lista"></div>
+          <p class="tienda-nota">Precios con IVA incluido. Todo viaja congelado.</p>
+        </section>
+
+        <section class="tienda-bloque" aria-labelledby="t-entrega">
+          <h2 id="t-entrega">C&oacute;mo lo recibes</h2>
+          <fieldset>
+            <label class="tienda-op"><input type="radio" name="entrega" value="planta" checked><span><b>Recoger en la planta</b><small>Ofibodegas Akiro #2, al lado de la Antigua Rumba, Bel&eacute;n. En Waze: True Food. Lunes a viernes, 7:00 a.m. a 4:00 p.m.</small></span><span class="tienda-costo">Gratis</span></label>
+            <label class="tienda-op"><input type="radio" name="entrega" value="propio"><span><b>Mandas un Uber o mensajero</b><small>Lo recogen en la planta, lunes a viernes, 7:00 a.m. a 4:00 p.m.</small></span><span></span></label>
+            <label class="tienda-op"><input type="radio" name="entrega" value="envio"><span><b>Te lo llevamos</b><small>En el GAM, lunes a viernes, 7:00 a.m. a 4:00 p.m.</small></span><span class="tienda-costo">&#8353;4.000</span></label>
+          </fieldset>
+        </section>
+
+        <section class="tienda-bloque" aria-labelledby="t-datos">
+          <h2 id="t-datos">Tus datos</h2>
+          <div class="tienda-campos">
+            <label>Nombre<input id="nombre" autocomplete="name" maxlength="120"></label>
+            <label>Tel&eacute;fono<input id="tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="25"></label>
+            <label id="l-dir" hidden>Direcci&oacute;n de entrega<textarea id="dir" rows="2" maxlength="400"></textarea></label>
+          </div>
+        </section>
+
+        <section class="tienda-bloque" aria-labelledby="t-pago">
+          <h2 id="t-pago">C&oacute;mo pagas</h2>
+          <div class="tienda-pago">
+            <p>Total a pagar: <b id="tienda-monto"></b></p>
+            <p><b>SINPE M&oacute;vil:</b> 7136-9029 &middot; True Food CR S.A.</p>
+            <p><b>Transferencia BAC:</b> cuenta 947432118 &middot; IBAN CR76010200009474321185 &middot; True Food CR Sociedad An&oacute;nima &middot; c&eacute;dula jur&iacute;dica 3-101-810212</p>
+          </div>
+          <div class="tienda-campos">
+            <fieldset>
+              <legend>Pagaste por</legend>
+              <label class="tienda-op"><input type="radio" name="metodo" value="sinpe" checked><span><b>SINPE M&oacute;vil</b></span><span></span></label>
+              <label class="tienda-op"><input type="radio" name="metodo" value="transferencia"><span><b>Transferencia</b></span><span></span></label>
+            </fieldset>
+            <label>N&uacute;mero de comprobante<input id="ref" maxlength="60" autocomplete="off"></label>
+            <label>Foto o PDF del comprobante<input id="comprobante" type="file" accept="image/*,application/pdf"></label>
+          </div>
+          <p class="tienda-nota">Despachamos cuando confirmamos tu pago. Una transferencia de otro banco puede tardar hasta 1 d&iacute;a h&aacute;bil.</p>
+          <p id="tienda-error" class="tienda-error" role="alert" hidden></p>
+        </section>
+
+        <div class="tienda-ticket" id="tienda-ticket">
+          <div>
+            <div><div class="tienda-total" id="tienda-total"></div><div class="tienda-detalle" id="tienda-detalle"></div></div>
+            <button type="submit" id="tienda-enviar">Enviar pedido</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="pie-sellos">
+    <img class="sello" src="assets/img/sello-gf-certified.svg" width="217" height="217" loading="lazy"
+         alt="Certificado por Gluten-Free Food Program">
+    <img class="sello" src="assets/img/sello-kosher.png" width="300" height="300" loading="lazy"
+         alt="Kosher Parve, Rabinato Ortodoxo de Costa Rica">
+    <img class="sello" src="assets/img/sello-brcgs.png" width="583" height="440" loading="lazy"
+         alt="BRCGS START! Certificated">
+  </div>
+  <div class="pie-in">
+    <img class="pie-logo" src="assets/img/logo-circulo.png" width="429" height="400" loading="lazy" alt="True Food">
+    <p>True Food CR S.A. &middot; San Jos&eacute;, Costa Rica<br>
+       Delicioso, saludable y Gluten Free.</p>
+    <p>&copy; 2026 True Food CR S.A. &nbsp;&middot;&nbsp;
+       <a href="en/where-to-buy.html" hreflang="en" lang="en">English</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/menu.js" defer></script>
+<script src="assets/js/tienda.js" defer></script>
+</body>
+</html>

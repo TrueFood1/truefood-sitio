@@ -1,0 +1,51 @@
+/* Tienda en línea. Una columna, móvil primero; sin movimiento al hacer scroll. */
+.pagina-tienda .tienda{background:var(--papel);padding-bottom:9rem}
+.tienda .inner{max-width:680px;margin:0 auto;padding-left:16px;padding-right:16px}
+.tienda h1{font-family:var(--display);font-weight:300;font-size:clamp(2rem,8vw,3rem);line-height:1.05;margin:.25rem 0 .75rem}
+.tienda h2{font-family:var(--display);font-weight:400;font-size:1.5rem;line-height:1.15;margin:0 0 .85rem}
+.tienda .lede{color:var(--gris);margin:0}
+.tienda-bloque{margin-top:2.75rem}
+.tienda-estrella{display:grid;grid-template-columns:132px 1fr;gap:1rem;align-items:center;background:var(--hueso);padding:1rem;border-radius:6px}
+.tienda-estrella figure{margin:0}
+.tienda-estrella img{width:100%;height:auto;display:block;border-radius:4px}
+.tienda-lados{display:flex;gap:.25rem;margin-top:.5rem}
+.tienda-lados button{flex:1;font:500 .8125rem/1 var(--texto);min-height:36px;background:none;border:1px solid var(--tinta);border-radius:999px;color:var(--tinta);cursor:pointer}
+.tienda-lados button[aria-pressed="true"]{background:var(--tinta);color:var(--papel)}
+.tienda-estrella h2{margin-bottom:.35rem}
+.tienda-estrella p{margin:0 0 .6rem;font-size:.9375rem}
+.tienda-prod{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:.75rem;align-items:center;padding:.75rem 0;border-bottom:1px solid var(--linea)}
+.tienda-prod img{width:64px;height:64px;object-fit:cover;border-radius:4px;display:block}
+.tienda-n{font-weight:500;line-height:1.2}
+.tienda-d{font-size:.8125rem;color:var(--gris)}
+.tienda-p{font-weight:700;font-variant-numeric:tabular-nums}
+.tienda-paso{display:flex;align-items:center;gap:.25rem}
+.tienda-paso button{width:44px;height:44px;border-radius:50%;border:1px solid var(--tinta);background:var(--papel);color:var(--tinta);font:500 1.25rem/1 var(--texto);cursor:pointer;touch-action:manipulation}
+.tienda-paso output{min-width:1.4rem;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.tienda-estrella .tienda-paso{margin-top:.25rem}
+.tienda-nota{font-size:.8125rem;color:var(--gris);margin:.75rem 0 0}
+.tienda fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+.tienda legend{padding:0;margin-bottom:.5rem;font-weight:500}
+.tienda-op{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:.6rem;padding:.85rem;border:1px solid var(--linea);border-radius:6px;cursor:pointer}
+.tienda-op:has(input:checked){border-color:var(--tinta);background:var(--hueso)}
+.tienda-op input{margin:.2rem 0 0;width:18px;height:18px;accent-color:#000}
+.tienda-op b{font-weight:500}
+.tienda-op small{display:block;font-size:.875rem;color:var(--gris);margin-top:.1rem}
+.tienda-costo{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tienda-campos{display:flex;flex-direction:column;gap:.85rem}
+.tienda-campos>label{display:flex;flex-direction:column;gap:.25rem;font-size:.875rem;font-weight:500}
+.tienda-campos input,.tienda-campos textarea{font:400 16px/1.4 var(--texto);padding:.7rem;border:1px solid #9B9D94;border-radius:6px;background:var(--papel);color:var(--tinta);width:100%;box-sizing:border-box}
+.tienda-pago{background:var(--hueso);padding:1rem;border-radius:6px;margin-bottom:1rem;font-size:.9375rem;overflow-wrap:anywhere}
+.tienda-pago p{margin:0 0 .5rem}
+.tienda-pago p:last-child{margin:0}
+.tienda-error{margin:1rem 0 0;padding:.85rem;border:1px solid #B3261E;border-radius:6px;color:#8C1D18;font-size:.9375rem}
+.tienda-error a{color:inherit}
+.tienda-listo{padding:1.25rem;background:var(--hueso);border-radius:6px}
+.tienda-listo p{margin:.25rem 0}
+.tienda-ticket{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--tinta);color:var(--papel);padding:.75rem 16px calc(.75rem + env(safe-area-inset-bottom,0px))}
+.tienda-ticket>div{max-width:680px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+.tienda-total{font:400 1.375rem/1 var(--display);font-variant-numeric:tabular-nums}
+.tienda-detalle{font-size:.75rem;opacity:.75;margin-top:.2rem}
+.tienda-ticket button{background:var(--lima);color:#000;border:0;border-radius:999px;font:700 .9375rem/1 var(--texto);min-height:46px;padding:0 1.15rem;white-space:nowrap;cursor:pointer}
+.tienda-ticket button:disabled{opacity:.5;cursor:default}
+@media (max-width:360px){.tienda-estrella{grid-template-columns:1fr}.tienda-estrella figure{max-width:190px}}
+@media (max-width:380px){.tienda-prod{grid-template-columns:48px minmax(0,1fr) auto;gap:.6rem}.tienda-prod img{width:48px;height:48px}.tienda-n{font-size:.875rem;overflow-wrap:anywhere}.tienda-paso{gap:.1rem}}
