@@ -174,7 +174,7 @@
       if (err && err.texto) mostrarError(err.texto);
       else mostrarError(FUERA, true);
       boton.disabled = false;
-      boton.textContent = 'Enviar pedido';
+      boton.textContent = 'Hacer pedido';
     }
   });
 

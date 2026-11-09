@@ -17,3 +17,28 @@ body.con-portada .portada{height:100svh}
 .nav-menu-open:focus,.nav-menu-close:focus{outline:2px solid var(--lima);outline-offset:4px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--lima);outline-offset:4px}
 body.con-portada .nav-menu-open:focus{outline-color:#fff}
+/* Inicio: los dos botones de compra sobre la foto. Solo existen en index.html. */
+.nav-compra{display:flex;gap:12px;flex:0 0 auto}
+.nav-compra .nav-buy{transition:background-color 160ms ease,color 160ms ease,filter 160ms ease,transform 120ms ease-out}
+.nav-compra .nav-buy:active{transform:scale(.97)}
+.nav-buy.nav-buy-sec{background:transparent;color:#000;border:1px solid #000}
+body.con-portada .nav-compra .nav-buy-sec{background:rgba(14,14,14,.74);color:#fff;border-color:rgba(255,255,255,.26);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.menu-foot{display:flex;flex-direction:column;gap:10px}
+.menu-foot .nav-buy.nav-buy-sec{color:#fff;border-color:rgba(255,255,255,.5)}
+@media (hover:hover) and (pointer:fine){.nav-compra .nav-buy:hover{filter:brightness(.94)}.nav-compra .nav-buy.nav-buy-sec:hover{background:#000;color:#fff;filter:none}body.con-portada .nav-compra .nav-buy-sec:hover{background:#0e0e0e}}
+@media (prefers-reduced-motion:reduce){.nav-compra .nav-buy:active{transform:none}}
+@media (max-width:640px){
+.con-compra{flex-wrap:wrap;gap:10px 8px}
+.con-compra .nav-actions{display:contents}
+.con-compra .idioma{order:1;margin-left:auto}
+.con-compra .nav-menu-open{order:2}
+.con-compra .nav-compra{order:3;width:100%;justify-content:flex-end;gap:10px}
+.nav-editorial .nav-compra .nav-buy{min-height:44px;padding:10px 16px;font-size:13px}
+.editorial-detail .prod-hero-datos h2{scroll-margin-top:150px}
+}
+.nav-menu-open{color:#000;width:44px;height:44px;padding:0;border:0;font-size:0;-webkit-tap-highlight-color:transparent}.nav-menu-open::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;box-shadow:-9px 0 currentColor,9px 0 currentColor}
+@media (max-width:767px){.nav.nav-editorial{position:relative}body.con-portada .nav.nav-editorial{position:absolute}}
+body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to bottom,rgba(0,0,0,.62),rgba(0,0,0,.34) 62%,rgba(0,0,0,0)) no-repeat}
+.cadena-solo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;min-height:106px;text-align:center}.cadena-nombre{font-family:var(--texto);font-weight:700;font-size:1.25rem;line-height:1.2}.cadena-nota{font-size:.8125rem}
+@media (min-width:700px){.donde .cadenas{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:699px){.donde .cadenas li:last-child{grid-column:auto}}
