@@ -71,7 +71,7 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 .dc-hero-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
 /* 2 · Productos */
-.dc-prods{padding:clamp(4rem,9vw,8rem) var(--dc-gut)}
+.dc-prods{padding:clamp(4rem,9vw,8rem) var(--dc-gut);background:var(--hueso)}
 .dc-prods>.inner,.dc-super>.inner,.dc-cierre>.inner{max-width:1280px}
 .dc-cabeza{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem 4rem;align-items:end;margin-bottom:clamp(2rem,4vw,3.2rem)}
 .dc-cabeza h2{margin:0}
@@ -101,7 +101,7 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 .dc-enlace{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:.9375rem;color:var(--tinta);text-decoration:underline;text-underline-offset:4px;padding:0 4px}
 
 /* 3 · En el súper */
-.dc-super{background:var(--hueso);padding:clamp(4rem,9vw,8rem) var(--dc-gut)}
+.dc-super{background:#fff;padding:clamp(4rem,9vw,8rem) var(--dc-gut)}
 .dc-super-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:center}
 .dc-super-foto{margin:0}
 .dc-super-foto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
