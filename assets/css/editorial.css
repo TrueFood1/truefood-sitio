@@ -45,3 +45,110 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 .detail-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.detail-ctas .detail-buy{margin-top:0}.detail-buy-sec{background:transparent;color:#000;border:1px solid #000}
 .prod-hero .car-video{background:#fff}.prod-hero .car-video video{width:100%;height:100%;object-fit:contain;display:block;background:#fff}
 .catalog-links{display:flex;flex-wrap:wrap;column-gap:24px;position:relative;z-index:2}
+
+/* ==========================================================================
+   Dónde comprar (ES) / Where to buy (EN) — página de destino de anuncios.
+   Clases dc-*: solo existen en donde-comprar.html y en/where-to-buy.html.
+   Lima solo como relleno de botón. Sin animaciones de scroll.
+   ========================================================================== */
+.dc{--dc-gut:clamp(16px,4vw,56px)}
+.dc h1,.dc h2,.dc h3{font-family:var(--texto);font-weight:700;color:var(--tinta)}
+.dc h2{font-size:clamp(2.1rem,4.6vw,3.75rem);letter-spacing:-.045em;line-height:1.04;margin:0 0 1rem}
+.dc .rotulo{margin-bottom:.9rem}
+.dc-lede{font-size:clamp(1.0625rem,1.6vw,1.25rem);line-height:1.5;max-width:44ch;margin:0}
+
+/* 1 · Portada: texto a la izquierda, foto servida a sangre a la derecha */
+.dc-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);min-height:min(calc(100svh - 89px),820px);background:var(--hueso)}
+.dc-hero-txt{align-self:center;padding:clamp(2.5rem,6vw,5rem) clamp(1.5rem,4vw,4rem) clamp(2.5rem,6vw,5rem) max(var(--dc-gut),calc((100vw - 1400px)/2 + 56px))}
+.dc-hero h1{font-size:clamp(2.5rem,4.6vw,4.4rem);letter-spacing:-.05em;line-height:1;margin:0 0 1.4rem;max-width:13ch}
+.dc-hero .dc-lede{max-width:40ch}
+.dc-hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:2rem}
+.dc-hero-ctas .detail-buy{margin-top:0}
+.dc-hechos{list-style:none;margin:1.8rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem 1.4rem;font-size:.9375rem;color:var(--gris)}
+.dc-hechos li{display:flex;align-items:center;gap:.5rem}
+.dc-hechos li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--tinta);flex:0 0 7px}
+.dc-hero-foto{margin:0;position:relative;min-height:100%}
+.dc-hero-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* 2 · Productos */
+.dc-prods{padding:clamp(4rem,9vw,8rem) var(--dc-gut)}
+.dc-prods>.inner,.dc-super>.inner,.dc-cierre>.inner{max-width:1280px}
+.dc-cabeza{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem 4rem;align-items:end;margin-bottom:clamp(2rem,4vw,3.2rem)}
+.dc-cabeza h2{margin:0}
+.dc-rejilla{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(2rem,3.5vw,3rem) clamp(1rem,2vw,1.6rem)}
+.dc-prod{position:relative;display:flex;flex-direction:column;min-width:0}
+.dc-prod-fotos{position:relative;aspect-ratio:5/4;background:var(--hueso);overflow:hidden}
+.dc-servido{width:100%;height:100%;object-fit:cover;display:block;transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
+.dc-bolsa{position:absolute;right:12px;bottom:12px;width:26%;aspect-ratio:1;object-fit:contain;background:#fff;border:5px solid #fff;border-radius:50%}
+.dc-prod h3{font-size:clamp(1.25rem,1.8vw,1.6rem);letter-spacing:-.035em;line-height:1.15;margin:1rem 0 .35rem}
+.dc-prod h3 a{color:inherit;text-decoration:none}
+.dc-prod h3 a::after{content:"";position:absolute;inset:0}
+.dc-prod p{margin:0;font-size:1rem;line-height:1.5}
+.dc-prod .dc-pres{color:var(--gris);font-size:.9375rem;margin-top:.35rem}
+.dc-ver{margin-top:.8rem;font-size:.9375rem;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.dc-prod:focus-within{outline:2px solid var(--tinta);outline-offset:6px}
+.dc-prod h3 a:focus-visible{outline:none}
+@media (hover:hover) and (pointer:fine){.dc-prod:hover .dc-servido{transform:scale(1.03)}.dc-prod:hover .dc-ver{text-decoration-thickness:2px}}
+
+/* Brownie: aparte, porque no está en el súper */
+.dc-brownie{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1.5rem,4vw,4rem);align-items:center;margin-top:clamp(3.5rem,7vw,6rem);background:var(--hueso);padding:clamp(1.25rem,3vw,2.5rem)}
+.dc-brownie img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;display:block}
+.dc-brownie h3{font-size:clamp(1.75rem,3vw,2.6rem);letter-spacing:-.045em;line-height:1.05;margin:.2rem 0 .9rem}
+.dc-brownie p{margin:0 0 .6rem;max-width:46ch}
+.dc-brownie .dc-pres{color:var(--gris);font-size:.9375rem}
+.dc-solo{font-weight:700;margin-bottom:.4rem!important}
+.dc-brownie .detail-ctas{margin-top:1.4rem;align-items:center}
+.dc-enlace{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:.9375rem;color:var(--tinta);text-decoration:underline;text-underline-offset:4px;padding:0 4px}
+
+/* 3 · En el súper */
+.dc-super{background:var(--hueso);padding:clamp(4rem,9vw,8rem) var(--dc-gut)}
+.dc-super-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:center}
+.dc-super-foto{margin:0}
+.dc-super-foto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
+.dc-pasos{margin:2rem 0 0;display:grid;gap:1.4rem}
+.dc-pasos div{background:var(--papel);padding:1.2rem 1.4rem}
+.dc-pasos dt{font-weight:700;font-size:1.0625rem;margin:0 0 .25rem}
+.dc-pasos dd{margin:0;font-size:1rem;line-height:1.55}
+
+/* 4 · Supermercados: la rejilla de logos es la de siempre (site.css) */
+.dc .donde{padding:clamp(4rem,9vw,8rem) var(--dc-gut)}
+.dc .donde>.inner{max-width:1280px}
+.dc .donde .dc-lede{margin-top:1rem}
+
+/* 5 · Cierre */
+.dc-cierre{background:#000;color:#fff;padding:clamp(4rem,8vw,7rem) var(--dc-gut)}
+.dc-cierre-in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(2.5rem,6vw,6rem);align-items:end}
+.dc-cierre h2{color:#fff}
+.dc-cierre p{margin:0;font-size:1.0625rem;line-height:1.55;max-width:42ch;color:#fff}
+.dc-cierre .detail-buy{margin-top:1.6rem}
+.dc-ig{display:flex;flex-direction:column;gap:.6rem}
+.dc-ig h2{font-size:clamp(1.6rem,2.6vw,2.2rem)}
+.dc-ig a{display:inline-flex;align-items:center;min-height:44px;color:#fff;font-weight:700;font-size:clamp(1.25rem,2vw,1.6rem);letter-spacing:-.02em;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px;width:max-content;max-width:100%}
+.dc-ig a:hover{text-decoration-thickness:2px}
+.dc-cierre a:focus-visible{outline-color:#fff}
+
+@media (max-width:1039px){
+  .dc-cabeza{grid-template-columns:1fr}
+  .dc-rejilla{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:767px){
+  .dc-hero{grid-template-columns:1fr;min-height:0}
+  .dc-hero-foto{order:-1;aspect-ratio:4/3;min-height:0}
+  .dc-hero-txt{padding:1.8rem var(--dc-gut) 2.6rem}
+  .dc-hero h1{font-size:clamp(2.25rem,10.4vw,3rem);max-width:none}
+  .dc-hero-ctas{flex-direction:column}
+  .dc-hero-ctas a{width:100%}
+  .dc-brownie,.dc-super-in,.dc-cierre-in{grid-template-columns:1fr}
+  .dc-brownie img{max-width:320px}
+  .dc-cierre-in{align-items:start}
+}
+@media (max-width:540px){
+  .dc-rejilla{gap:1.8rem 12px}
+  .dc-bolsa{width:34%;border-width:3px;right:8px;bottom:8px}
+  .dc-prod h3{font-size:1.125rem;margin-top:.7rem}
+  .dc-prod p{font-size:.9375rem}
+  .dc-prod .dc-pres,.dc-ver{font-size:.875rem}
+}
+@media (prefers-reduced-motion:reduce){.dc-servido{transition:none}.dc-prod:hover .dc-servido{transform:none}}
+.dc .donde-rest{margin-top:clamp(3.2rem,7vw,4.4rem)}
+@media (min-width:768px){.dc-super-foto img{aspect-ratio:1}}
