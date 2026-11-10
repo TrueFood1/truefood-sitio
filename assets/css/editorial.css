@@ -101,7 +101,7 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 .dc-enlace{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:.9375rem;color:var(--tinta);text-decoration:underline;text-underline-offset:4px;padding:0 4px}
 
 /* 3 · En el súper */
-.dc-super{background:#fff;padding:clamp(3rem,6vw,5.5rem) var(--dc-gut) clamp(4rem,9vw,8rem)}
+.dc-super{background:#fff;padding:clamp(2.5rem,4vw,3.5rem) var(--dc-gut) clamp(4rem,9vw,8rem)}
 .dc-super-in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,5rem);align-items:start}
 .dc-super-foto{margin:0;position:sticky;top:120px}
 .dc-super-foto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
@@ -156,3 +156,4 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 @media(max-width:767px){.dc-super-foto{position:static}}
 .donde #t-donde{scroll-margin-top:calc(89px + 2.5rem)}@media(max-width:1039px){.donde #t-donde{scroll-margin-top:calc(74px + 1.5rem)}}
 .js-entra .entra{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.js-entra .entra.visto{opacity:1;transform:none}@media(prefers-reduced-motion:reduce){.js-entra .entra{opacity:1;transform:none;transition:none}}
+#t-prods{scroll-margin-top:calc(89px + 2.5rem)}@media(max-width:1039px){#t-prods{scroll-margin-top:calc(74px + 1.5rem)}}
