@@ -154,3 +154,4 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 @media (min-width:768px){.dc-super-foto img{aspect-ratio:1}}
 .dc-prep{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.5rem}.dc-prep b{font-weight:700}
 @media(max-width:767px){.dc-super-foto{position:static}}
+.donde #t-donde{scroll-margin-top:calc(89px + 2.5rem)}@media(max-width:1039px){.donde #t-donde{scroll-margin-top:calc(74px + 1.5rem)}}
