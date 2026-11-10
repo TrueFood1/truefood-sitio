@@ -41,7 +41,7 @@
 .tienda-error a{color:inherit}
 .tienda-listo{padding:1.25rem;background:var(--hueso);border-radius:6px}
 .tienda-listo p{margin:.25rem 0}
-.tienda-ticket{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--tinta);color:var(--papel);padding:.75rem 16px calc(.75rem + env(safe-area-inset-bottom,0px))}
+.tienda-ticket{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--tinta);color:var(--papel);padding:.85rem max(16px,env(safe-area-inset-right,0px)) calc(1rem + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .tienda-ticket>div{max-width:680px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
 .tienda-total{font:400 1.375rem/1 var(--display);font-variant-numeric:tabular-nums}
 .tienda-detalle{font-size:.75rem;opacity:.75;margin-top:.2rem}
