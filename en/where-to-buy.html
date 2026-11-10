@@ -21,9 +21,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="../assets/css/site.css">
-<link rel="stylesheet" href="../assets/css/editorial.css?v=20261111a">
+<link rel="stylesheet" href="../assets/css/editorial.css?v=20261111b">
 </head>
-<body class="pagina-donde">
+<body class="pagina-donde con-portada">
 <a class="saltar" href="#contenido">Skip to content</a>
 
 <header class="nav nav-editorial"><div class="nav-editorial-in con-compra"><a aria-label="True Food, home" class="nav-logo" href="./">
@@ -116,6 +116,22 @@
   </div>
 </footer>
 
+<script>
+/* La barra va transparente sobre la foto y se vuelve sólida al bajar (igual que el inicio). */
+(function(){
+  var barra = document.querySelector('.nav');
+  var portada = document.querySelector('.dc-hero');
+  if (!barra || !portada) return;
+  var puesta = null;
+  function revisar(){
+    var solida = window.scrollY > portada.offsetHeight - barra.offsetHeight - 8;
+    if (solida !== puesta){ barra.classList.toggle('solida', solida); puesta = solida; }
+  }
+  revisar();
+  addEventListener('scroll', revisar, {passive:true});
+  addEventListener('resize', revisar);
+})();
+</script>
 <script src="../assets/js/menu.js" defer></script>
 <script src="../assets/js/entra.js?v=20261110a" defer></script>
 </body>
