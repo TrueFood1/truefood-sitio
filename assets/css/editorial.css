@@ -42,3 +42,4 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 .cadena-solo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;min-height:106px;text-align:center}.cadena-nombre{font-family:var(--texto);font-weight:700;font-size:1.25rem;line-height:1.2}.cadena-nota{font-size:.8125rem}
 @media (min-width:700px){.donde .cadenas{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:699px){.donde .cadenas li:last-child{grid-column:auto}}
+.detail-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.detail-ctas .detail-buy{margin-top:0}.detail-buy-sec{background:transparent;color:#000;border:1px solid #000}
