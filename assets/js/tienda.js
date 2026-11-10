@@ -8,18 +8,56 @@
   var ENVIO = 4000;
   var EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/heic': 'heic', 'application/pdf': 'pdf' };
 
+  // Idioma de la página: tienda.html (es) o en/shop.html (en). Solo cambia lo que se
+  // MUESTRA; lo que se manda a Supabase (ids, entrega, método) es igual en los dos.
+  var EN = (document.documentElement.lang || '').slice(0, 2) === 'en';
+  var BASE = EN ? '../' : '';
+
   // Solo para mostrar: el total que vale lo recalcula tienda_crear_pedido().
   var PRODUCTOS = [
-    { id: 'blanco', url: 'producto/pan-blanco.html', n: 'Pan Blanco', d: 'Por unidad', p: 5500, img: 'assets/img/bolsa-blanco.jpg' },
-    { id: 'semillas', url: 'producto/pan-de-semillas.html', n: 'Pan de Semillas', d: 'Por unidad', p: 6000, img: 'assets/img/bolsa-semillas.jpg' },
-    { id: 'frances', url: 'producto/pan-frances.html', n: 'Pan Francés', d: 'Paquete de 4', p: 4800, img: 'assets/img/bolsa-frances.jpg' },
-    { id: 'buns', url: 'producto/buns.html', n: 'Pan de Hamburguesa', d: 'Paquete de 4', p: 5500, img: 'assets/img/bolsa-buns.jpg' },
-    { id: 'pizza', url: 'producto/pizza-crust.html', n: 'Pizza Crust', d: 'Paquete de 2', p: 5400, img: 'assets/img/bolsa-pizza.jpg' },
-    { id: 'cookie', url: 'producto/cookie-dough.html', n: 'Cookie Dough', d: 'Pote de 340 g', p: 4500, img: 'assets/img/bolsa-cookie.jpg' }
+    { id: 'blanco', url: EN ? 'product/white-bread.html' : 'producto/pan-blanco.html', n: EN ? 'White Bread' : 'Pan Blanco', d: EN ? 'Per loaf' : 'Por unidad', p: 5500, img: BASE + 'assets/img/bolsa-blanco.jpg' },
+    { id: 'semillas', url: EN ? 'product/seeds-bread.html' : 'producto/pan-de-semillas.html', n: EN ? 'Seeds Bread' : 'Pan de Semillas', d: EN ? 'Per loaf' : 'Por unidad', p: 6000, img: BASE + 'assets/img/bolsa-semillas.jpg' },
+    { id: 'frances', url: EN ? 'product/french-bread.html' : 'producto/pan-frances.html', n: EN ? 'French Bread' : 'Pan Francés', d: EN ? 'Pack of 4' : 'Paquete de 4', p: 4800, img: BASE + 'assets/img/bolsa-frances.jpg' },
+    { id: 'buns', url: EN ? 'product/buns.html' : 'producto/buns.html', n: EN ? 'Buns' : 'Pan de Hamburguesa', d: EN ? 'Pack of 4' : 'Paquete de 4', p: 5500, img: BASE + 'assets/img/bolsa-buns.jpg' },
+    { id: 'pizza', url: EN ? 'product/pizza-crust.html' : 'producto/pizza-crust.html', n: 'Pizza Crust', d: EN ? 'Pack of 2' : 'Paquete de 2', p: 5400, img: BASE + 'assets/img/bolsa-pizza.jpg' },
+    { id: 'cookie', url: EN ? 'product/cookie-dough.html' : 'producto/cookie-dough.html', n: 'Cookie Dough', d: EN ? '340 g tub' : 'Pote de 340 g', p: 4500, img: BASE + 'assets/img/bolsa-cookie.jpg' }
   ];
-  var BROWNIE = { id: 'brownie', n: 'Premezcla para Brownie', p: 4800 };
+  var BROWNIE = { id: 'brownie', n: EN ? 'Brownie Mix' : 'Premezcla para Brownie', p: 4800 };
 
-  var ERRORES = {
+  var T = EN ? {
+    quitar: 'Remove ', agregar: 'Add ',
+    producto: ' item', productos: ' items', masEnvio: ' + delivery', escoge: 'Choose your products',
+    whatsapp: 'Message us on WhatsApp',
+    fuera: 'We can\u2019t take orders on the website right now.',
+    nombre: 'Please enter your name.',
+    tel: 'Please enter an 8-digit phone number.',
+    dir: 'Please enter the delivery address.',
+    sinArchivo: 'Please attach your payment receipt.',
+    tipoArchivo: 'The receipt must be a photo or a PDF.',
+    pesoArchivo: 'The receipt is larger than 5 MB.',
+    enviando: 'Sending\u2026', enviar: 'Place order'
+  } : {
+    quitar: 'Quitar ', agregar: 'Agregar ',
+    producto: ' producto', productos: ' productos', masEnvio: ' + envío', escoge: 'Escoge tus productos',
+    whatsapp: 'Escríbenos por WhatsApp',
+    fuera: 'Ahora mismo no podemos recibir pedidos en la página.',
+    nombre: 'Escribe tu nombre.',
+    tel: 'Escribe un teléfono de 8 dígitos.',
+    dir: 'Escribe la dirección de entrega.',
+    sinArchivo: 'Adjunta el comprobante de tu pago.',
+    tipoArchivo: 'El comprobante tiene que ser una foto o un PDF.',
+    pesoArchivo: 'El comprobante pesa más de 5 MB.',
+    enviando: 'Enviando…', enviar: 'Hacer pedido'
+  };
+
+  var ERRORES = EN ? {
+    'tienda:total_distinto': 'A price has changed. Please reload the page and put your order together again.',
+    'tienda:producto': 'One of the products is no longer available. Please reload the page.',
+    'tienda:falta_direccion': 'Please enter the delivery address.',
+    'tienda:sin_comprobante': 'We couldn\u2019t save your receipt. Please try again.',
+    'tienda:sin_productos': 'Choose at least one product.',
+    'tienda:datos': 'Please check your details: name and phone number.'
+  } : {
     'tienda:total_distinto': 'Un precio cambió. Recarga la página y vuelve a armar tu pedido.',
     'tienda:producto': 'Uno de los productos ya no está disponible. Recarga la página.',
     'tienda:falta_direccion': 'Escribe la dirección de entrega.',
@@ -35,9 +73,9 @@
   todos.forEach(function (p) { cant[p.id] = 0; });
 
   function paso(p) {
-    return '<div class="tienda-paso"><button type="button" aria-label="Quitar ' + p.n + '" data-id="' + p.id + '" data-d="-1">−</button>' +
+    return '<div class="tienda-paso"><button type="button" aria-label="' + T.quitar + p.n + '" data-id="' + p.id + '" data-d="-1">−</button>' +
       '<output id="c-' + p.id + '">0</output>' +
-      '<button type="button" aria-label="Agregar ' + p.n + '" data-id="' + p.id + '" data-d="1">+</button></div>';
+      '<button type="button" aria-label="' + T.agregar + p.n + '" data-id="' + p.id + '" data-d="1">+</button></div>';
   }
 
   $('brownie-paso').innerHTML = paso(BROWNIE);
@@ -62,8 +100,8 @@
     $('tienda-total').textContent = fmt(c.total);
     $('tienda-monto').textContent = fmt(c.total);
     $('tienda-detalle').textContent = c.n
-      ? c.n + (c.n > 1 ? ' productos' : ' producto') + (c.envio ? ' + envío' : '')
-      : 'Escoge tus productos';
+      ? c.n + (c.n > 1 ? T.productos : T.producto) + (c.envio ? T.masEnvio : '')
+      : T.escoge;
   }
 
   document.querySelector('.tienda').addEventListener('click', function (e) {
@@ -77,7 +115,7 @@
 
   document.querySelectorAll('.tienda-lados button').forEach(function (b) {
     b.addEventListener('click', function () {
-      $('brownie-img').src = 'assets/img/brownie-' + b.dataset.lado + '.jpg';
+      $('brownie-img').src = BASE + 'assets/img/brownie-' + b.dataset.lado + '.jpg';
       document.querySelectorAll('.tienda-lados button').forEach(function (x) {
         x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
       });
@@ -90,7 +128,7 @@
     if (conWhatsapp) {
       var a = document.createElement('a');
       a.href = 'https://wa.me/' + WHATSAPP;
-      a.textContent = 'Escríbenos por WhatsApp';
+      a.textContent = T.whatsapp;
       a.target = '_blank';
       a.rel = 'noopener';
       el.appendChild(a);
@@ -99,16 +137,16 @@
     el.scrollIntoView({ block: 'center' });
   }
 
-  var FUERA = 'Ahora mismo no podemos recibir pedidos en la página.';
+  var FUERA = T.fuera;
 
   function validar(c, archivo) {
-    if (!c.n) return 'Escoge al menos un producto.';
-    if ($('nombre').value.trim().length < 2) return 'Escribe tu nombre.';
-    if ($('tel').value.replace(/\D/g, '').length < 8) return 'Escribe un teléfono de 8 dígitos.';
-    if (entrega() === 'envio' && !$('dir').value.trim()) return 'Escribe la dirección de entrega.';
-    if (!archivo) return 'Adjunta el comprobante de tu pago.';
-    if (!EXT[archivo.type]) return 'El comprobante tiene que ser una foto o un PDF.';
-    if (archivo.size > MAX_ARCHIVO) return 'El comprobante pesa más de 5 MB.';
+    if (!c.n) return ERRORES['tienda:sin_productos'];
+    if ($('nombre').value.trim().length < 2) return T.nombre;
+    if ($('tel').value.replace(/\D/g, '').length < 8) return T.tel;
+    if (entrega() === 'envio' && !$('dir').value.trim()) return T.dir;
+    if (!archivo) return T.sinArchivo;
+    if (!EXT[archivo.type]) return T.tipoArchivo;
+    if (archivo.size > MAX_ARCHIVO) return T.pesoArchivo;
     return null;
   }
 
@@ -161,7 +199,7 @@
 
     var boton = $('tienda-enviar');
     boton.disabled = true;
-    boton.textContent = 'Enviando…';
+    boton.textContent = T.enviando;
     try {
       var r = await enviar(c, archivo);
       $('listo-numero').textContent = '#' + r.numero;
@@ -174,7 +212,7 @@
       if (err && err.texto) mostrarError(err.texto);
       else mostrarError(FUERA, true);
       boton.disabled = false;
-      boton.textContent = 'Hacer pedido';
+      boton.textContent = T.enviar;
     }
   });
 
