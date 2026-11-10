@@ -106,7 +106,7 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 .dc-super-foto{margin:0;position:sticky;top:120px}
 .dc-super-foto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
 .dc-pasos{margin:2rem 0 0;display:grid;gap:1.4rem}
-.dc-pasos div{background:var(--papel);padding:1.2rem 1.4rem}
+.dc-pasos div{padding:0}
 .dc-pasos dt{font-weight:700;font-size:1.0625rem;margin:0 0 .25rem}
 .dc-pasos dd{margin:0;font-size:1rem;line-height:1.55}
 
@@ -155,3 +155,4 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 .dc-prep{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.5rem}.dc-prep b{font-weight:700}
 @media(max-width:767px){.dc-super-foto{position:static}}
 .donde #t-donde{scroll-margin-top:calc(89px + 2.5rem)}@media(max-width:1039px){.donde #t-donde{scroll-margin-top:calc(74px + 1.5rem)}}
+.js-entra .entra{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.js-entra .entra.visto{opacity:1;transform:none}@media(prefers-reduced-motion:reduce){.js-entra .entra{opacity:1;transform:none;transition:none}}
