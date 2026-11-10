@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="../assets/css/site.css">
-<link rel="stylesheet" href="../assets/css/editorial.css?v=20261110i">
+<link rel="stylesheet" href="../assets/css/editorial.css?v=20261110j">
 </head>
 <body class="pagina-donde">
 <a class="saltar" href="#contenido">Skip to content</a>
@@ -60,6 +60,7 @@
         <li>Founded by women</li>
         <li>Certified Gluten Free</li>
       </ul>
+      <a class="dc-baja" href="#t-prods" aria-label="Scroll down to the products"><span class="dc-baja-linea" aria-hidden="true"></span><span>Scroll</span></a>
     </div>
     <figure class="dc-hero-foto">
       <img src="../assets/img/carrusel/aguacate.jpg" srcset="../assets/img/carrusel/aguacate-900.jpg 900w, ../assets/img/carrusel/aguacate.jpg 1800w" sizes="(max-width:767px) 100vw, 52vw" width="1800" height="1200" fetchpriority="high" alt="True Food toast with avocado, radish and fresh cheese">
@@ -154,10 +155,7 @@
   <section class="dc-super" aria-labelledby="t-super">
     <div class="inner dc-super-in">
       <figure class="dc-super-foto">
-        <picture>
-          <source media="(max-width:767px)" srcset="../assets/img/carrusel/panes-900.jpg">
-          <img src="../assets/img/carrusel/panes.jpg" srcset="../assets/img/carrusel/panes-900.jpg 900w, ../assets/img/carrusel/panes.jpg 1800w" sizes="(max-width:767px) 100vw, 45vw" width="1800" height="1201" loading="lazy" alt="True Food breads seen from above: sliced loaves, buns, baguettes and Seeds Bread">
-        </picture>
+        <img src="../assets/img/congelador.jpg" srcset="../assets/img/congelador-900.jpg 675w, ../assets/img/congelador.jpg 1100w" sizes="(max-width:767px) 100vw, 45vw" width="1100" height="1467" loading="lazy" alt="Andrea, True Food co-founder, with two kids in front of a supermarket freezer, each holding a bag of True Food bread">
       </figure>
       <div>
         <h2 id="t-super">At the supermarket, look in the freezer.</h2>
@@ -176,7 +174,7 @@
             <dd>No need to thaw.
               <ul class="dc-prep">
                 <li><b>White and Seeds Bread:</b> slices straight from the freezer into the toaster, pan or air fryer. For a soft slice, 30 to 45 seconds in the microwave.</li>
-                <li><b>French Bread and Buns:</b> 1 minute in the microwave, then toast them as usual.</li>
+                <li><b>French Bread and Buns:</b> 1 minute in the microwave. For a crisp finish, toast them afterwards.</li>
                 <li><b>Pizza Crust:</b> oven or air fryer at 175&nbsp;&deg;C (350&nbsp;&deg;F) for 12 to 15 minutes, add your toppings and bake 5 minutes more.</li>
               </ul></dd>
           </div>
@@ -240,6 +238,7 @@
   </div>
 </footer>
 
+<script>(function(){var b=document.querySelector(".dc-baja");if(!b)return;function f(){b.classList.toggle("dc-baja-fuera",window.scrollY>80)}window.addEventListener("scroll",f,{passive:true});f()})();</script>
 <script src="../assets/js/menu.js" defer></script>
 </body>
 </html>
