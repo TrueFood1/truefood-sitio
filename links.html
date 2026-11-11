@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>True Food &mdash; Links</title>
+<meta name="description" content="Pan y antojos sin gluten, hechos en Costa Rica. Tienda en línea, supermercados, productos y recetas.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://truefoodcr.com/links.html">
+<link rel="icon" href="assets/img/logo-circulo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="True Food">
+<meta property="og:description" content="Pan y antojos sin gluten, hechos en Costa Rica.">
+<meta property="og:image" content="https://truefoodcr.com/assets/img/og.jpg">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@300;400&display=swap">
+<style>
+  :root{
+    --lima:#E9FE60; --tinta:#000; --papel:#fff;
+    --display:"Josefin Sans","Avenir Next","Century Gothic",sans-serif;
+    --texto:"DM Sans","Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{
+    background:var(--tinta); color:var(--papel); font-family:var(--texto);
+    -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color:transparent;
+  }
+  .lk{
+    position:relative; min-height:100svh; display:flex; flex-direction:column;
+    padding:max(28px,env(safe-area-inset-top)) 20px max(28px,env(safe-area-inset-bottom));
+    max-width:520px; margin:0 auto; overflow:hidden;
+  }
+  .lk-foto{position:absolute; inset:0; z-index:0}
+  .lk-foto img{width:100%; height:100%; object-fit:cover; display:block}
+  .lk-foto::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(to bottom, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.55) 58%, rgba(0,0,0,.92) 100%);
+  }
+  .lk > *:not(.lk-foto){position:relative; z-index:1}
+  .lk-logo{display:block; width:84px; align-self:center}
+  .lk-logo img{width:100%; height:auto; display:block}
+  .lk-abajo{margin-top:auto}
+  h1{
+    font-family:var(--display); font-weight:300; font-size:clamp(2.1rem,9vw,2.7rem);
+    line-height:1.05; letter-spacing:-.01em;
+  }
+  .lk-lede{margin-top:12px; font-size:1rem; line-height:1.45; color:rgba(255,255,255,.88); max-width:30ch}
+  .lk-botones{margin-top:28px; display:grid; gap:12px}
+  .lk-botones a{
+    display:flex; align-items:center; justify-content:space-between;
+    min-height:58px; padding:0 22px; border-radius:999px;
+    font-size:1.05rem; font-weight:500; text-decoration:none;
+    color:var(--papel); border:1.5px solid rgba(255,255,255,.85);
+    background:rgba(0,0,0,.28); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    transition:background-color .2s ease, transform .15s ease;
+  }
+  .lk-botones a span{font-size:1.1rem; opacity:.8}
+  .lk-botones a.principal{background:var(--lima); color:var(--tinta); border-color:var(--lima)}
+  .lk-botones a:active{transform:scale(.98)}
+  @media (hover:hover){ .lk-botones a:not(.principal):hover{background:rgba(255,255,255,.14)} }
+  .lk-botones a:focus-visible{outline:2px solid var(--lima); outline-offset:3px}
+  .lk-pie{margin-top:26px; text-align:center; font-size:.85rem; color:rgba(255,255,255,.7)}
+  .lk-pie a{color:inherit}
+  @media (prefers-reduced-motion:reduce){ .lk-botones a{transition:none} }
+</style>
+</head>
+<body>
+<main class="lk">
+  <figure class="lk-foto">
+    <img src="assets/img/carrusel/aguacate-vert-720.jpg" srcset="assets/img/carrusel/aguacate-vert-720.jpg 720w, assets/img/carrusel/aguacate-vert.jpg 1080w" sizes="(max-width:520px) 100vw, 520px" width="720" height="1280" fetchpriority="high" alt="Tostadas de pan True Food con aguacate, r&aacute;bano y queso fresco">
+  </figure>
+
+  <a class="lk-logo" href="./" aria-label="True Food, inicio"><img src="assets/img/logo-circulo.png" width="429" height="400" alt="True Food"></a>
+
+  <div class="lk-abajo">
+    <h1>Pan y antojos sin gluten.</h1>
+    <p class="lk-lede">Hechos en Costa Rica, con ingredientes reales y un solo requisito: tiene que ser divino!</p>
+
+    <nav class="lk-botones" aria-label="Enlaces">
+      <a class="principal" href="tienda.html">Tienda Online <span aria-hidden="true">&rarr;</span></a>
+      <a href="donde-comprar.html">D&oacute;nde comprar <span aria-hidden="true">&rarr;</span></a>
+      <a href="productos.html">Productos <span aria-hidden="true">&rarr;</span></a>
+      <a href="recetas.html">Recetas <span aria-hidden="true">&rarr;</span></a>
+    </nav>
+
+    <p class="lk-pie"><a href="./">truefoodcr.com</a></p>
+  </div>
+</main>
+</body>
+</html>
