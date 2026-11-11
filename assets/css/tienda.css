@@ -33,7 +33,7 @@
 .tienda-costo{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
 .tienda-campos{display:flex;flex-direction:column;gap:.85rem}
 .tienda-campos>label{display:flex;flex-direction:column;gap:.25rem;font-size:.875rem;font-weight:500}
-.tienda-campos input,.tienda-campos textarea{font:400 16px/1.4 var(--texto);padding:.7rem;border:1px solid #9B9D94;border-radius:6px;background:var(--papel);color:var(--tinta);width:100%;box-sizing:border-box}
+.tienda-campos input,.tienda-campos textarea,.tienda-campos select{font:400 16px/1.4 var(--texto);padding:.7rem;border:1px solid #9B9D94;border-radius:6px;background:var(--papel);color:var(--tinta);width:100%;box-sizing:border-box}
 .tienda-pago{background:var(--hueso);padding:1rem;border-radius:6px;margin-bottom:1rem;font-size:.9375rem;overflow-wrap:anywhere}
 .tienda-pago p{margin:0 0 .5rem}
 .tienda-pago p:last-child{margin:0}
@@ -49,7 +49,10 @@
 .tienda-ticket button:disabled{opacity:.5;cursor:default}
 @media (max-width:360px){.tienda-estrella{grid-template-columns:1fr}.tienda-estrella figure{max-width:190px}}
 @media (max-width:380px){.tienda-prod{grid-template-columns:48px minmax(0,1fr) auto;gap:.6rem}.tienda-prod img{width:48px;height:48px}.tienda-n{font-size:.875rem;overflow-wrap:anywhere}.tienda-paso{gap:.1rem}}
-#l-dir[hidden]{display:none}
+#l-dir[hidden],#fe-campos[hidden]{display:none}
+.tienda-ayuda{font-size:.8125rem;font-weight:400;color:var(--gris)}
+#fe-campos{padding-left:.85rem;border-left:2px solid var(--linea)}
+#listo-correo:empty{display:none}
 .tienda-n a,#t-brownie a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 
 /* Lanzamiento del brownie: lila de la foto en toda la pieza; la bolsa es lo unico fuerte. */
