@@ -99,14 +99,14 @@
           <div class="tienda-campos">
             <label>Nombre<input id="nombre" autocomplete="name" maxlength="120"></label>
             <label>Tel&eacute;fono<input id="tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="25"></label>
-            <label>Correo<input id="correo" type="email" inputmode="email" autocomplete="email" maxlength="160"><small class="tienda-ayuda">Ah&iacute; te enviamos tu comprobante electr&oacute;nico.</small></label>
+            <label>Correo <span class="tienda-ayuda">(opcional)</span><input id="correo" type="email" inputmode="email" autocomplete="email" maxlength="160"><small class="tienda-ayuda">Si lo escribes, te enviamos ah&iacute; tu comprobante electr&oacute;nico.</small></label>
             <label id="l-dir" hidden>Direcci&oacute;n de entrega<textarea id="dir" rows="2" maxlength="400"></textarea></label>
             <label class="tienda-op"><input type="checkbox" id="fe"><span><b>Necesito factura electr&oacute;nica</b><small>A nombre de una persona o de una empresa.</small></span><span></span></label>
             <div id="fe-campos" class="tienda-campos" hidden>
               <label>Tipo de identificaci&oacute;n<select id="fe-tipo"><option value="01">C&eacute;dula f&iacute;sica</option><option value="02">C&eacute;dula jur&iacute;dica</option><option value="03">DIMEX</option><option value="04">NITE</option></select></label>
               <label>N&uacute;mero de identificaci&oacute;n<input id="fe-numero" inputmode="numeric" autocomplete="off" maxlength="20"></label>
               <label>Nombre o raz&oacute;n social<input id="fe-nombre" autocomplete="organization" maxlength="100"></label>
-              <label>Correo para la factura<input id="fe-correo" type="email" inputmode="email" maxlength="160"><small class="tienda-ayuda">Si lo dejas vac&iacute;o, usamos el de arriba.</small></label>
+              <label>Correo para la factura<input id="fe-correo" type="email" inputmode="email" maxlength="160"><small class="tienda-ayuda">Ah&iacute; te enviamos la factura. Si lo dejas vac&iacute;o, usamos el de arriba.</small></label>
             </div>
           </div>
         </section>

@@ -35,7 +35,8 @@
     sinArchivo: 'Please attach your payment receipt.',
     tipoArchivo: 'The receipt must be a photo or a PDF.',
     pesoArchivo: 'The receipt is larger than 5 MB.',
-    correo: 'Please enter your email: we\u2019ll send your electronic receipt there.',
+    correo: 'Please check your email.',
+    feSinCorreo: 'For an electronic invoice we need an email: write it above or in \u201cEmail for the invoice\u201d.',
     feNumero: { '01': 'A c\u00e9dula f\u00edsica has 9 digits (no leading zero).', '02': 'A c\u00e9dula jur\u00eddica has 10 digits.',
                 '03': 'A DIMEX has 11 or 12 digits (no leading zero).', '04': 'A NITE has 10 digits.' },
     feNombre: 'Please enter the name or company name for the invoice.',
@@ -54,7 +55,8 @@
     sinArchivo: 'Adjunta el comprobante de tu pago.',
     tipoArchivo: 'El comprobante tiene que ser una foto o un PDF.',
     pesoArchivo: 'El comprobante pesa más de 5 MB.',
-    correo: 'Escribe tu correo: ahí te enviamos tu comprobante electrónico.',
+    correo: 'Revisa tu correo.',
+    feSinCorreo: 'Para la factura electrónica necesitamos un correo: escríbelo arriba o en «Correo para la factura».',
     feNumero: { '01': 'La cédula física tiene 9 dígitos (sin cero adelante).', '02': 'La cédula jurídica tiene 10 dígitos.',
                 '03': 'El DIMEX tiene 11 o 12 dígitos (sin cero adelante).', '04': 'El NITE tiene 10 dígitos.' },
     feNombre: 'Escribe el nombre o la razón social de la factura.',
@@ -179,13 +181,15 @@
     if (!c.n) return ERRORES['tienda:sin_productos'];
     if ($('nombre').value.trim().length < 2) return T.nombre;
     if ($('tel').value.replace(/\D/g, '').length < 8) return T.tel;
-    if (hayCorreo() && !RE_CORREO.test(val('correo'))) return T.correo;
+    // El correo es opcional (sin él, el tiquete no se manda por correo); si lo escriben, tiene que servir.
+    if (hayCorreo() && val('correo') && !RE_CORREO.test(val('correo'))) return T.correo;
     if (entrega() === 'envio' && !$('dir').value.trim()) return T.dir;
     var f = factura();
     if (f) {
       if (!FE_FORMATO[f.tipo] || !FE_FORMATO[f.tipo].test(f.numero)) return T.feNumero[f.tipo] || ERRORES['tienda:factura'];
       if (f.nombre.length < 2 || f.nombre.length > 100) return T.feNombre;
       if (f.correo && !RE_CORREO.test(f.correo)) return T.feCorreo;
+      if (!f.correo && !val('correo')) return T.feSinCorreo;
     }
     if (!archivo) return T.sinArchivo;
     if (!EXT[archivo.type]) return T.tipoArchivo;
@@ -207,7 +211,7 @@
         telefono: $('tel').value.trim(),
         entrega: entrega(),
         direccion: entrega() === 'envio' ? $('dir').value.trim() : null,
-        correo: hayCorreo() ? val('correo') : undefined,
+        correo: hayCorreo() && val('correo') ? val('correo') : undefined,
         factura: factura(),
         metodo_pago: document.querySelector('input[name=metodo]:checked').value,
         comprobante_path: path,
@@ -250,7 +254,7 @@
       $('listo-numero').textContent = '#' + r.numero;
       $('listo-total').textContent = fmt(r.total_crc);
       var f = factura();
-      if ($('listo-correo') && hayCorreo()) $('listo-correo').textContent = (f ? T.listoFactura + (f.correo || val('correo')) : T.listoCorreo + val('correo')) + '.';
+      if ($('listo-correo') && (f || val('correo'))) $('listo-correo').textContent = (f ? T.listoFactura + (f.correo || val('correo')) : T.listoCorreo + val('correo')) + '.';
       $('tienda-form').hidden = true;
       $('tienda-ticket').hidden = true;
       $('tienda-listo').hidden = false;

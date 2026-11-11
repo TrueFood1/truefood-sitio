@@ -100,14 +100,14 @@
           <div class="tienda-campos">
             <label>Name<input id="nombre" autocomplete="name" maxlength="120"></label>
             <label>Phone<input id="tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="25"></label>
-            <label>Email<input id="correo" type="email" inputmode="email" autocomplete="email" maxlength="160"><small class="tienda-ayuda">We&rsquo;ll send your electronic receipt there.</small></label>
+            <label>Email <span class="tienda-ayuda">(optional)</span><input id="correo" type="email" inputmode="email" autocomplete="email" maxlength="160"><small class="tienda-ayuda">If you add it, we&rsquo;ll send your electronic receipt there.</small></label>
             <label id="l-dir" hidden>Delivery address<textarea id="dir" rows="2" maxlength="400"></textarea></label>
             <label class="tienda-op"><input type="checkbox" id="fe"><span><b>I need an electronic invoice (factura electr&oacute;nica)</b><small>In the name of a person or a company.</small></span><span></span></label>
             <div id="fe-campos" class="tienda-campos" hidden>
               <label>ID type<select id="fe-tipo"><option value="01">C&eacute;dula f&iacute;sica (individual)</option><option value="02">C&eacute;dula jur&iacute;dica (company)</option><option value="03">DIMEX (resident)</option><option value="04">NITE</option></select></label>
               <label>ID number<input id="fe-numero" inputmode="numeric" autocomplete="off" maxlength="20"></label>
               <label>Name or company name<input id="fe-nombre" autocomplete="organization" maxlength="100"></label>
-              <label>Email for the invoice<input id="fe-correo" type="email" inputmode="email" maxlength="160"><small class="tienda-ayuda">Leave it empty to use the one above.</small></label>
+              <label>Email for the invoice<input id="fe-correo" type="email" inputmode="email" maxlength="160"><small class="tienda-ayuda">We&rsquo;ll send the invoice there. Leave it empty to use the one above.</small></label>
             </div>
           </div>
         </section>
