@@ -116,10 +116,14 @@
     return { sub: sub, n: n, envio: envio, total: sub + envio };
   }
 
+  // Una página vieja en caché (sin los campos nuevos) con este tienda.js tiene que seguir vendiendo: cada campo
+  // nuevo se lee con val() y, si no está, el pedido sale como antes (sin correo y sin factura).
+  function val(id) { var e = $(id); return e ? String(e.value || '').trim() : ''; }
+  function hayCorreo() { return !!$('correo'); }
   function factura() {
-    if (!$('fe').checked) return null;
-    var f = { tipo: $('fe-tipo').value, numero: $('fe-numero').value.replace(/[\s.-]/g, ''), nombre: $('fe-nombre').value.trim() };
-    var cor = $('fe-correo').value.trim();
+    if (!$('fe') || !$('fe').checked || !$('fe-tipo')) return null;
+    var f = { tipo: $('fe-tipo').value, numero: val('fe-numero').replace(/[\s.-]/g, ''), nombre: val('fe-nombre') };
+    var cor = val('fe-correo');
     if (cor) f.correo = cor;
     return f;
   }
@@ -127,8 +131,8 @@
   function pintar() {
     var c = calcular();
     $('l-dir').hidden = entrega() !== 'envio';
-    $('fe-campos').hidden = !$('fe').checked;
-    $('fe-numero').placeholder = T.feAyuda[$('fe-tipo').value] || '';
+    if ($('fe-campos') && $('fe')) $('fe-campos').hidden = !$('fe').checked;
+    if ($('fe-numero') && $('fe-tipo')) $('fe-numero').placeholder = T.feAyuda[$('fe-tipo').value] || '';
     $('tienda-total').textContent = fmt(c.total);
     $('tienda-monto').textContent = fmt(c.total);
     $('tienda-detalle').textContent = c.n
@@ -175,7 +179,7 @@
     if (!c.n) return ERRORES['tienda:sin_productos'];
     if ($('nombre').value.trim().length < 2) return T.nombre;
     if ($('tel').value.replace(/\D/g, '').length < 8) return T.tel;
-    if (!RE_CORREO.test($('correo').value.trim())) return T.correo;
+    if (hayCorreo() && !RE_CORREO.test(val('correo'))) return T.correo;
     if (entrega() === 'envio' && !$('dir').value.trim()) return T.dir;
     var f = factura();
     if (f) {
@@ -203,7 +207,7 @@
         telefono: $('tel').value.trim(),
         entrega: entrega(),
         direccion: entrega() === 'envio' ? $('dir').value.trim() : null,
-        correo: $('correo').value.trim(),
+        correo: hayCorreo() ? val('correo') : undefined,
         factura: factura(),
         metodo_pago: document.querySelector('input[name=metodo]:checked').value,
         comprobante_path: path,
@@ -246,7 +250,7 @@
       $('listo-numero').textContent = '#' + r.numero;
       $('listo-total').textContent = fmt(r.total_crc);
       var f = factura();
-      $('listo-correo').textContent = (f ? T.listoFactura + (f.correo || $('correo').value.trim()) : T.listoCorreo + $('correo').value.trim()) + '.';
+      if ($('listo-correo') && hayCorreo()) $('listo-correo').textContent = (f ? T.listoFactura + (f.correo || val('correo')) : T.listoCorreo + val('correo')) + '.';
       $('tienda-form').hidden = true;
       $('tienda-ticket').hidden = true;
       $('tienda-listo').hidden = false;
