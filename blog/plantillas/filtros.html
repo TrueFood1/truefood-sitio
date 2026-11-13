@@ -1,0 +1,8 @@
+    <div class="receta-filtros" hidden aria-label="Filtros de recetas">
+      <div class="filtro-producto"><label for="receta-producto">Por producto</label><select id="receta-producto">
+        <option value="">Todos los productos</option><option value="blanco">Pan Blanco</option><option value="semillas">Pan de Semillas</option><option value="frances">Pan Francés</option><option value="buns">Buns</option><option value="galletas">Masa de galletas</option>
+      </select></div>
+      <fieldset class="filtro-sabor"><legend>Por tipo de receta</legend><div class="filtro-botones"><button type="button" data-sabor="" aria-pressed="true">Todas</button><button type="button" data-sabor="dulce" aria-pressed="false">Dulces</button><button type="button" data-sabor="salada" aria-pressed="false">Saladas</button></div></fieldset>
+      <div class="filtro-resumen"><span id="receta-cantidad" role="status" aria-live="polite"></span><button type="button" id="receta-limpiar" hidden>Limpiar filtros</button></div>
+    </div>
+    <p class="receta-sin-resultados" hidden>No hay recetas con esta combinación. Prueba otro producto o tipo de receta.</p>
