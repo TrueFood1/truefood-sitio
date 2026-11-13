@@ -255,6 +255,8 @@
       $('listo-total').textContent = fmt(r.total_crc);
       var f = factura();
       if ($('listo-correo') && (f || val('correo'))) $('listo-correo').textContent = (f ? T.listoFactura + (f.correo || val('correo')) : T.listoCorreo + val('correo')) + '.';
+      if ($('listo-wa')) $('listo-wa').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(
+        (EN ? 'Hi! I just placed order #' : 'Hola! Acabo de hacer el pedido #') + r.numero + (EN ? ' for ' : ' por ') + fmt(r.total_crc) + (EN ? ' on the website.' : ' en la página.'));
       $('tienda-form').hidden = true;
       $('tienda-ticket').hidden = true;
       $('tienda-listo').hidden = false;
