@@ -23,6 +23,7 @@ El formato de cada articulo esta en blog/PLANTILLA_ARTICULO.md.
 """
 
 import argparse
+import json
 import datetime
 import html
 import re
@@ -249,6 +250,16 @@ def pagina_lista(plantilla, articulos, vista=None, pestanas=False):
                % "\n".join('      <a href="%s"%s>%s</a>'
                            % (arch, ' aria-current="page"' if cat == vista else "", rot)
                            for cat, rot, arch in VISTAS))
+    if vista == "receta":
+        filtros = json.loads((RAIZ_REPO / "blog/filtros-recetas.json").read_text())
+        def etiquetar_fila(match):
+            fila = match.group(0)
+            nombre = re.search(r'href="blog/([a-z0-9-]+)\.html"', fila).group(1)
+            m = filtros.get(nombre, {})
+            atributos = ' data-productos="%s" data-sabores="%s"' % (" ".join(m.get("productos", [])), " ".join(m.get("sabores", [])))
+            return fila.replace('<li class="blog-item">', '<li class="blog-item"' + atributos + '>', 1)
+        lista = re.sub(r'<li class="blog-item">.*?</li>', etiquetar_fila, lista, flags=re.S)
+        nav += (RAIZ_REPO / "blog/plantillas/filtros.html").read_text()
     contenido = (
         '  <section class="seccion blog-cab" aria-labelledby="t-blog">\n'
         '    <div class="inner">\n'
@@ -273,7 +284,7 @@ def pagina_lista(plantilla, articulos, vista=None, pestanas=False):
         "canonical": SITIO + "/" + archivo,
         "og_type": "website",
         "og_image": SITIO + "/assets/img/og.jpg",
-        "extra_head": "",
+        "extra_head": '<link rel="stylesheet" href="assets/css/filtros-recetas.css">\n<script src="assets/js/filtros-recetas.js" defer></script>' if vista == "receta" else "",
         "raiz": "",
         "inicio": "./",
         "yo": archivo,
