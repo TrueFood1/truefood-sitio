@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="../../assets/css/site.css">
-<link rel="stylesheet" href="../../assets/css/editorial.css?v=20261112a">
+<link rel="stylesheet" href="../../assets/css/editorial.css?v=20261112b">
 </head>
 <body class="pagina-producto editorial-detail">
 <a class="saltar" href="#contenido">Skip to content</a>
@@ -72,29 +72,38 @@
       <p class="ingr">Oat flour, corn starch, egg, cassava starch, olive oil, raw sugar, salt, xanthan gum, yeast.</p>
       <p class="alerg">Free of gluten, dairy and nuts.</p>
 
-      <h2>How to prepare it</h2>
-      <p class="prep-nota">No need to thaw them.</p>
-      <dl class="prep-modos">
-        <div><dt>Soft</dt><dd>1:30 min in the microwave</dd></div>
-        <div><dt>Toasted</dt><dd>15 min at 350&nbsp;&deg;F (175&nbsp;&deg;C) in an air fryer or oven</dd></div>
-      </dl>
-      <p class="prep-tip"><span>Tip</span> Give them 1 minute in the microwave before toasting and they come out extra fluffy.</p>
-      <p class="prep-video"><a href="https://www.instagram.com/reel/CyJU7UpuSIZ/" target="_blank" rel="noopener">Watch the video</a></p>
-
-      <h2>Spec sheet</h2>
-      <table class="tabla-ficha">
-        <tbody>
-        <tr><th>Form</th><td>Round bun</td></tr>
-        <tr><th>Presentation</th><td>4 units per pack</td></tr>
-        <tr><th>Net weight</th><td>428 g</td></tr>
-        <tr><th>Storage</th><td>Frozen at &minus;18&nbsp;&deg;C</td></tr>
-        <tr><th>Shelf life</th><td>9 months</td></tr>
-        <tr><th>Master case</th><td>6 packs &middot; 24 units</td></tr>
-        <tr><th>Case dimensions</th><td>30 &times; 24 &times; 23 cm</td></tr>
-        <tr><th>Health registration</th><td>RE-CR-22-09623</td></tr>
-        <tr><th>Product barcode<span class="sub">GTIN 13</span></th><td><span class="cod">7443036920035</span></td></tr>
-        </tbody>
-      </table>
+      <div class="prod-tabs">
+        <div class="prod-tabs-lista" role="tablist" aria-label="Product information" hidden>
+          <button type="button" role="tab" id="tab-how-to-prepare" aria-controls="how-to-prepare" aria-selected="true">How to prepare it</button>
+          <button type="button" role="tab" id="tab-spec-sheet" aria-controls="spec-sheet" aria-selected="false" tabindex="-1">Spec sheet</button>
+        </div>
+        <section class="prod-tab-panel" id="how-to-prepare">
+        <h2>How to prepare it</h2>
+        <p class="prep-nota">No need to thaw them.</p>
+        <dl class="prep-modos">
+          <div><dt>Soft</dt><dd>1:30 min in the microwave</dd></div>
+          <div><dt>Toasted</dt><dd>15 min at 350&nbsp;&deg;F (175&nbsp;&deg;C) in an air fryer or oven</dd></div>
+        </dl>
+        <p class="prep-tip"><span>Tip</span> Give them 1 minute in the microwave before toasting and they come out extra fluffy.</p>
+        <p class="prep-video"><a href="https://www.instagram.com/reel/CyJU7UpuSIZ/" target="_blank" rel="noopener">Watch the video</a></p>
+        </section>
+        <section class="prod-tab-panel" id="spec-sheet">
+        <h2>Spec sheet</h2>
+        <table class="tabla-ficha">
+          <tbody>
+          <tr><th>Form</th><td>Round bun</td></tr>
+          <tr><th>Presentation</th><td>4 units per pack</td></tr>
+          <tr><th>Net weight</th><td>428 g</td></tr>
+          <tr><th>Storage</th><td>Frozen at &minus;18&nbsp;&deg;C</td></tr>
+          <tr><th>Shelf life</th><td>9 months</td></tr>
+          <tr><th>Master case</th><td>6 packs &middot; 24 units</td></tr>
+          <tr><th>Case dimensions</th><td>30 &times; 24 &times; 23 cm</td></tr>
+          <tr><th>Health registration</th><td>RE-CR-22-09623</td></tr>
+          <tr><th>Product barcode<span class="sub">GTIN 13</span></th><td><span class="cod">7443036920035</span></td></tr>
+          </tbody>
+        </table>
+        </section>
+      </div>
 
       <div class="prod-sellos">
         <img class="sello" src="../../assets/img/sello-gf-certified.svg" width="217" height="217" loading="lazy"
@@ -142,5 +151,6 @@
 
 <script src="../../assets/js/menu.js" defer></script>
 <script src="../../assets/js/carrusel.js?v=20261110c" defer></script>
+<script src="../../assets/js/pestanas.js?v=20261112b" defer></script>
 </body>
 </html>

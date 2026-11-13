@@ -164,16 +164,41 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 /* Portada a pantalla completa y marcador lima como en las bolsas (Andrea, 10-nov) */.dc-hero{min-height:calc(100svh - 89px);display:flex;align-items:center;justify-content:center}.dc-hero-foto::after{background:rgba(0,0,0,.46)}.dc-hero-txt{padding:3rem var(--dc-gut);max-width:1080px}.dc-hero h1{font-size:clamp(2.75rem,5.6vw,5.25rem);margin-bottom:1.5rem}.dc-hero .dc-lede{font-size:clamp(1.0625rem,1.5vw,1.3rem)}.dc-hero-ctas{margin-top:2.25rem;gap:14px}.dc-hero-ctas .detail-buy{min-width:12.5rem}.donde #t-donde{max-width:22ch;line-height:1.08}.dc-marca{background:var(--lima);padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}@media(max-width:1039px){.dc-hero{min-height:calc(100svh - 74px)}}
 .br-cel{display:none}@media(max-width:767px){.br-cel{display:inline}.donde #t-donde{font-size:clamp(2rem,9vw,2.4rem);max-width:none}}
 /* Dónde comprar: el menú va sobre la foto, como en la portada del inicio */.pagina-donde .dc-hero{min-height:100svh}.pagina-donde .dc-hero-txt{padding-top:calc(89px + 2rem)}@media(max-width:1039px){.pagina-donde .dc-hero{min-height:100svh}.pagina-donde .dc-hero-txt{padding-top:calc(150px + 1.5rem)}}
-/* Cómo prepararlo (12-nov): misma tipografía que la ficha; el color del producto solo marca el tip */
+/* Ficha de producto (12-nov, Andrea): solo DM Sans y tres tamaños en el bloque de datos.
+   17 px 700 encabezados · 16 px cuerpo, pestañas y tabla · 12 px solo el GTIN. */
+.editorial-detail .prod-hero-datos{font-family:var(--texto);font-size:16px;line-height:1.6}
+.editorial-detail .prod-hero-datos h2{font-family:var(--texto);font-weight:700;font-size:17px;letter-spacing:-.01em;line-height:1.3;margin:0 0 .6rem}
+.editorial-detail .prod-hero-datos .ingr,.editorial-detail .prod-hero-datos .alerg{font-size:16px;line-height:1.6}
+.editorial-detail .prod-hero-datos .alerg{margin-top:.9rem}
+.editorial-detail .prod-hero-datos .tabla-ficha{margin-top:0}
+.editorial-detail .tabla-ficha th,.editorial-detail .tabla-ficha td{font-size:16px;line-height:1.5}
+.editorial-detail .tabla-ficha th{font-weight:400;color:var(--gris)}
+.editorial-detail .tabla-ficha .sub{font-size:12px}
+.editorial-detail .otros h2{font-family:var(--texto);font-weight:700;letter-spacing:-.04em}
+/* Pestañas: sin JS la fila no aparece y se ven los dos paneles con su h2 */
+.prod-tabs{margin-top:2.2rem}
+.prod-tabs-lista{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 1.2rem}
+.prod-tabs-lista[hidden]{display:none}
+.prod-tabs-lista [role="tab"]{font-family:var(--texto);font-size:16px;font-weight:700;line-height:1.2;color:#000;background:#fff;border:1px solid #000;border-radius:40px;min-height:44px;padding:10px 20px;cursor:pointer}
+.prod-tabs-lista [role="tab"]:hover{background:var(--hueso)}
+.prod-tabs-lista [role="tab"][aria-selected="true"]{background:var(--c);border-color:var(--c);cursor:default}
+.prod-tabs-lista [role="tab"]:focus-visible{outline:2px solid #000;outline-offset:3px}
+.prod-tab-panel+.prod-tab-panel{margin-top:2.2rem}
+.prod-tabs.tabs-on .prod-tab-panel{margin-top:0;animation:pestana-in .14s ease-out}
+.prod-tabs.tabs-on .prod-tab-panel>h2{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@keyframes pestana-in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.prod-tabs.tabs-on .prod-tab-panel{animation:none}}
+/* Cómo prepararlo */
 .prep-nota{margin:0 0 .6rem}
 .prep-modos{margin:0;max-width:760px}
 .prep-modos>div{display:grid;grid-template-columns:42% 1fr;border-bottom:1px solid #E4E7DA}
-.prep-modos dt,.prep-modos dd{margin:0;padding:.75rem .5rem;font-size:.9375rem;line-height:1.5}
-.prep-modos dt{font-weight:700}
-.prep-tip{margin:1.2rem 0 0;padding:.15rem 0 .15rem .9rem;border-left:3px solid var(--c);line-height:1.6;max-width:760px}
+.prep-modos dt,.prep-modos dd{margin:0;padding:.75rem .5rem;font-size:16px;line-height:1.5}
+.prep-modos dt{font-weight:400;color:var(--gris)}
+.prep-tip{margin:1.2rem 0 0;padding:.15rem 0 .15rem .9rem;border-left:3px solid var(--c);max-width:760px}
 .prep-tip span{font-weight:700}
 .prep-pasos{margin:0;padding-left:1.25rem;max-width:760px}
 .prep-pasos li+li{margin-top:.25rem}
-.prep-video{margin:.9rem 0 0;font-size:.9375rem}
+.prep-video{margin:.9rem 0 0}
 .prep-video a{color:inherit;text-decoration:underline;text-underline-offset:4px}
-@media(max-width:760px){.prep-modos>div{grid-template-columns:38% 1fr}}
+@media(max-width:760px){.prep-modos>div{grid-template-columns:38% 1fr}.editorial-detail .tabla-ficha th{width:50%}}
+.prod-tab-panel{scroll-margin-top:170px}

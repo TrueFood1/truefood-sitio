@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="../assets/css/site.css">
-<link rel="stylesheet" href="../assets/css/editorial.css?v=20261112a">
+<link rel="stylesheet" href="../assets/css/editorial.css?v=20261112b">
 </head>
 <body class="pagina-producto editorial-detail">
 <a class="saltar" href="#detalle">Saltar al contenido</a>
@@ -64,28 +64,37 @@
       <p class="ingr">Almidón de maíz, almidón de yuca, harina de garbanzo, harina de arroz, huevo, azúcar cruda, sal, aceite de oliva, goma xantana, levadura.</p>
       <p class="alerg">Libre de gluten, l&aacute;cteos y nueces.</p>
 
-      <h2>C&oacute;mo prepararlo</h2>
-      <ol class="ingr prep-pasos">
-        <li>Precalienta el horno a 350&nbsp;&deg;F (175&nbsp;&deg;C).</li>
-        <li>S&aacute;cala del congelador y horn&eacute;ala 10 min.</li>
-        <li>Ponle los toppings y hornea 5 min m&aacute;s.</li>
-      </ol>
-      <p class="prep-video"><a href="https://www.instagram.com/reel/DSkglcpke6W/" target="_blank" rel="noopener">Ver el video</a></p>
-
-      <h2>Ficha t&eacute;cnica</h2>
-      <table class="tabla-ficha">
-        <tbody>
-        <tr><th>Forma</th><td>Base de pizza</td></tr>
-        <tr><th>Presentaci&oacute;n</th><td>2 unidades por empaque</td></tr>
-        <tr><th>Peso neto</th><td>560 g</td></tr>
-        <tr><th>Conservaci&oacute;n</th><td>Congelado a &minus;18&nbsp;&deg;C</td></tr>
-        <tr><th>Vida &uacute;til</th><td>9 meses</td></tr>
-        <tr><th>Caja m&aacute;ster</th><td>6 empaques &middot; 12 unidades</td></tr>
-        <tr><th>Dimensiones de caja</th><td>28 × 20 × 28 cm</td></tr>
-        <tr><th>Registro sanitario</th><td>RE-CR-24-07412</td></tr>
-        <tr><th>C&oacute;digo de barra producto<span class="sub">GTIN 13</span></th><td><span class="cod">7443036920042</span></td></tr>
-        </tbody>
-        </table>
+      <div class="prod-tabs">
+        <div class="prod-tabs-lista" role="tablist" aria-label="Informaci&oacute;n del producto" hidden>
+          <button type="button" role="tab" id="tab-preparacion" aria-controls="preparacion" aria-selected="true">C&oacute;mo prepararlo</button>
+          <button type="button" role="tab" id="tab-ficha" aria-controls="ficha" aria-selected="false" tabindex="-1">Ficha t&eacute;cnica</button>
+        </div>
+        <section class="prod-tab-panel" id="preparacion">
+        <h2>C&oacute;mo prepararlo</h2>
+        <ol class="ingr prep-pasos">
+          <li>Precalienta el horno a 350&nbsp;&deg;F (175&nbsp;&deg;C).</li>
+          <li>S&aacute;cala del congelador y horn&eacute;ala 10 min.</li>
+          <li>Ponle los toppings y hornea 5 min m&aacute;s.</li>
+        </ol>
+        <p class="prep-video"><a href="https://www.instagram.com/reel/DSkglcpke6W/" target="_blank" rel="noopener">Ver el video</a></p>
+        </section>
+        <section class="prod-tab-panel" id="ficha">
+        <h2>Ficha t&eacute;cnica</h2>
+        <table class="tabla-ficha">
+          <tbody>
+          <tr><th>Forma</th><td>Base de pizza</td></tr>
+          <tr><th>Presentaci&oacute;n</th><td>2 unidades por empaque</td></tr>
+          <tr><th>Peso neto</th><td>560 g</td></tr>
+          <tr><th>Conservaci&oacute;n</th><td>Congelado a &minus;18&nbsp;&deg;C</td></tr>
+          <tr><th>Vida &uacute;til</th><td>9 meses</td></tr>
+          <tr><th>Caja m&aacute;ster</th><td>6 empaques &middot; 12 unidades</td></tr>
+          <tr><th>Dimensiones de caja</th><td>28 × 20 × 28 cm</td></tr>
+          <tr><th>Registro sanitario</th><td>RE-CR-24-07412</td></tr>
+          <tr><th>C&oacute;digo de barra producto<span class="sub">GTIN 13</span></th><td><span class="cod">7443036920042</span></td></tr>
+          </tbody>
+          </table>
+        </section>
+      </div>
 
       <div class="prod-sellos">
         <img class="sello" src="../assets/img/sello-gf-certified.svg" width="217" height="217" loading="lazy"
@@ -134,5 +143,6 @@
 
 <script src="../assets/js/menu.js" defer></script>
 <script src="../assets/js/carrusel.js?v=20261110c" defer></script>
+<script src="../assets/js/pestanas.js?v=20261112b" defer></script>
 </body>
 </html>
