@@ -87,3 +87,8 @@
 .tienda .lede{font-size:1.0625rem;line-height:1.45;text-wrap:pretty}
 @media (max-width:560px){.pagina-tienda .tienda{padding-top:1.75rem}}
 @media (max-width:640px){.pagina-tienda .nav-compra,.pagina-tienda .tienda .lede{display:none}}
+.tienda-pago .tienda-dato{display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+.tienda-pago .tienda-dato span{min-width:0;overflow-wrap:anywhere}
+.tienda-pago .tienda-dato-t{margin-bottom:.25rem}
+.tienda-copia{flex:0 0 auto;font:500 .8125rem/1 var(--texto);min-height:36px;min-width:76px;padding:0 .9rem;background:none;border:1px solid var(--tinta);border-radius:999px;color:var(--tinta);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tienda-copia.ok{background:var(--tinta);color:var(--papel)}

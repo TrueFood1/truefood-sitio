@@ -271,3 +271,16 @@
 
   pintar();
 })();
+
+// Copiar los datos de pago (SINPE, cuenta, IBAN, cédula) con un toque.
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('.tienda-copia'); if (!b) return;
+  var v = b.getAttribute('data-copiar'), en = document.documentElement.lang === 'en';
+  var listo = function () {
+    b.textContent = en ? 'Copied' : 'Copiado'; b.classList.add('ok');
+    setTimeout(function () { b.textContent = en ? 'Copy' : 'Copiar'; b.classList.remove('ok'); }, 1600);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(v).then(listo, function () { window.prompt('', v); });
+  } else { window.prompt('', v); }
+});
