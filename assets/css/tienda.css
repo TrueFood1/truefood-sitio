@@ -86,3 +86,4 @@
 .tienda h1 .t-mantra{white-space:nowrap}
 .tienda .lede{font-size:1.0625rem;line-height:1.45;text-wrap:pretty}
 @media (max-width:560px){.pagina-tienda .tienda{padding-top:1.75rem}}
+@media (max-width:640px){.pagina-tienda .nav-compra,.pagina-tienda .tienda .lede{display:none}}
