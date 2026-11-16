@@ -92,3 +92,11 @@
 .tienda-pago .tienda-dato-t{margin-bottom:.25rem}
 .tienda-copia{flex:0 0 auto;font:500 .8125rem/1 var(--texto);min-height:36px;min-width:76px;padding:0 .9rem;background:none;border:1px solid var(--tinta);border-radius:999px;color:var(--tinta);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .tienda-copia.ok{background:var(--tinta);color:var(--papel)}
+
+/* Pagar después: los datos de pago y el comprobante en la pantalla de «Recibimos tu pedido». */
+#listo-pagar[hidden],#listo-pagado[hidden],#listo-recibido[hidden],#listo-estado[hidden]{display:none}
+.tienda-listo .tienda-pago{background:var(--papel);margin:.75rem 0}
+.tienda-listo .tienda-campos{margin:.75rem 0 .25rem}
+.tienda-subir{background:var(--lima);color:#000;border:0;border-radius:999px;font:700 .9375rem/1 var(--texto);min-height:46px;padding:0 1.15rem;cursor:pointer}
+.tienda-subir:disabled{opacity:.5;cursor:default}
+.tienda-wa-sec{background:none;border:1px solid var(--tinta);font-weight:500}

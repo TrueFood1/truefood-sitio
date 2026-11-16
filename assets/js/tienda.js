@@ -43,7 +43,15 @@
     feCorreo: 'Please check the email for the invoice.',
     feAyuda: { '01': '9 digits', '02': '10 digits', '03': '11 or 12 digits', '04': '10 digits' },
     listoCorreo: 'We\u2019ll email your electronic receipt to ', listoFactura: 'We\u2019ll email your electronic invoice to ',
-    enviando: 'Sending\u2026', enviar: 'Place order'
+    enviando: 'Sending\u2026', enviar: 'Place order',
+    elegirArchivo: 'Choose the photo or PDF of your receipt.',
+    subiendo: 'Sending\u2026', subir: 'Send receipt',
+    subioFallo: 'We got your order, but your receipt didn\u2019t upload. Try again here or send it on WhatsApp.',
+    noSubio: 'We couldn\u2019t save your receipt. Try again or send it on WhatsApp.',
+    yaTiene: 'We already have a receipt for this order. If you need to change it, message us on WhatsApp.',
+    yaNoEspera: 'This order isn\u2019t waiting for payment anymore. Message us on WhatsApp.',
+    waComprobante: 'Hi! Here\u2019s the receipt for order #',
+    sinComprobanteBase: 'Right now we can\u2019t take orders without a receipt on the website, but we can take yours on WhatsApp.'
   } : {
     quitar: 'Quitar ', agregar: 'Agregar ',
     producto: ' producto', productos: ' productos', masEnvio: ' + envío', escoge: 'Escoge tus productos',
@@ -63,7 +71,15 @@
     feCorreo: 'Revisa el correo para la factura.',
     feAyuda: { '01': '9 dígitos', '02': '10 dígitos', '03': '11 o 12 dígitos', '04': '10 dígitos' },
     listoCorreo: 'Te enviaremos el comprobante electrónico a ', listoFactura: 'Te enviaremos la factura electrónica a ',
-    enviando: 'Enviando…', enviar: 'Hacer pedido'
+    enviando: 'Enviando…', enviar: 'Hacer pedido',
+    elegirArchivo: 'Escoge la foto o el PDF del comprobante.',
+    subiendo: 'Enviando…', subir: 'Enviar comprobante',
+    subioFallo: 'Recibimos tu pedido, pero tu comprobante no se pudo subir. Inténtalo otra vez aquí o mándanoslo por WhatsApp.',
+    noSubio: 'No pudimos guardar tu comprobante. Inténtalo otra vez o mándanoslo por WhatsApp.',
+    yaTiene: 'Ya tenemos un comprobante para este pedido. Si necesitas cambiarlo, escríbenos por WhatsApp.',
+    yaNoEspera: 'Este pedido ya no está esperando el pago. Escríbenos por WhatsApp.',
+    waComprobante: 'Hola! Te mando el comprobante del pedido #',
+    sinComprobanteBase: 'Ahora mismo no podemos recibir pedidos sin comprobante en la página, pero te lo tomamos por WhatsApp.'
   };
 
   var ERRORES = EN ? {
@@ -177,6 +193,16 @@
 
   var FUERA = T.fuera;
 
+  // Pagar después (TIENDA_PAGAR_DESPUES.sql): el pedido entra sin comprobante y se adjunta en la pantalla de
+  // «Recibimos tu pedido». Una página vieja en caché no trae esa pantalla: ahí el comprobante sigue siendo obligatorio.
+  var PAGAR_DESPUES = !!$('listo-pagar');
+
+  function archivoMalo(archivo) {
+    if (!EXT[archivo.type]) return T.tipoArchivo;
+    if (archivo.size > MAX_ARCHIVO) return T.pesoArchivo;
+    return null;
+  }
+
   function validar(c, archivo) {
     if (!c.n) return ERRORES['tienda:sin_productos'];
     if ($('nombre').value.trim().length < 2) return T.nombre;
@@ -191,20 +217,31 @@
       if (f.correo && !RE_CORREO.test(f.correo)) return T.feCorreo;
       if (!f.correo && !val('correo')) return T.feSinCorreo;
     }
-    if (!archivo) return T.sinArchivo;
-    if (!EXT[archivo.type]) return T.tipoArchivo;
-    if (archivo.size > MAX_ARCHIVO) return T.pesoArchivo;
-    return null;
+    if (!archivo) return PAGAR_DESPUES ? null : T.sinArchivo;
+    return archivoMalo(archivo);
   }
 
   function auth() { return { apikey: SUPA_ANON, Authorization: 'Bearer ' + SUPA_ANON }; }
 
+  // Sube el comprobante a <id>/comprobante.<ext>. La política de storage no deja pisar un archivo: si ya estaba
+  // (la subida entró y se cortó lo que venía después), se sigue con ese mismo, que la base vuelve a revisar.
+  async function subir(path, archivo) {
+    var sube = await fetch(SUPA_URL + '/storage/v1/object/' + BUCKET + '/' + path, {
+      method: 'POST',
+      headers: Object.assign(auth(), { 'Content-Type': archivo.type }),
+      body: archivo
+    });
+    if (sube.ok) return true;
+    var b = await sube.json().catch(function () { return {}; });
+    return sube.status === 409 || String(b.statusCode) === '409' || /duplicate|already exists/i.test(b.error + ' ' + b.message);
+  }
+
   async function enviar(c, archivo) {
     var id = crypto.randomUUID();
-    var path = id + '/comprobante.' + EXT[archivo.type];
+    var path = archivo ? id + '/comprobante.' + EXT[archivo.type] : null;
 
     // Se arma antes de subir: el carrito puede cambiar mientras sube el archivo.
-    var pedido = JSON.stringify({
+    var pedido = {
       p: {
         id: id,
         nombre: $('nombre').value.trim(),
@@ -214,29 +251,85 @@
         correo: hayCorreo() && val('correo') ? val('correo') : undefined,
         factura: factura(),
         metodo_pago: document.querySelector('input[name=metodo]:checked').value,
-        comprobante_path: path,
+        comprobante_path: path || undefined,
         total_crc: c.total,
         lineas: todos.filter(function (p) { return cant[p.id] > 0; })
           .map(function (p) { return { id: p.id, cant: cant[p.id] }; })
       }
-    });
+    };
 
-    var sube = await fetch(SUPA_URL + '/storage/v1/object/' + BUCKET + '/' + path, {
-      method: 'POST',
-      headers: Object.assign(auth(), { 'Content-Type': archivo.type }),
-      body: archivo
-    });
-    if (!sube.ok) throw { fuera: true };
+    // Si el comprobante no sube, el pedido entra igual sin él (no se pierde) y se vuelve a intentar en la pantalla final.
+    var fallo = false;
+    if (path) {
+      var subio = await subir(path, archivo).catch(function () { return false; });
+      if (!subio) {
+        if (!PAGAR_DESPUES) throw { fuera: true };
+        fallo = true;
+        pedido.p.comprobante_path = undefined;
+      }
+    }
 
     var res = await fetch(SUPA_URL + '/rest/v1/rpc/tienda_crear_pedido', {
       method: 'POST',
       headers: Object.assign(auth(), { 'Content-Type': 'application/json' }),
-      body: pedido
+      body: JSON.stringify(pedido)
     });
     var cuerpo = await res.json().catch(function () { return {}; });
+    // Sin archivo y la base todavía lo exige (TIENDA_PAGAR_DESPUES sin aplicar): no es culpa del archivo, se ofrece WhatsApp.
+    if (!res.ok && cuerpo.message === 'tienda:sin_comprobante' && !pedido.p.comprobante_path) throw { texto: T.sinComprobanteBase, wa: true };
     if (!res.ok) throw ERRORES[cuerpo.message] ? { texto: ERRORES[cuerpo.message] } : { fuera: true };
+    cuerpo.id = id;
+    cuerpo.conComprobante = !!path && !fallo;
+    cuerpo.subioFallo = fallo;
     return cuerpo;
   }
+
+  var listo = null;   // {id, numero, total_crc} del pedido recién hecho: el uuid solo vive en esta pestaña.
+
+  function waHref(texto) { return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto); }
+
+  function mostrarPagado(recienLlego) {
+    if ($('listo-pagar')) $('listo-pagar').hidden = true;
+    if ($('listo-pagado')) $('listo-pagado').hidden = false;
+    if ($('listo-recibido')) $('listo-recibido').hidden = !recienLlego;
+  }
+
+  function estadoListo(texto) {
+    var el = $('listo-estado'); if (!el) return;
+    el.textContent = texto || '';
+    el.hidden = !texto;
+  }
+
+  if ($('listo-subir')) $('listo-subir').addEventListener('click', async function () {
+    if (!listo) return;
+    estadoListo('');
+    var archivo = $('listo-archivo').files[0];
+    var malo = archivo ? archivoMalo(archivo) : T.elegirArchivo;
+    if (malo) { estadoListo(malo); return; }
+    var boton = $('listo-subir');
+    boton.disabled = true;
+    boton.textContent = T.subiendo;
+    try {
+      var path = listo.id + '/comprobante.' + EXT[archivo.type];
+      if (!(await subir(path, archivo))) throw {};
+      var res = await fetch(SUPA_URL + '/rest/v1/rpc/tienda_adjuntar_comprobante', {
+        method: 'POST',
+        headers: Object.assign(auth(), { 'Content-Type': 'application/json' }),
+        body: JSON.stringify({ p_id: listo.id, p_path: path })
+      });
+      var cuerpo = await res.json().catch(function () { return {}; });
+      if (!res.ok) {
+        if (cuerpo.message === 'tienda:ya_tiene_comprobante') throw { texto: T.yaTiene };
+        if (cuerpo.message === 'tienda:estado') throw { texto: T.yaNoEspera };
+        throw {};
+      }
+      mostrarPagado(true);
+    } catch (err) {
+      estadoListo(err && err.texto ? err.texto : T.noSubio);
+    }
+    boton.disabled = false;
+    boton.textContent = T.subir;
+  });
 
   $('tienda-form').addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -255,14 +348,25 @@
       $('listo-total').textContent = fmt(r.total_crc);
       var f = factura();
       if ($('listo-correo') && (f || val('correo'))) $('listo-correo').textContent = (f ? T.listoFactura + (f.correo || val('correo')) : T.listoCorreo + val('correo')) + '.';
-      if ($('listo-wa')) $('listo-wa').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(
+      if ($('listo-wa')) $('listo-wa').href = waHref(
         (EN ? 'Hi! I just placed order #' : 'Hola! Acabo de hacer el pedido #') + r.numero + (EN ? ' for ' : ' por ') + fmt(r.total_crc) + (EN ? ' on the website.' : ' en la página.'));
+      listo = { id: r.id, numero: r.numero, total_crc: r.total_crc };
+      if (PAGAR_DESPUES) {
+        if (r.conComprobante) mostrarPagado(false);
+        else {
+          $('listo-monto').textContent = fmt(r.total_crc);
+          if ($('listo-wa-comp')) $('listo-wa-comp').href = waHref(T.waComprobante + r.numero);
+          $('listo-pagado').hidden = true;
+          $('listo-pagar').hidden = false;
+          estadoListo(r.subioFallo ? T.subioFallo : '');
+        }
+      }
       $('tienda-form').hidden = true;
       $('tienda-ticket').hidden = true;
       $('tienda-listo').hidden = false;
       window.scrollTo(0, 0);
     } catch (err) {
-      if (err && err.texto) mostrarError(err.texto);
+      if (err && err.texto) mostrarError(err.texto, !!err.wa);
       else mostrarError(FUERA, true);
       boton.disabled = false;
       boton.textContent = T.enviar;
