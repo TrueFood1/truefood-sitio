@@ -192,3 +192,4 @@
 .tienda-comp-t{margin:0;font-size:1rem}
 .tienda-titulo{font-family:var(--texto,inherit);font-size:2rem;font-weight:400;letter-spacing:-.03em;line-height:1.1;margin:0 0 1.1rem}
 .tienda fieldset[hidden],[hidden]{display:none!important}
+.tienda-entregas{gap:.45rem}.tienda-entregas .tienda-op{padding:.7rem .9rem;align-items:center}.tienda-entregas .tienda-op small.en-linea{display:inline;margin:0}.tienda-entregas .solo-elegida{display:none}.tienda-entregas .tienda-op:has(input:checked) .solo-elegida{display:block;margin-top:.25rem}
