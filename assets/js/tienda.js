@@ -466,13 +466,13 @@
       var f = factura();
       if ($('listo-correo') && (f || val('correo'))) $('listo-correo').textContent = (f ? T.listoFactura + (f.correo || val('correo')) : T.listoCorreo + val('correo')) + '.';
       if ($('listo-wa')) $('listo-wa').href = waHref(
-        (EN ? 'Hi! I just placed order #' : 'Hola! Acabo de hacer el pedido #') + r.numero + (EN ? ' for ' : ' por ') + fmt(r.total_crc) + (EN ? ' on the website.' : ' en la página.'));
+        conNombre((EN ? 'Hi! I just placed order #' : 'Hola! Acabo de hacer el pedido #') + r.numero + (EN ? ' for ' : ' por ') + fmt(r.total_crc) + (EN ? ' on the website.' : ' en la página.')));
       listo = { id: r.id, numero: r.numero, total_crc: r.total_crc };
       if (PAGAR_DESPUES) {
         if (r.conComprobante) mostrarPagado(false);
         else {
           $('listo-monto').textContent = fmt(r.total_crc);
-          if ($('listo-wa-comp')) $('listo-wa-comp').href = waHref(T.waComprobante + r.numero);
+          if ($('listo-wa-comp')) $('listo-wa-comp').href = waHref(conNombre(T.waComprobante + r.numero));
           $('listo-pagado').hidden = true;
           $('listo-pagar').hidden = false;
           estadoListo(r.subioFallo ? T.subioFallo : '');
@@ -489,6 +489,16 @@
       boton.textContent = T.enviar;
       pintar();
     }
+  });
+
+  // Los mensajes de WhatsApp llevan el nombre que escribió la persona: «Hola! Soy Ana. …».
+  function conNombre(texto) {
+    var n = $('nombre') ? $('nombre').value.trim().split(/\s+/)[0] : '';
+    if (!n) return texto;
+    return texto.replace(/^(Hola|Hi)! /, function (m, h) { return h + '! ' + (EN ? 'This is ' : 'Soy ') + n + '. '; });
+  }
+  if ($('comprobante-wa')) $('comprobante-wa').addEventListener('click', function () {
+    this.href = waHref(conNombre(EN ? 'Hi! Here is the receipt for my order on truefoodcr.com' : 'Hola! Te mando el comprobante de mi pedido en truefoodcr.com'));
   });
 
   // Botón «Adjuntar comprobante»: muestra el nombre del archivo escogido.
