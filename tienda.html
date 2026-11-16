@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/editorial.css?v=20261111c">
-<link rel="stylesheet" href="assets/css/tienda.css?v=20261116c">
+<link rel="stylesheet" href="assets/css/tienda.css?v=20261116d">
 </head>
 <body class="pagina-tienda">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -93,7 +93,7 @@
               <div class="tienda-d">Bolsa de 300 g</div>
               <div class="tienda-p">&#8353;4.800</div>
             </div>
-            <div class="tienda-foto"><a href="producto/brownie.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img id="brownie-img" src="assets/img/bolsa-brownie.jpg" alt="" width="800" height="800"></a><div id="brownie-paso"></div></div>
+            <div class="tienda-foto"><a href="producto/brownie.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img id="brownie-img" src="assets/img/brownie-bolsa.png" alt="" width="912" height="1256"></a><div id="brownie-paso"></div></div>
           </div>
         </section>
 
@@ -152,9 +152,14 @@
               <label class="tienda-op"><input type="radio" name="metodo" value="sinpe" checked><span><b>SINPE M&oacute;vil</b></span><span></span></label>
               <label class="tienda-op"><input type="radio" name="metodo" value="transferencia"><span><b>Transferencia</b></span><span></span></label>
             </fieldset>
-            <label>Foto o PDF del comprobante <span class="tienda-ayuda">(si ya pagaste)</span><input id="comprobante" type="file" accept="image/*,application/pdf"><small class="tienda-ayuda">Si todav&iacute;a no has pagado, haz el pedido igual. Te dejamos los datos para pagar y nos mandas el comprobante despu&eacute;s.</small></label>
+            <div class="tienda-comp">
+              <div class="tienda-comp-btns">
+                <label class="tienda-comp-btn"><input id="comprobante" class="tienda-oculto" type="file" accept="image/*,application/pdf"><span id="comprobante-nombre">Adjuntar comprobante</span></label>
+                <a class="tienda-comp-btn" href="https://wa.me/50671369029?text=Hola%21%20Te%20mando%20el%20comprobante%20de%20mi%20pedido%20en%20truefoodcr.com" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+              <small class="tienda-ayuda">Si todav&iacute;a no pagaste, haz el pedido igual y nos lo mandas despu&eacute;s.</small>
+            </div>
           </div>
-          <p class="tienda-nota">Despachamos cuando confirmamos tu pago. Una transferencia de otro banco puede tardar hasta 1 d&iacute;a h&aacute;bil.</p>
           <p id="tienda-error" class="tienda-error" role="alert" hidden></p>
         </section>
 
@@ -189,6 +194,6 @@
 </footer>
 
 <script src="assets/js/menu.js" defer></script>
-<script src="assets/js/tienda.js?v=20261116c" defer></script>
+<script src="assets/js/tienda.js?v=20261116d" defer></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="../assets/css/editorial.css?v=20261111c">
-<link rel="stylesheet" href="../assets/css/tienda.css?v=20261116c">
+<link rel="stylesheet" href="../assets/css/tienda.css?v=20261116d">
 </head>
 <body class="pagina-tienda">
 <a class="saltar" href="#contenido">Skip to content</a>
@@ -94,7 +94,7 @@
               <div class="tienda-d">300 g bag</div>
               <div class="tienda-p">&#8353;4.800</div>
             </div>
-            <div class="tienda-foto"><a href="../producto/brownie.html" hreflang="es" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img id="brownie-img" src="../assets/img/bolsa-brownie.jpg" alt="" width="800" height="800"></a><div id="brownie-paso"></div></div>
+            <div class="tienda-foto"><a href="../producto/brownie.html" hreflang="es" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img id="brownie-img" src="../assets/img/brownie-bolsa.png" alt="" width="912" height="1256"></a><div id="brownie-paso"></div></div>
           </div>
         </section>
 
@@ -153,9 +153,14 @@
               <label class="tienda-op"><input type="radio" name="metodo" value="sinpe" checked><span><b>SINPE M&oacute;vil</b></span><span></span></label>
               <label class="tienda-op"><input type="radio" name="metodo" value="transferencia"><span><b>Bank transfer</b></span><span></span></label>
             </fieldset>
-            <label>Photo or PDF of your payment receipt <span class="tienda-ayuda">(if you already paid)</span><input id="comprobante" type="file" accept="image/*,application/pdf"><small class="tienda-ayuda">Haven&rsquo;t paid yet? Place your order anyway. We&rsquo;ll show you how to pay and you can send us the receipt later.</small></label>
+            <div class="tienda-comp">
+              <div class="tienda-comp-btns">
+                <label class="tienda-comp-btn"><input id="comprobante" class="tienda-oculto" type="file" accept="image/*,application/pdf"><span id="comprobante-nombre">Attach receipt</span></label>
+                <a class="tienda-comp-btn" href="https://wa.me/50671369029?text=Hi%21%20Here%20is%20the%20receipt%20for%20my%20order%20on%20truefoodcr.com" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+              <small class="tienda-ayuda">Haven&rsquo;t paid yet? Place your order anyway and send it to us later.</small>
+            </div>
           </div>
-          <p class="tienda-nota">We send your order once we confirm your payment. A transfer from another bank can take up to 1 business day.</p>
           <p id="tienda-error" class="tienda-error" role="alert" hidden></p>
         </section>
 
@@ -190,6 +195,6 @@
 </footer>
 
 <script src="../assets/js/menu.js" defer></script>
-<script src="../assets/js/tienda.js?v=20261116c" defer></script>
+<script src="../assets/js/tienda.js?v=20261116d" defer></script>
 </body>
 </html>

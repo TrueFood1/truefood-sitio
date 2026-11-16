@@ -15,12 +15,12 @@
 
   // Solo para mostrar: el total que vale lo recalcula tienda_crear_pedido().
   var PRODUCTOS = [
+    { id: 'cookie', url: EN ? 'product/cookie-dough.html' : 'producto/cookie-dough.html', n: 'Cookie Dough', d: EN ? '340 g tub' : 'Pote de 340 g', p: 4500, img: BASE + 'assets/img/bolsa-cookie.jpg' },
     { id: 'blanco', url: EN ? 'product/white-bread.html' : 'producto/pan-blanco.html', n: EN ? 'White Bread' : 'Pan Blanco', d: EN ? 'Per loaf' : 'Por unidad', p: 5500, img: BASE + 'assets/img/bolsa-blanco.jpg' },
     { id: 'semillas', url: EN ? 'product/seeds-bread.html' : 'producto/pan-de-semillas.html', n: EN ? 'Seeds Bread' : 'Pan de Semillas', d: EN ? 'Per loaf' : 'Por unidad', p: 6000, img: BASE + 'assets/img/bolsa-semillas.jpg' },
     { id: 'frances', url: EN ? 'product/french-bread.html' : 'producto/pan-frances.html', n: EN ? 'French Bread' : 'Pan Francés', d: EN ? 'Pack of 4' : 'Paquete de 4', p: 4800, img: BASE + 'assets/img/bolsa-frances.jpg' },
     { id: 'buns', url: EN ? 'product/buns.html' : 'producto/buns.html', n: EN ? 'Buns' : 'Pan de Hamburguesa', d: EN ? 'Pack of 4' : 'Paquete de 4', p: 5500, img: BASE + 'assets/img/bolsa-buns.jpg' },
-    { id: 'pizza', url: EN ? 'product/pizza-crust.html' : 'producto/pizza-crust.html', n: 'Pizza Crust', d: EN ? 'Pack of 2' : 'Paquete de 2', p: 5400, img: BASE + 'assets/img/bolsa-pizza.jpg' },
-    { id: 'cookie', url: EN ? 'product/cookie-dough.html' : 'producto/cookie-dough.html', n: 'Cookie Dough', d: EN ? '340 g tub' : 'Pote de 340 g', p: 4500, img: BASE + 'assets/img/bolsa-cookie.jpg' }
+    { id: 'pizza', url: EN ? 'product/pizza-crust.html' : 'producto/pizza-crust.html', n: 'Pizza Crust', d: EN ? 'Pack of 2' : 'Paquete de 2', p: 5400, img: BASE + 'assets/img/bolsa-pizza.jpg' }
   ];
   var BROWNIE = { id: 'brownie', n: EN ? 'Brownie Mix' : 'Premezcla para Brownie', p: 4800 };
   var SEP = ' \u00b7 ';
@@ -328,6 +328,15 @@
     return archivoMalo(archivo);
   }
 
+  // crypto.randomUUID solo existe en páginas https; getRandomValues existe siempre.
+  function nuevoId() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    var b = crypto.getRandomValues(new Uint8Array(16));
+    b[6] = (b[6] & 15) | 64; b[8] = (b[8] & 63) | 128;
+    var h = Array.prototype.map.call(b, function (x) { return (x + 256).toString(16).slice(1); }).join('');
+    return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' + h.slice(16, 20) + '-' + h.slice(20);
+  }
+
   function auth() { return { apikey: SUPA_ANON, Authorization: 'Bearer ' + SUPA_ANON }; }
 
   // Sube el comprobante a <id>/comprobante.<ext>. La política de storage no deja pisar un archivo: si ya estaba
@@ -344,7 +353,7 @@
   }
 
   async function enviar(c, archivo) {
-    var id = crypto.randomUUID();
+    var id = nuevoId();
     var path = archivo ? id + '/comprobante.' + EXT[archivo.type] : null;
 
     // Se arma antes de subir: el carrito puede cambiar mientras sube el archivo.
@@ -481,6 +490,16 @@
       pintar();
     }
   });
+
+  // Botón «Adjuntar comprobante»: muestra el nombre del archivo escogido.
+  if ($('comprobante') && $('comprobante-nombre')) {
+    var rotulo = $('comprobante-nombre').textContent;
+    $('comprobante').addEventListener('change', function () {
+      var f = this.files[0];
+      $('comprobante-nombre').textContent = f ? '\u2713 ' + f.name : rotulo;
+      this.parentNode.classList.toggle('listo', !!f);
+    });
+  }
 
   pintar();
 })();
