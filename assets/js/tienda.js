@@ -525,6 +525,13 @@
     this.href = waHref(conNombre(EN ? 'Hi! Here is the receipt for my order on truefoodcr.com' : 'Hola! Te mando el comprobante de mi pedido en truefoodcr.com'));
   });
 
+  // En la confirmación, escoger el archivo ya lo envía (sin un segundo botón).
+  if ($('listo-archivo') && $('listo-subir')) $('listo-archivo').addEventListener('change', function () {
+    var f = this.files[0];
+    if ($('listo-archivo-nombre') && f) $('listo-archivo-nombre').textContent = '\u2713 ' + f.name;
+    if (f) $('listo-subir').click();
+  });
+
   // Botón «Adjuntar comprobante»: muestra el nombre del archivo escogido.
   if ($('comprobante') && $('comprobante-nombre')) {
     var rotulo = $('comprobante-nombre').textContent;
