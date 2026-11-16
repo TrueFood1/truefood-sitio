@@ -100,3 +100,56 @@
 .tienda-subir{background:var(--lima);color:#000;border:0;border-radius:999px;font:700 .9375rem/1 var(--texto);min-height:46px;padding:0 1.15rem;cursor:pointer}
 .tienda-subir:disabled{opacity:.5;cursor:default}
 .tienda-wa-sec{background:none;border:1px solid var(--tinta);font-weight:500}
+
+/* Carrito en dos pasos (16-nov): 1 «Arma tu pedido» · 2 «Entrega y datos» · 3 la pantalla de «Recibimos tu pedido».
+   Solo actúa con .en-pasos, que pone tienda.js: con un tienda.js viejo en caché todo queda en una sola página. */
+#tienda-form.en-pasos.paso-1 .t-p2,#tienda-form.en-pasos.paso-2 .t-p1{display:none}
+.tienda[data-paso="2"] .inner>.rotulo,.tienda[data-paso="2"] .inner>.lede{display:none}
+.tienda[data-paso="2"] .inner>h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tienda h1:focus,.tienda h2:focus{outline:none}
+#tienda-pasos[hidden],#tienda-resumen[hidden],.tienda-aprovecha[hidden],#tienda-seguir[hidden],#tienda-enviar[hidden]{display:none}
+.tienda-pasos{list-style:none;counter-reset:paso;display:flex;gap:.4rem;margin:1.5rem 0 0;padding:0;font-size:.8125rem;color:var(--gris)}
+.tienda-pasos li{counter-increment:paso;display:flex;align-items:center;gap:.35rem;flex:1 1 0;min-width:0;padding-top:.5rem;border-top:3px solid var(--linea);line-height:1.2}
+.tienda-pasos li::before{content:counter(paso);flex:0 0 auto;display:inline-grid;place-items:center;width:1.35rem;height:1.35rem;border-radius:50%;border:1px solid currentColor;font-size:.75rem;font-weight:700}
+.tienda-pasos li[aria-current]{color:var(--tinta);font-weight:700;border-top-color:var(--tinta)}
+.tienda-pasos li[aria-current]::before{background:var(--lima);border-color:var(--tinta)}
+#tienda-form.en-pasos.paso-2 .tienda-pasos li:first-child{color:var(--tinta);border-top-color:var(--tinta)}
+#tienda-form.en-pasos .tienda-pasos+.tienda-bloque{margin-top:1.75rem}
+
+/* Tarjetas de producto: foto, nombre, presentación, precio y «Agregar», que se vuelve − n +. */
+.tienda-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem .9rem}
+@media (min-width:600px){.tienda-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.tienda-card{display:flex;flex-direction:column;min-width:0}
+.tienda-card img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:4px;display:block;background:var(--hueso);margin-bottom:.6rem}
+.tienda-card .tienda-n{font-size:1rem;overflow-wrap:anywhere}
+.tienda-card .tienda-d{margin:.1rem 0 .2rem}
+.tienda-card .tienda-ctrl{margin-top:auto;padding-top:.6rem}
+.tienda-ctrl .tienda-paso{display:none}
+.tienda-ctrl.tiene .tienda-paso{display:flex}
+.tienda-ctrl.tiene .tienda-agregar{display:none}
+.tienda-agregar{width:100%;min-height:46px;padding:0 1rem;background:var(--lima);color:#000;border:0;border-radius:999px;font:700 .9375rem/1 var(--texto);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tienda-card .tienda-paso{justify-content:space-between;min-height:46px;border:1px solid var(--tinta);border-radius:999px;padding:0 1px}
+.tienda-card .tienda-paso button{border:0;background:none;width:44px;height:44px}
+.tienda-card .tienda-paso output{font-size:1.0625rem}
+.tienda-estrella .tienda-ctrl{margin-top:.85rem;max-width:220px}
+.tienda-estrella .tienda-ctrl .tienda-paso{margin-top:0;justify-content:space-between;min-height:46px;border:1px solid #000;border-radius:999px;padding:0 1px}
+.tienda-estrella .tienda-ctrl .tienda-paso button{border:0;width:44px;height:44px}
+.tienda-estrella .tienda-ctrl .tienda-paso output{font-size:1.0625rem}
+@media (max-width:560px){.tienda-estrella .tienda-ctrl{max-width:none}}
+
+/* Aprovecha tu envío: una línea suave, no un aviso. */
+.tienda-aprovecha{margin:1rem 0 0;padding:.85rem 1rem;background:var(--hueso);border-radius:6px;font-size:.9375rem;line-height:1.45}
+.tienda-aprovecha b{font-weight:700}
+.tienda-aprovecha .tienda-volver{margin-top:.6rem;display:flex}
+
+/* Resumen del paso 2. */
+.tienda-resumen-cab{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.5rem}
+.tienda-resumen-cab h2{margin:0}
+#resumen-lineas{list-style:none;margin:0;padding:0;font-size:.9375rem}
+#resumen-lineas li{display:flex;justify-content:space-between;gap:.75rem;padding:.55rem 0;border-bottom:1px solid var(--linea)}
+#resumen-lineas li span:last-child{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tienda-volver{flex:0 0 auto;align-items:center;min-height:44px;padding:0 1rem;background:none;border:1px solid var(--tinta);border-radius:999px;color:var(--tinta);font:500 .875rem/1 var(--texto);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tienda-ticket #tienda-seguir{min-width:9.5rem}
+
+/* La casilla de factura es .tienda-op dentro de .tienda-campos: sin esto la regla de los labels la apilaba en columna. */
+.tienda-campos>label.tienda-op{display:grid;flex-direction:initial;font-size:1rem;font-weight:400}

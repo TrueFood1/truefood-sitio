@@ -25,8 +25,10 @@
   var BROWNIE = { id: 'brownie', n: EN ? 'Brownie Mix' : 'Premezcla para Brownie', p: 4800 };
 
   var T = EN ? {
-    quitar: 'Remove ', agregar: 'Add ',
+    quitar: 'Remove ', agregar: 'Add ', botonAgregar: 'Add',
     producto: ' item', productos: ' items', masEnvio: ' + delivery', escoge: 'Choose your products',
+    seguir: 'Continue', sinEnvio: ' · before delivery',
+    aprovecha: 'Make the most of your delivery.', aprovechaTxt: function (m) { return ' It\u2019s ' + m + ' per order, so you can add more products without paying more for delivery.'; },
     whatsapp: 'Message us on WhatsApp',
     fuera: 'We can\u2019t take orders on the website right now.',
     nombre: 'Please enter your name.',
@@ -53,8 +55,10 @@
     waComprobante: 'Hi! Here\u2019s the receipt for order #',
     sinComprobanteBase: 'Right now we can\u2019t take orders without a receipt on the website, but we can take yours on WhatsApp.'
   } : {
-    quitar: 'Quitar ', agregar: 'Agregar ',
+    quitar: 'Quitar ', agregar: 'Agregar ', botonAgregar: 'Agregar',
     producto: ' producto', productos: ' productos', masEnvio: ' + envío', escoge: 'Escoge tus productos',
+    seguir: 'Continuar', sinEnvio: ' · sin envío',
+    aprovecha: 'Aprovecha tu envío.', aprovechaTxt: function (m) { return ' Es de ' + m + ' por pedido, así que puedes sumar más productos sin pagar más envío.'; },
     whatsapp: 'Escríbenos por WhatsApp',
     fuera: 'Ahora mismo no podemos recibir pedidos en la página.',
     nombre: 'Escribe tu nombre.',
@@ -112,18 +116,22 @@
   var todos = PRODUCTOS.concat([BROWNIE]);
   todos.forEach(function (p) { cant[p.id] = 0; });
 
+  // «Agregar» hasta que hay al menos 1; después el − n +. Los dos botones llevan data-id/data-d: el mismo
+  // manejador de clics suma y resta en los dos.
   function paso(p) {
-    return '<div class="tienda-paso"><button type="button" aria-label="' + T.quitar + p.n + '" data-id="' + p.id + '" data-d="-1">−</button>' +
-      '<output id="c-' + p.id + '">0</output>' +
-      '<button type="button" aria-label="' + T.agregar + p.n + '" data-id="' + p.id + '" data-d="1">+</button></div>';
+    return '<div class="tienda-ctrl" id="ctrl-' + p.id + '">' +
+      '<button type="button" class="tienda-agregar" aria-label="' + T.agregar + p.n + '" data-id="' + p.id + '" data-d="1">+ ' + T.botonAgregar + '</button>' +
+      '<div class="tienda-paso"><button type="button" aria-label="' + T.quitar + p.n + '" data-id="' + p.id + '" data-d="-1">−</button>' +
+      '<output id="c-' + p.id + '" aria-live="polite">0</output>' +
+      '<button type="button" aria-label="' + T.agregar + p.n + '" data-id="' + p.id + '" data-d="1">+</button></div></div>';
   }
 
   $('brownie-paso').innerHTML = paso(BROWNIE);
-  $('tienda-lista').innerHTML = PRODUCTOS.map(function (p) {
-    return '<div class="tienda-prod"><img src="' + p.img + '" alt="" width="64" height="64" loading="lazy">' +
-      '<div><div class="tienda-n"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.n + '</a></div><div class="tienda-d">' + p.d + '</div><div class="tienda-p">' + fmt(p.p) + '</div></div>' +
+  $('tienda-lista').innerHTML = '<div class="tienda-cards">' + PRODUCTOS.map(function (p) {
+    return '<div class="tienda-card"><img src="' + p.img + '" alt="" width="440" height="440" loading="lazy">' +
+      '<div class="tienda-n"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.n + '</a></div><div class="tienda-d">' + p.d + '</div><div class="tienda-p">' + fmt(p.p) + '</div>' +
       paso(p) + '</div>';
-  }).join('');
+  }).join('') + '</div>';
 
   function entrega() { return document.querySelector('input[name=entrega]:checked').value; }
 
@@ -146,26 +154,118 @@
     return f;
   }
 
+  // Dos pasos (1 «Arma tu pedido», 2 «Entrega y datos»; el 3 es la pantalla de «Recibimos tu pedido»). Una página
+  // vieja en caché no trae #tienda-seguir: ahí todo queda en una sola página, como antes.
+  var PASOS = !!$('tienda-seguir');
+  var pasoActual = 1;
+
+  function lineas() { return todos.filter(function (p) { return cant[p.id] > 0; }); }
+
+  function pintarResumen() {
+    var ul = $('resumen-lineas'); if (!ul) return;
+    ul.innerHTML = lineas().map(function (p) {
+      return '<li><span>' + cant[p.id] + ' × ' + p.n + '</span><span>' + fmt(cant[p.id] * p.p) + '</span></li>';
+    }).join('');
+  }
+
+  function pintarAprovecha(c) {
+    // Solo con envío al GAM y un solo producto distinto: el envío es uno por pedido (tienda_precio es_envio).
+    var si = entrega() === 'envio' && lineas().length === 1;
+    ['tienda-aprovecha', 'tienda-aprovecha-1'].forEach(function (id) {
+      var el = $(id); if (!el) return;
+      el.hidden = !si;
+      var t = el.querySelector('.aprovecha-texto');
+      if (t) t.innerHTML = '<b>' + T.aprovecha + '</b>' + T.aprovechaTxt(fmt(ENVIO));
+    });
+  }
+
+  function pintarControl(p) {
+    var ctrl = $('ctrl-' + p.id);
+    if (ctrl) ctrl.classList.toggle('tiene', cant[p.id] > 0);
+    $('c-' + p.id).textContent = cant[p.id];
+  }
+
   function pintar() {
     var c = calcular();
     $('l-dir').hidden = entrega() !== 'envio';
     if ($('fe-campos') && $('fe')) $('fe-campos').hidden = !$('fe').checked;
     if ($('fe-numero') && $('fe-tipo')) $('fe-numero').placeholder = T.feAyuda[$('fe-tipo').value] || '';
-    $('tienda-total').textContent = fmt(c.total);
+    todos.forEach(pintarControl);
+    var enArmado = PASOS && pasoActual === 1;
+    // En el paso 1 todavía no se escogió la entrega: la barra muestra el subtotal.
+    $('tienda-total').textContent = fmt(enArmado ? c.sub : c.total);
     $('tienda-monto').textContent = fmt(c.total);
     $('tienda-detalle').textContent = c.n
-      ? c.n + (c.n > 1 ? T.productos : T.producto) + (c.envio ? T.masEnvio : '')
+      ? c.n + (c.n > 1 ? T.productos : T.producto) + (enArmado ? '' : (c.envio ? T.masEnvio : ''))
       : T.escoge;
+    if (PASOS) $('tienda-seguir').disabled = !c.n;
+    pintarResumen();
+    pintarAprovecha(c);
+  }
+
+  // html tiene scroll-behavior:smooth; al cambiar de paso el salto es inmediato, sin recorrer la página.
+  function arriba() { try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); } }
+
+  function irPaso(n, sinHistorial) {
+    if (!PASOS) return;
+    if (n === 2 && !calcular().n) n = 1;
+    pasoActual = n;
+    var form = $('tienda-form');
+    form.classList.toggle('paso-1', n === 1);
+    form.classList.toggle('paso-2', n === 2);
+    document.querySelector('.tienda').setAttribute('data-paso', String(n));
+    $('tienda-seguir').hidden = n !== 1;
+    $('tienda-enviar').hidden = n !== 2;
+    document.querySelectorAll('#tienda-pasos li').forEach(function (li, i) {
+      if (i === n - 1) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+    });
+    if (n === 1) $('tienda-error').hidden = true;
+    pintar();
+    if (!sinHistorial) {
+      // El «atrás» del teléfono vuelve al paso 1 en vez de salir de la página y perder el carrito.
+      try { if (n === 2) history.pushState({ tiendaPaso: 2 }, ''); } catch (e) {}
+      arriba();
+      var h = $(n === 2 ? 't-resumen' : 't-tienda');
+      if (h) h.focus({ preventScroll: true });
+    }
   }
 
   document.querySelector('.tienda').addEventListener('click', function (e) {
+    var ir = e.target.closest('button[data-ir]');
+    if (ir) {
+      if (Number(ir.dataset.ir) === 1 && history.state && history.state.tiendaPaso === 2) history.back();
+      else irPaso(Number(ir.dataset.ir));
+      return;
+    }
     var b = e.target.closest('button[data-id]');
     if (!b) return;
-    cant[b.dataset.id] = Math.max(0, Math.min(50, cant[b.dataset.id] + Number(b.dataset.d)));
-    $('c-' + b.dataset.id).textContent = cant[b.dataset.id];
+    var id = b.dataset.id;
+    cant[id] = Math.max(0, Math.min(50, cant[id] + Number(b.dataset.d)));
     pintar();
+    // El foco no se pierde cuando «Agregar» se vuelve − n + (o al revés).
+    var ctrl = $('ctrl-' + id);
+    if (!ctrl) return;
+    if (b.classList.contains('tienda-agregar')) ctrl.querySelector('.tienda-paso [data-d="1"]').focus();
+    else if (!cant[id]) ctrl.querySelector('.tienda-agregar').focus();
   });
   $('tienda-form').addEventListener('change', pintar);
+
+  if (PASOS) {
+    $('tienda-seguir').addEventListener('click', function () { irPaso(2); });
+    window.addEventListener('popstate', function () {
+      if ($('tienda-form').hidden) return;
+      var n = history.state && history.state.tiendaPaso === 2 ? 2 : 1;
+      irPaso(n, true);
+      arriba();
+      var h = $(n === 2 ? 't-resumen' : 't-tienda');
+      if (h) h.focus({ preventScroll: true });
+    });
+    ['tienda-pasos', 'tienda-resumen'].forEach(function (id) { if ($(id)) $(id).hidden = false; });
+    // Al recargar en el paso 2 el carrito vuelve vacío: se olvida ese paso del historial.
+    try { if (history.state && history.state.tiendaPaso) history.replaceState(null, ''); } catch (e) {}
+    $('tienda-form').classList.add('en-pasos');
+    irPaso(1, true);
+  }
 
   document.querySelectorAll('.tienda-lados button').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -253,7 +353,7 @@
         metodo_pago: document.querySelector('input[name=metodo]:checked').value,
         comprobante_path: path || undefined,
         total_crc: c.total,
-        lineas: todos.filter(function (p) { return cant[p.id] > 0; })
+        lineas: lineas()
           .map(function (p) { return { id: p.id, cant: cant[p.id] }; })
       }
     };
@@ -333,6 +433,7 @@
 
   $('tienda-form').addEventListener('submit', async function (e) {
     e.preventDefault();
+    if (PASOS && pasoActual === 1) { irPaso(2); return; }
     $('tienda-error').hidden = true;
     var c = calcular();
     var archivo = $('comprobante').files[0];

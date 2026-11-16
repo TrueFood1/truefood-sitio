@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/editorial.css?v=20261111c">
-<link rel="stylesheet" href="assets/css/tienda.css?v=20261116a">
+<link rel="stylesheet" href="assets/css/tienda.css?v=20261116b">
 </head>
 <body class="pagina-tienda">
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -49,7 +49,7 @@
   <section class="seccion tienda" aria-labelledby="t-tienda">
     <div class="inner">
       <p class="rotulo">Tienda en l&iacute;nea &middot; hasta el 18 de diciembre</p>
-      <h1 id="t-tienda"><span class="t-mantra">Delicioso, saludable y Gluten&nbsp;Free</span> <span class="t-destino">directo a tu casa.</span></h1>
+      <h1 id="t-tienda" tabindex="-1"><span class="t-mantra">Delicioso, saludable y Gluten&nbsp;Free</span> <span class="t-destino">directo a tu casa.</span></h1>
       <p class="lede">Escoge, paga por SINPE M&oacute;vil o transferencia, y recoges o te lo llevamos.</p>
 
       <div id="tienda-listo" class="tienda-bloque tienda-listo" role="status" hidden>
@@ -82,7 +82,13 @@
       </div>
 
       <form id="tienda-form" novalidate>
-        <section class="tienda-bloque tienda-estrella" aria-labelledby="t-brownie">
+        <ol id="tienda-pasos" class="tienda-pasos" aria-label="Pasos del pedido" hidden>
+          <li aria-current="step">Arma tu pedido</li>
+          <li>Entrega y datos</li>
+          <li>Pago</li>
+        </ol>
+
+        <section class="tienda-bloque tienda-estrella t-p1" aria-labelledby="t-brownie">
           <figure>
             <img id="brownie-img" src="assets/img/brownie-frente.jpg" alt="Bolsa de la Premezcla para Brownie de True Food" width="500" height="690">
             <div class="tienda-lados" role="group" aria-label="Ver la bolsa">
@@ -100,22 +106,29 @@
           </div>
         </section>
 
-        <section class="tienda-bloque" aria-labelledby="t-panes">
+        <section class="tienda-bloque t-p1" aria-labelledby="t-panes">
           <h2 id="t-panes">Del congelador</h2>
           <div id="tienda-lista"></div>
-          <p class="tienda-nota">Precios con IVA incluido. Todo viaja congelado.</p>
+          <p id="tienda-aprovecha-1" class="tienda-aprovecha" hidden><span class="aprovecha-texto"></span></p>
+          <p class="tienda-nota">Precios con IVA incluido. Todo viaja congelado. Recoges gratis en Bel&eacute;n o te lo llevamos en el GAM por &#8353;4.000 el pedido.</p>
         </section>
 
-        <section class="tienda-bloque" aria-labelledby="t-entrega">
+        <section id="tienda-resumen" class="tienda-bloque tienda-resumen t-p2" aria-labelledby="t-resumen" hidden>
+          <div class="tienda-resumen-cab"><h2 id="t-resumen" tabindex="-1">Tu pedido</h2><button type="button" class="tienda-volver" data-ir="1">Editar pedido</button></div>
+          <ul id="resumen-lineas"></ul>
+        </section>
+
+        <section class="tienda-bloque t-p2" aria-labelledby="t-entrega">
           <h2 id="t-entrega">C&oacute;mo lo recibes</h2>
           <fieldset>
             <label class="tienda-op"><input type="radio" name="entrega" value="planta" checked><span><b>Recoger en la planta</b><small>Ofibodegas Akiro #2, al lado de la Antigua Rumba, Bel&eacute;n. En Waze: True Food. Lunes a viernes, 7:00 a.m. a 4:00 p.m.</small></span><span class="tienda-costo">Gratis</span></label>
             <label class="tienda-op"><input type="radio" name="entrega" value="propio"><span><b>Mandas un Uber o mensajero</b><small>Lo recogen en la planta, lunes a viernes, 7:00 a.m. a 4:00 p.m.</small></span><span></span></label>
             <label class="tienda-op"><input type="radio" name="entrega" value="envio"><span><b>Te lo llevamos</b><small>En el GAM.</small></span><span class="tienda-costo">&#8353;4.000</span></label>
           </fieldset>
+          <p id="tienda-aprovecha" class="tienda-aprovecha" hidden><span class="aprovecha-texto"></span> <button type="button" class="tienda-volver" data-ir="1">Sumar productos</button></p>
         </section>
 
-        <section class="tienda-bloque" aria-labelledby="t-datos">
+        <section class="tienda-bloque t-p2" aria-labelledby="t-datos">
           <h2 id="t-datos">Tus datos</h2>
           <div class="tienda-campos">
             <label>Nombre<input id="nombre" autocomplete="name" maxlength="120"></label>
@@ -132,7 +145,7 @@
           </div>
         </section>
 
-        <section class="tienda-bloque" aria-labelledby="t-pago">
+        <section class="tienda-bloque t-p2" aria-labelledby="t-pago">
           <h2 id="t-pago">C&oacute;mo pagas</h2>
           <div class="tienda-pago">
             <p>Total a pagar: <b id="tienda-monto"></b></p>
@@ -157,6 +170,7 @@
         <div class="tienda-ticket" id="tienda-ticket">
           <div>
             <div><div class="tienda-total" id="tienda-total"></div><div class="tienda-detalle" id="tienda-detalle"></div></div>
+             <button type="button" id="tienda-seguir" hidden>Continuar</button>
             <button type="submit" id="tienda-enviar">Hacer pedido</button>
           </div>
         </div>
@@ -184,6 +198,6 @@
 </footer>
 
 <script src="assets/js/menu.js" defer></script>
-<script src="assets/js/tienda.js?v=20261116a" defer></script>
+<script src="assets/js/tienda.js?v=20261116b" defer></script>
 </body>
 </html>
