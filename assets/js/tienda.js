@@ -352,6 +352,11 @@
     return sube.status === 409 || String(b.statusCode) === '409' || /duplicate|already exists/i.test(b.error + ' ' + b.message);
   }
 
+  // De dónde llegó la visita (assets/js/origen.js). Si ese archivo no cargó o falla, el pedido sale sin origen.
+  function origen() {
+    try { return (window.tfOrigen && window.tfOrigen()) || undefined; } catch (e) { return undefined; }
+  }
+
   async function enviar(c, archivo) {
     var id = nuevoId();
     var path = archivo ? id + '/comprobante.' + EXT[archivo.type] : null;
@@ -368,6 +373,7 @@
         factura: factura(),
         metodo_pago: document.querySelector('input[name=metodo]:checked').value,
         comprobante_path: path || undefined,
+        origen: origen(),
         total_crc: c.total,
         lineas: lineas()
           .map(function (p) { return { id: p.id, cant: cant[p.id] }; })
