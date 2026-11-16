@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="../assets/css/editorial.css?v=20261111c">
-<link rel="stylesheet" href="../assets/css/tienda.css?v=20261116b">
+<link rel="stylesheet" href="../assets/css/tienda.css?v=20261116c">
 </head>
 <body class="pagina-tienda">
 <a class="saltar" href="#contenido">Skip to content</a>
@@ -49,9 +49,7 @@
 <main id="contenido">
   <section class="seccion tienda" aria-labelledby="t-tienda">
     <div class="inner">
-      <p class="rotulo">Online shop &middot; until December 18</p>
-      <h1 id="t-tienda" tabindex="-1"><span class="t-mantra">Delicious, healthy and Gluten&nbsp;Free</span> <span class="t-destino">straight to your door.</span></h1>
-      <p class="lede">Choose your products, pay by SINPE M&oacute;vil or bank transfer, and pick them up or let us bring them to you.</p>
+      <h1 id="t-tienda" class="tienda-sr">True Food online shop</h1>
 
       <div id="tienda-listo" class="tienda-bloque tienda-listo" role="status" hidden>
         <h2>We got your order <span id="listo-numero"></span></h2>
@@ -83,27 +81,21 @@
       </div>
 
       <form id="tienda-form" novalidate>
-        <ol id="tienda-pasos" class="tienda-pasos" aria-label="Order steps" hidden>
-          <li aria-current="step">Build your order</li>
-          <li>Delivery and details</li>
-          <li>Payment</li>
-        </ol>
+        <div id="tienda-pasos" class="tienda-pasos" hidden>
+          <div class="tienda-pasos-barra" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+          <p id="tienda-paso-txt" tabindex="-1">Step 1 of 3 &middot; Build your order</p>
+        </div>
 
-        <section class="tienda-bloque tienda-estrella t-p1" aria-labelledby="t-brownie">
-          <figure>
-            <img id="brownie-img" src="../assets/img/brownie-frente.jpg" alt="Bag of True Food Brownie Mix" width="500" height="690">
-            <div class="tienda-lados" role="group" aria-label="View the bag">
-              <button type="button" aria-pressed="true" data-lado="frente">Front</button>
-              <button type="button" aria-pressed="false" data-lado="atras">Back</button>
-              <button type="button" aria-pressed="false" data-lado="etiqueta">Label</button>
+        <section class="tienda-bloque tienda-destacado t-p1" aria-labelledby="t-brownie">
+          <div class="tienda-fila">
+            <div class="tienda-fila-txt">
+              <p class="tienda-nuevo">New</p>
+              <h2 id="t-brownie" class="tienda-n"><a href="../producto/brownie.html" hreflang="es" target="_blank" rel="noopener">Brownie Mix</a></h2>
+              <p class="tienda-desc">Fudgy, moist and made with 70% chocolate. Just add 2 bananas and water.</p>
+              <div class="tienda-d">300 g bag</div>
+              <div class="tienda-p">&#8353;4.800</div>
             </div>
-          </figure>
-          <div>
-            <p class="tienda-nuevo">New product</p>
-            <h2 id="t-brownie"><a href="../producto/brownie.html" hreflang="es" target="_blank" rel="noopener">Brownie Mix</a></h2>
-            <p>A moist, fudgy brownie, rich with 70% chocolate. Gluten Free and Vegan. Just add 2 bananas and water.</p>
-            <div class="tienda-p">&#8353;4.800 &middot; 300 g</div>
-            <div id="brownie-paso"></div>
+            <div class="tienda-foto"><a href="../producto/brownie.html" hreflang="es" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img id="brownie-img" src="../assets/img/brownie-frente.jpg" alt="" width="500" height="690"></a><div id="brownie-paso"></div></div>
           </div>
         </section>
 
@@ -121,11 +113,12 @@
 
         <section class="tienda-bloque t-p2" aria-labelledby="t-entrega">
           <h2 id="t-entrega">How you get it</h2>
-          <fieldset>
-            <label class="tienda-op"><input type="radio" name="entrega" value="planta" checked><span><b>Pick up at our production center</b><small>Ofibodegas Akiro #2, next to Antigua Rumba, Bel&eacute;n. On Waze: True Food. Monday to Friday, 7:00 a.m. to 4:00 p.m.</small></span><span class="tienda-costo">Free</span></label>
-            <label class="tienda-op"><input type="radio" name="entrega" value="propio"><span><b>Send an Uber or a courier</b><small>They pick it up at our production center, Monday to Friday, 7:00 a.m. to 4:00 p.m.</small></span><span></span></label>
-            <label class="tienda-op"><input type="radio" name="entrega" value="envio"><span><b>We bring it to you</b><small>Within the GAM.</small></span><span class="tienda-costo">&#8353;4.000</span></label>
+          <fieldset class="tienda-entregas">
+            <label class="tienda-op"><input type="radio" name="entrega" value="planta" checked><span><b>I&rsquo;ll pick it up</b><small>In Bel&eacute;n</small><small class="solo-elegida">Ofibodegas Akiro #2, next to Antigua Rumba. On Waze: True Food. Monday to Friday, 7:00 a.m. to 4:00 p.m.</small></span><span class="tienda-costo">Free</span></label>
+            <label class="tienda-op"><input type="radio" name="entrega" value="propio"><span><b>I&rsquo;ll send an Uber or a courier</b><small>They pick it up in Bel&eacute;n</small><small class="solo-elegida">Ofibodegas Akiro #2, next to Antigua Rumba. Monday to Friday, 7:00 a.m. to 4:00 p.m.</small></span><span></span></label>
+            <label class="tienda-op"><input type="radio" name="entrega" value="envio"><span><b>Deliver it to my home</b><small>Within the GAM</small></span><span class="tienda-costo">&#8353;4.000</span></label>
           </fieldset>
+          <p class="tienda-nota tienda-cierre">We take orders until December 18. After that our production center closes for the holidays.</p>
           <p id="tienda-aprovecha" class="tienda-aprovecha" hidden><span class="aprovecha-texto"></span> <button type="button" class="tienda-volver" data-ir="1">Add more products</button></p>
         </section>
 
@@ -171,7 +164,7 @@
         <div class="tienda-ticket" id="tienda-ticket">
           <div>
             <div><div class="tienda-total" id="tienda-total"></div><div class="tienda-detalle" id="tienda-detalle"></div></div>
-             <button type="button" id="tienda-seguir" hidden>Continue</button>
+             <button type="button" id="tienda-seguir" hidden>View order</button>
             <button type="submit" id="tienda-enviar">Place order</button>
           </div>
         </div>
@@ -199,6 +192,6 @@
 </footer>
 
 <script src="../assets/js/menu.js" defer></script>
-<script src="../assets/js/tienda.js?v=20261116b" defer></script>
+<script src="../assets/js/tienda.js?v=20261116c" defer></script>
 </body>
 </html>

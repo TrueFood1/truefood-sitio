@@ -101,55 +101,87 @@
 .tienda-subir:disabled{opacity:.5;cursor:default}
 .tienda-wa-sec{background:none;border:1px solid var(--tinta);font-weight:500}
 
-/* Carrito en dos pasos (16-nov): 1 «Arma tu pedido» · 2 «Entrega y datos» · 3 la pantalla de «Recibimos tu pedido».
-   Solo actúa con .en-pasos, que pone tienda.js: con un tienda.js viejo en caché todo queda en una sola página. */
-#tienda-form.en-pasos.paso-1 .t-p2,#tienda-form.en-pasos.paso-2 .t-p1{display:none}
-.tienda[data-paso="2"] .inner>.rotulo,.tienda[data-paso="2"] .inner>.lede{display:none}
-.tienda[data-paso="2"] .inner>h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.tienda h1:focus,.tienda h2:focus{outline:none}
-#tienda-pasos[hidden],#tienda-resumen[hidden],.tienda-aprovecha[hidden],#tienda-seguir[hidden],#tienda-enviar[hidden]{display:none}
-.tienda-pasos{list-style:none;counter-reset:paso;display:flex;gap:.4rem;margin:1.5rem 0 0;padding:0;font-size:.8125rem;color:var(--gris)}
-.tienda-pasos li{counter-increment:paso;display:flex;align-items:center;gap:.35rem;flex:1 1 0;min-width:0;padding-top:.5rem;border-top:3px solid var(--linea);line-height:1.2}
-.tienda-pasos li::before{content:counter(paso);flex:0 0 auto;display:inline-grid;place-items:center;width:1.35rem;height:1.35rem;border-radius:50%;border:1px solid currentColor;font-size:.75rem;font-weight:700}
-.tienda-pasos li[aria-current]{color:var(--tinta);font-weight:700;border-top-color:var(--tinta)}
-.tienda-pasos li[aria-current]::before{background:var(--lima);border-color:var(--tinta)}
-#tienda-form.en-pasos.paso-2 .tienda-pasos li:first-child{color:var(--tinta);border-top-color:var(--tinta)}
-#tienda-form.en-pasos .tienda-pasos+.tienda-bloque{margin-top:1.75rem}
-
-/* Tarjetas de producto: foto, nombre, presentación, precio y «Agregar», que se vuelve − n +. */
-.tienda-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem .9rem}
-@media (min-width:600px){.tienda-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.tienda-card{display:flex;flex-direction:column;min-width:0}
-.tienda-card img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:4px;display:block;background:var(--hueso);margin-bottom:.6rem}
-.tienda-card .tienda-n{font-size:1rem;overflow-wrap:anywhere}
-.tienda-card .tienda-d{margin:.1rem 0 .2rem}
-.tienda-card .tienda-ctrl{margin-top:auto;padding-top:.6rem}
-.tienda-ctrl .tienda-paso{display:none}
-.tienda-ctrl.tiene .tienda-paso{display:flex}
-.tienda-ctrl.tiene .tienda-agregar{display:none}
-.tienda-agregar{width:100%;min-height:46px;padding:0 1rem;background:var(--lima);color:#000;border:0;border-radius:999px;font:700 .9375rem/1 var(--texto);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.tienda-card .tienda-paso{justify-content:space-between;min-height:46px;border:1px solid var(--tinta);border-radius:999px;padding:0 1px}
-.tienda-card .tienda-paso button{border:0;background:none;width:44px;height:44px}
-.tienda-card .tienda-paso output{font-size:1.0625rem}
-.tienda-estrella .tienda-ctrl{margin-top:.85rem;max-width:220px}
-.tienda-estrella .tienda-ctrl .tienda-paso{margin-top:0;justify-content:space-between;min-height:46px;border:1px solid #000;border-radius:999px;padding:0 1px}
-.tienda-estrella .tienda-ctrl .tienda-paso button{border:0;width:44px;height:44px}
-.tienda-estrella .tienda-ctrl .tienda-paso output{font-size:1.0625rem}
-@media (max-width:560px){.tienda-estrella .tienda-ctrl{max-width:none}}
-
-/* Aprovecha tu envío: una línea suave, no un aviso. */
-.tienda-aprovecha{margin:1rem 0 0;padding:.85rem 1rem;background:var(--hueso);border-radius:6px;font-size:.9375rem;line-height:1.45}
-.tienda-aprovecha b{font-weight:700}
-.tienda-aprovecha .tienda-volver{margin-top:.6rem;display:flex}
-
-/* Resumen del paso 2. */
-.tienda-resumen-cab{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.5rem}
-.tienda-resumen-cab h2{margin:0}
-#resumen-lineas{list-style:none;margin:0;padding:0;font-size:.9375rem}
-#resumen-lineas li{display:flex;justify-content:space-between;gap:.75rem;padding:.55rem 0;border-bottom:1px solid var(--linea)}
-#resumen-lineas li span:last-child{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
-.tienda-volver{flex:0 0 auto;align-items:center;min-height:44px;padding:0 1rem;background:none;border:1px solid var(--tinta);border-radius:999px;color:var(--tinta);font:500 .875rem/1 var(--texto);cursor:pointer;-webkit-tap-highlight-color:transparent}
-.tienda-ticket #tienda-seguir{min-width:9.5rem}
-
 /* La casilla de factura es .tienda-op dentro de .tienda-campos: sin esto la regla de los labels la apilaba en columna. */
 .tienda-campos>label.tienda-op{display:grid;flex-direction:initial;font-size:1rem;font-weight:400}
+
+/* ===== Carrito en dos pasos (16-nov, v2): limpio, liviano, filas como en una app de comida =====
+   1 «Arma tu pedido» · 2 «Entrega y datos» · 3 la pantalla de «Recibimos tu pedido».
+   Los pasos solo actúan con .en-pasos, que pone tienda.js. */
+.tienda-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.pagina-tienda .tienda{padding-top:1.25rem}
+.tienda .tienda-bloque{margin-top:2rem}
+#tienda-form.en-pasos.paso-1 .t-p2,#tienda-form.en-pasos.paso-2 .t-p1{display:none}
+#tienda-pasos[hidden],#tienda-resumen[hidden],.tienda-aprovecha[hidden],#tienda-seguir[hidden],#tienda-enviar[hidden]{display:none}
+.tienda :focus:not(:focus-visible){outline:none}
+#tienda-paso-txt:focus,.tienda h2:focus{outline:none}
+
+/* Pesos: la jerarquía va por tamaño y color, no por negrita. */
+.tienda h2{font-weight:300}
+.tienda-n,.tienda-op b,.tienda legend,.tienda-campos>label{font-weight:400}
+.tienda-p,.tienda-costo,.tienda-pago b,.tienda-listo b{font-weight:500}
+.tienda-ticket button,.tienda-wa,.tienda-subir{font-weight:500}
+
+/* Indicador: una línea fina de tres tramos y una etiqueta chica. */
+.tienda-pasos{margin:0}
+.tienda-pasos-barra{display:flex;gap:4px}
+.tienda-pasos-barra span{flex:1;height:3px;border-radius:2px;background:var(--linea)}
+.tienda-pasos-barra span.on{background:var(--tinta)}
+#tienda-paso-txt{margin:.55rem 0 0;font-size:.8125rem;color:var(--gris)}
+#tienda-form.en-pasos .tienda-pasos+.tienda-bloque{margin-top:1.25rem}
+
+/* Filas de producto: texto a la izquierda, foto cuadrada a la derecha con el «+» montado en la esquina. */
+.tienda-fila{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1px solid var(--linea)}
+.tienda-fila-txt{min-width:0}
+.tienda-fila .tienda-n{font:400 1.0625rem/1.25 var(--texto);margin:0;overflow-wrap:anywhere}
+.tienda-fila .tienda-n a{color:inherit;text-decoration:none}
+.tienda-fila .tienda-d{font-size:.875rem;color:var(--gris);margin-top:.15rem}
+.tienda-fila .tienda-p{font-size:.9375rem;margin-top:.35rem;font-variant-numeric:tabular-nums}
+.tienda-foto{position:relative;width:112px;height:112px}
+.tienda-foto>a{display:block;width:100%;height:100%}
+.tienda-foto img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--hueso)}
+.tienda-foto .tienda-ctrl{position:absolute;right:-6px;bottom:-6px}
+.tienda-agregar{width:44px;height:44px;border-radius:50%;border:0;background:var(--lima);color:#000;font:400 1.625rem/1 var(--texto);display:grid;place-items:center;padding:0 0 2px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.22);touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tienda-ctrl .tienda-paso{display:none;align-items:center;gap:0;background:var(--papel);border-radius:999px;box-shadow:0 1px 4px rgba(0,0,0,.22)}
+.tienda-ctrl.tiene .tienda-paso{display:flex}
+.tienda-ctrl.tiene .tienda-agregar{display:none}
+.tienda-ctrl .tienda-paso button{width:44px;height:44px;border:0;border-radius:50%;background:none;color:var(--tinta);font:400 1.25rem/1 var(--texto);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tienda-ctrl .tienda-paso output{min-width:1.25rem;text-align:center;font-weight:500;font-variant-numeric:tabular-nums}
+#tienda-lista .tienda-fila:last-child{border-bottom:0}
+
+/* Brownie: primero y destacado, en una tarjeta suave; una sola foto. */
+.tienda-destacado .tienda-fila{grid-template-columns:minmax(0,1fr) 128px;background:#F3EEFB;border:0;border-radius:12px;padding:1rem}
+.tienda-destacado .tienda-foto{width:128px;height:128px}
+.tienda-destacado .tienda-foto img{object-position:50% 45%;background:#D9C8F1}
+.tienda-destacado h2.tienda-n{font:400 1.1875rem/1.2 var(--texto);margin:0}
+.tienda-destacado .tienda-nuevo{display:inline-block;margin:0 0 .45rem;padding:.2rem .6rem;background:var(--lima);color:#000;border-radius:999px;font-size:.75rem;font-weight:500;line-height:1.3}
+.tienda-destacado .tienda-desc{margin:.3rem 0 0;font-size:.875rem;line-height:1.4;color:var(--gris)}
+#tienda-form.en-pasos .t-p1+.t-p1{margin-top:1.5rem}
+#t-panes{margin-bottom:.25rem}
+
+/* Aprovecha tu envío: una línea suave, no un aviso. */
+.tienda-aprovecha{margin:1rem 0 0;padding:.85rem 1rem;background:var(--hueso);border-radius:12px;font-size:.9375rem;line-height:1.45}
+.tienda-aprovecha b{font-weight:500}
+.tienda-aprovecha .tienda-volver{margin-top:.6rem;display:flex}
+
+/* Paso 2: resumen con envío y total, y la entrega en tarjetas. */
+.tienda-resumen-cab{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.35rem}
+.tienda-resumen-cab h2{margin:0}
+#resumen-lineas{list-style:none;margin:0;padding:0;font-size:.9375rem}
+#resumen-lineas li{display:flex;justify-content:space-between;gap:.75rem;padding:.5rem 0}
+#resumen-lineas li span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
+#resumen-lineas .resumen-envio{color:var(--gris)}
+#resumen-lineas .resumen-total{border-top:1px solid var(--linea);margin-top:.25rem;padding-top:.7rem;font-weight:500}
+.tienda-volver{flex:0 0 auto;align-items:center;min-height:44px;padding:0 1rem;background:none;border:1px solid var(--linea);border-radius:999px;color:var(--tinta);font:400 .875rem/1 var(--texto);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tienda-entregas .tienda-op{padding:1rem;border-radius:12px;align-items:start}
+.tienda-entregas .tienda-op small{font-size:.875rem}
+.tienda-entregas .solo-elegida{display:none;margin-top:.4rem;font-size:.8125rem}
+.tienda-entregas .tienda-op:has(input:checked) .solo-elegida{display:block}
+@supports not selector(:has(*)){.tienda-entregas .solo-elegida{display:block}}
+.tienda-cierre{margin-top:.75rem}
+
+/* Barra de abajo: un solo botón grande con cantidad y total. Sin productos no hay barra. */
+#tienda-form.en-pasos .tienda-ticket>div>div{display:none}
+#tienda-form.en-pasos .tienda-ticket button{flex:1;min-height:52px;font-size:1rem;font-variant-numeric:tabular-nums}
+#tienda-form.en-pasos .tienda-ticket.vacio{display:none}
+#tienda-form.en-pasos .tienda-ticket{background:var(--papel);border-top:1px solid var(--linea);padding-top:.75rem}
+.tienda-destacado #t-brownie a{text-decoration:none}

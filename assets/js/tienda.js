@@ -23,11 +23,13 @@
     { id: 'cookie', url: EN ? 'product/cookie-dough.html' : 'producto/cookie-dough.html', n: 'Cookie Dough', d: EN ? '340 g tub' : 'Pote de 340 g', p: 4500, img: BASE + 'assets/img/bolsa-cookie.jpg' }
   ];
   var BROWNIE = { id: 'brownie', n: EN ? 'Brownie Mix' : 'Premezcla para Brownie', p: 4800 };
+  var SEP = ' \u00b7 ';
 
   var T = EN ? {
-    quitar: 'Remove ', agregar: 'Add ', botonAgregar: 'Add',
+    quitar: 'Remove ', agregar: 'Add ',
     producto: ' item', productos: ' items', masEnvio: ' + delivery', escoge: 'Choose your products',
-    seguir: 'Continue', sinEnvio: ' · before delivery',
+    seguir: 'View order', sinEnvio: ' · before delivery',
+    pasoTxt: ['Step 1 of 3 · Build your order', 'Step 2 of 3 · Delivery and details'], envio: 'Delivery', totalTxt: 'Total',
     aprovecha: 'Make the most of your delivery.', aprovechaTxt: function (m) { return ' It\u2019s ' + m + ' per order, so you can add more products without paying more for delivery.'; },
     whatsapp: 'Message us on WhatsApp',
     fuera: 'We can\u2019t take orders on the website right now.',
@@ -55,9 +57,10 @@
     waComprobante: 'Hi! Here\u2019s the receipt for order #',
     sinComprobanteBase: 'Right now we can\u2019t take orders without a receipt on the website, but we can take yours on WhatsApp.'
   } : {
-    quitar: 'Quitar ', agregar: 'Agregar ', botonAgregar: 'Agregar',
+    quitar: 'Quitar ', agregar: 'Agregar ',
     producto: ' producto', productos: ' productos', masEnvio: ' + envío', escoge: 'Escoge tus productos',
-    seguir: 'Continuar', sinEnvio: ' · sin envío',
+    seguir: 'Ver pedido', sinEnvio: ' · sin envío',
+    pasoTxt: ['Paso 1 de 3 · Arma tu pedido', 'Paso 2 de 3 · Entrega y datos'], envio: 'Envío', totalTxt: 'Total',
     aprovecha: 'Aprovecha tu envío.', aprovechaTxt: function (m) { return ' Es de ' + m + ' por pedido, así que puedes sumar más productos sin pagar más envío.'; },
     whatsapp: 'Escríbenos por WhatsApp',
     fuera: 'Ahora mismo no podemos recibir pedidos en la página.',
@@ -120,18 +123,21 @@
   // manejador de clics suma y resta en los dos.
   function paso(p) {
     return '<div class="tienda-ctrl" id="ctrl-' + p.id + '">' +
-      '<button type="button" class="tienda-agregar" aria-label="' + T.agregar + p.n + '" data-id="' + p.id + '" data-d="1">+ ' + T.botonAgregar + '</button>' +
+      '<button type="button" class="tienda-agregar" aria-label="' + T.agregar + p.n + '" data-id="' + p.id + '" data-d="1">+</button>' +
       '<div class="tienda-paso"><button type="button" aria-label="' + T.quitar + p.n + '" data-id="' + p.id + '" data-d="-1">−</button>' +
       '<output id="c-' + p.id + '" aria-live="polite">0</output>' +
       '<button type="button" aria-label="' + T.agregar + p.n + '" data-id="' + p.id + '" data-d="1">+</button></div></div>';
   }
 
   $('brownie-paso').innerHTML = paso(BROWNIE);
-  $('tienda-lista').innerHTML = '<div class="tienda-cards">' + PRODUCTOS.map(function (p) {
-    return '<div class="tienda-card"><img src="' + p.img + '" alt="" width="440" height="440" loading="lazy">' +
-      '<div class="tienda-n"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.n + '</a></div><div class="tienda-d">' + p.d + '</div><div class="tienda-p">' + fmt(p.p) + '</div>' +
-      paso(p) + '</div>';
-  }).join('') + '</div>';
+  // Una fila por producto, como en una app de comida: texto a la izquierda, foto a la derecha con el «+» encima.
+  // El nombre y la foto llevan a la página del producto.
+  $('tienda-lista').innerHTML = PRODUCTOS.map(function (p) {
+    return '<div class="tienda-fila"><div class="tienda-fila-txt">' +
+      '<div class="tienda-n"><a href="' + p.url + '" target="_blank" rel="noopener">' + p.n + '</a></div><div class="tienda-d">' + p.d + '</div><div class="tienda-p">' + fmt(p.p) + '</div></div>' +
+      '<div class="tienda-foto"><a href="' + p.url + '" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="' + p.img + '" alt="" width="440" height="440" loading="lazy"></a>' +
+      paso(p) + '</div></div>';
+  }).join('');
 
   function entrega() { return document.querySelector('input[name=entrega]:checked').value; }
 
@@ -163,9 +169,12 @@
 
   function pintarResumen() {
     var ul = $('resumen-lineas'); if (!ul) return;
+    var c = calcular();
     ul.innerHTML = lineas().map(function (p) {
       return '<li><span>' + cant[p.id] + ' × ' + p.n + '</span><span>' + fmt(cant[p.id] * p.p) + '</span></li>';
-    }).join('');
+    }).join('') +
+      (c.envio ? '<li class="resumen-envio"><span>' + T.envio + '</span><span>' + fmt(c.envio) + '</span></li>' : '') +
+      '<li class="resumen-total"><span>' + T.totalTxt + '</span><span>' + fmt(c.total) + '</span></li>';
   }
 
   function pintarAprovecha(c) {
@@ -198,7 +207,13 @@
     $('tienda-detalle').textContent = c.n
       ? c.n + (c.n > 1 ? T.productos : T.producto) + (enArmado ? '' : (c.envio ? T.masEnvio : ''))
       : T.escoge;
-    if (PASOS) $('tienda-seguir').disabled = !c.n;
+    if (PASOS) {
+      $('tienda-seguir').disabled = !c.n;
+      $('tienda-seguir').textContent = T.seguir + SEP + c.n + SEP + fmt(c.sub);
+      if (!$('tienda-enviar').disabled) $('tienda-enviar').textContent = T.enviar + SEP + fmt(c.total);
+      // Carrito vacío en el paso 1: no hay barra, como en las apps de comida.
+      $('tienda-ticket').classList.toggle('vacio', enArmado && !c.n);
+    }
     pintarResumen();
     pintarAprovecha(c);
   }
@@ -216,16 +231,17 @@
     document.querySelector('.tienda').setAttribute('data-paso', String(n));
     $('tienda-seguir').hidden = n !== 1;
     $('tienda-enviar').hidden = n !== 2;
-    document.querySelectorAll('#tienda-pasos li').forEach(function (li, i) {
-      if (i === n - 1) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+    document.querySelectorAll('#tienda-pasos .tienda-pasos-barra span').forEach(function (sp, i) {
+      sp.classList.toggle('on', i < n);
     });
+    if ($('tienda-paso-txt')) $('tienda-paso-txt').textContent = T.pasoTxt[n - 1];
     if (n === 1) $('tienda-error').hidden = true;
     pintar();
     if (!sinHistorial) {
       // El «atrás» del teléfono vuelve al paso 1 en vez de salir de la página y perder el carrito.
       try { if (n === 2) history.pushState({ tiendaPaso: 2 }, ''); } catch (e) {}
       arriba();
-      var h = $(n === 2 ? 't-resumen' : 't-tienda');
+      var h = $(n === 2 ? 't-resumen' : 'tienda-paso-txt');
       if (h) h.focus({ preventScroll: true });
     }
   }
@@ -257,7 +273,7 @@
       var n = history.state && history.state.tiendaPaso === 2 ? 2 : 1;
       irPaso(n, true);
       arriba();
-      var h = $(n === 2 ? 't-resumen' : 't-tienda');
+      var h = $(n === 2 ? 't-resumen' : 'tienda-paso-txt');
       if (h) h.focus({ preventScroll: true });
     });
     ['tienda-pasos', 'tienda-resumen'].forEach(function (id) { if ($(id)) $(id).hidden = false; });
@@ -266,15 +282,6 @@
     $('tienda-form').classList.add('en-pasos');
     irPaso(1, true);
   }
-
-  document.querySelectorAll('.tienda-lados button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      $('brownie-img').src = BASE + 'assets/img/brownie-' + b.dataset.lado + '.jpg';
-      document.querySelectorAll('.tienda-lados button').forEach(function (x) {
-        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
-      });
-    });
-  });
 
   function mostrarError(texto, conWhatsapp) {
     var el = $('tienda-error');
@@ -471,6 +478,7 @@
       else mostrarError(FUERA, true);
       boton.disabled = false;
       boton.textContent = T.enviar;
+      pintar();
     }
   });
 
