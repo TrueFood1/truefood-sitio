@@ -202,3 +202,4 @@ body.con-portada .nav.nav-editorial:not(.solida){background:linear-gradient(to b
 .prep-video a{color:inherit;text-decoration:underline;text-underline-offset:4px}
 @media(max-width:760px){.prep-modos>div{grid-template-columns:38% 1fr}.editorial-detail .tabla-ficha th{width:50%}}
 .prod-tab-panel{scroll-margin-top:170px}
+.detail-precio{margin:18px 0 0;font-size:17px}.detail-precio b{font-size:24px;letter-spacing:-.02em}
