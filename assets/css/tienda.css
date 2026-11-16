@@ -185,3 +185,4 @@
 #tienda-form.en-pasos .tienda-ticket.vacio{display:none}
 #tienda-form.en-pasos .tienda-ticket{background:var(--papel);border-top:1px solid var(--linea);padding-top:.75rem}
 .tienda-destacado #t-brownie a{text-decoration:none}
+.tienda-foto>a{overflow:hidden;border-radius:12px}#brownie-img{transform:scale(1.45);transform-origin:50% 48%}
