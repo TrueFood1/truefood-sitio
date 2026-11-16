@@ -28,7 +28,7 @@
   var T = EN ? {
     quitar: 'Remove ', agregar: 'Add ',
     producto: ' item', productos: ' items', masEnvio: ' + delivery', escoge: 'Choose your products',
-    seguir: 'View order', sinEnvio: ' · before delivery',
+    seguir: 'View order', faltanDatos: 'Continue', sinEnvio: ' · before delivery',
     pasoTxt: ['Step 1 of 3 · Build your order', 'Step 2 of 3 · Delivery and details'], envio: 'Delivery', totalTxt: 'Total',
     aprovecha: 'Make the most of your delivery.', aprovechaTxt: function (m) { return ' It\u2019s ' + m + ' per order, so you can add more products without paying more for delivery.'; },
     whatsapp: 'Message us on WhatsApp',
@@ -59,7 +59,7 @@
   } : {
     quitar: 'Quitar ', agregar: 'Agregar ',
     producto: ' producto', productos: ' productos', masEnvio: ' + envío', escoge: 'Escoge tus productos',
-    seguir: 'Ver pedido', sinEnvio: ' · sin envío',
+    seguir: 'Ver pedido', faltanDatos: 'Continuar', sinEnvio: ' · sin envío',
     pasoTxt: ['Paso 1 de 3 · Arma tu pedido', 'Paso 2 de 3 · Entrega y datos'], envio: 'Envío', totalTxt: 'Total',
     aprovecha: 'Aprovecha tu envío.', aprovechaTxt: function (m) { return ' Es de ' + m + ' por pedido, así que puedes sumar más productos sin pagar más envío.'; },
     whatsapp: 'Escríbenos por WhatsApp',
@@ -210,7 +210,7 @@
     if (PASOS) {
       $('tienda-seguir').disabled = !c.n;
       $('tienda-seguir').textContent = T.seguir + SEP + c.n + SEP + fmt(c.sub);
-      if (!$('tienda-enviar').disabled) $('tienda-enviar').textContent = T.enviar + SEP + fmt(c.total);
+      if (!$('tienda-enviar').disabled) $('tienda-enviar').textContent = faltante() ? T.faltanDatos : T.enviar + SEP + fmt(c.total);
       // Carrito vacío en el paso 1: no hay barra, como en las apps de comida.
       $('tienda-ticket').classList.toggle('vacio', enArmado && !c.n);
     }
@@ -453,6 +453,8 @@
     $('tienda-error').hidden = true;
     var c = calcular();
     var archivo = $('comprobante').files[0];
+    var hueco = faltante();
+    if (hueco) { llevarA(hueco); return; }
     var malo = validar(c, archivo);
     if (malo) { mostrarError(malo); return; }
 
@@ -489,6 +491,28 @@
       boton.textContent = T.enviar;
       pintar();
     }
+  });
+
+  // El botón del paso 2 dice «Continuar» mientras falten nombre, teléfono o dirección, y lleva al primero que falte:
+  // en el celular el formulario queda debajo y se tocaba «Hacer pedido» sin verlo (Andrea, 16-nov).
+  function faltante() {
+    if (!$('nombre') || $('nombre').value.trim().length < 2) return 'nombre';
+    if (!$('tel') || $('tel').value.replace(/\D/g, '').length < 8) return 'tel';
+    if (entrega() === 'envio' && !$('dir').value.trim()) return 'dir';
+    return null;
+  }
+  function llevarA(id) {
+    var campo = $(id), label = campo.closest('label');
+    if (label) label.classList.add('falta');
+    campo.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    setTimeout(function () { campo.focus({ preventScroll: true }); }, 350);
+  }
+  ['nombre', 'tel', 'dir'].forEach(function (id) {
+    if (!$(id)) return;
+    $(id).addEventListener('input', function () {
+      var l = this.closest('label'); if (l) l.classList.remove('falta');
+      pintar();
+    });
   });
 
   // Los mensajes de WhatsApp llevan el nombre que escribió la persona: «Hola! Soy Ana. …».
