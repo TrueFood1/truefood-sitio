@@ -1,0 +1,95 @@
+{
+  "tostada-de-semillas-con-cottage-huevo-y-aguacate": {
+    "productos": [
+      "semillas"
+    ],
+    "sabores": [
+      "salada"
+    ]
+  },
+  "tostada-con-huevos-cremosos-parmesano-y-miel": {
+    "productos": [
+      "semillas"
+    ],
+    "sabores": [
+      "salada"
+    ]
+  },
+  "torre-de-french-toast-alta-en-proteina": {
+    "productos": [
+      "blanco"
+    ],
+    "sabores": [
+      "dulce"
+    ]
+  },
+  "pan-frances-tostado-con-brie-y-miel": {
+    "productos": [
+      "frances"
+    ],
+    "sabores": [
+      "salada"
+    ]
+  },
+  "los-desayunos-que-mas-se-repiten-en-nuestras-casas": {
+    "productos": [
+      "blanco",
+      "semillas",
+      "frances",
+      "buns"
+    ],
+    "sabores": [
+      "dulce",
+      "salada"
+    ]
+  },
+  "honey-bacon-grilled-cheese": {
+    "productos": [
+      "blanco"
+    ],
+    "sabores": [
+      "salada"
+    ]
+  },
+  "como-preparar-la-masa-de-galletas": {
+    "productos": [
+      "galletas"
+    ],
+    "sabores": [
+      "dulce"
+    ]
+  },
+  "cinnamon-roll-french-toast": {
+    "productos": [
+      "blanco"
+    ],
+    "sabores": [
+      "dulce"
+    ]
+  },
+  "tarta-crujiente-de-queso-de-cabra-y-prosciutto": {
+    "productos": [
+      "semillas"
+    ],
+    "sabores": [
+      "salada"
+    ]
+  },
+  "apple-cookie-sundae": {
+    "productos": [
+      "galletas"
+    ],
+    "sabores": [
+      "dulce"
+    ]
+  },
+  "aperitivo-de-tocineta-caramelizada-con-miel": {
+    "productos": [
+      "frances",
+      "semillas"
+    ],
+    "sabores": [
+      "salada"
+    ]
+  }
+}
