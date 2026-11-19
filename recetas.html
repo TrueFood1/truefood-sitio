@@ -14,7 +14,8 @@
 <meta property="og:image" content="https://truefoodcr.com/assets/img/og.jpg">
 <meta property="og:url" content="https://truefoodcr.com/recetas.html">
 <meta property="og:locale" content="es_CR">
-<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/css/filtros-recetas.css">
+<script src="assets/js/filtros-recetas.js" defer></script><meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@200;300;400;600&display=swap">
@@ -55,8 +56,16 @@
       <a href="recetas.html" aria-current="page">Recetas</a>
       <a href="articulos.html">Art&iacute;culos</a>
     </nav>
+    <div class="receta-filtros" hidden aria-label="Filtros de recetas">
+      <div class="filtro-producto"><label for="receta-producto">Por producto</label><select id="receta-producto">
+        <option value="">Todos los productos</option><option value="blanco">Pan Blanco</option><option value="semillas">Pan de Semillas</option><option value="frances">Pan Francés</option><option value="buns">Buns</option><option value="galletas">Masa de galletas</option>
+      </select></div>
+      <fieldset class="filtro-sabor"><legend>Por tipo de receta</legend><div class="filtro-botones"><button type="button" data-sabor="" aria-pressed="true">Todas</button><button type="button" data-sabor="dulce" aria-pressed="false">Dulces</button><button type="button" data-sabor="salada" aria-pressed="false">Saladas</button></div></fieldset>
+      <div class="filtro-resumen"><span id="receta-cantidad" role="status" aria-live="polite"></span><button type="button" id="receta-limpiar" hidden>Limpiar filtros</button></div>
+    </div>
+    <p class="receta-sin-resultados" hidden>No hay recetas con esta combinación. Prueba otro producto o tipo de receta.</p>
     <ul class="blog-lista">
-      <li class="blog-item">
+      <li class="blog-item" data-productos="semillas" data-sabores="salada">
         <div class="blog-miniatura"><img src="assets/img/blog/tostada-semillas-cottage-huevo-aguacate.jpg" alt="Plato con tostada de Pan de Semillas, queso cottage, jamón, huevos, aguacate y tomate" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-11-11">11 nov 2026</time>
@@ -64,7 +73,7 @@
           <p class="blog-extracto">Tostada de Pan de Semillas con queso cottage, jamón, huevo, aguacate y tomate. Un desayuno sin gluten, cargado de proteína, listo en minutos.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="semillas" data-sabores="salada">
         <div class="blog-miniatura"><img src="assets/img/blog/tostada-huevos-parmesano-miel.jpg" alt="Tostada de Pan de Semillas con huevos revueltos cremosos y lascas de parmesano" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-11-11">11 nov 2026</time>
@@ -72,7 +81,7 @@
           <p class="blog-extracto">Tostada de Pan de Semillas con huevos revueltos cremosos, lascas de parmesano y un toque de miel. El desayuno de siempre, pero con un twist.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="blanco" data-sabores="dulce">
         <div class="blog-miniatura"><img src="assets/img/blog/torre-french-toast-proteina.jpg" alt="Torre de french toast de Pan Blanco con yogurt griego, canela y miel" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-11-11">11 nov 2026</time>
@@ -80,7 +89,7 @@
           <p class="blog-extracto">Torre de french toast de Pan Blanco, directo del congelador, con topping de yogurt griego, canela y miel. Un desayuno sin gluten alto en proteína.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="frances" data-sabores="salada">
         <div class="blog-miniatura"><img src="assets/img/blog/pan-frances-brie-miel.jpg" alt="Pan francés tostado con queso brie derretido, miel y almendras" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-11-11">11 nov 2026</time>
@@ -88,7 +97,7 @@
           <p class="blog-extracto">Pan Francés tostado en el horno con queso brie derretido, miel y almendras tostadas. Un aperitivo sin gluten divino, listo en minutos.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="blanco semillas frances buns" data-sabores="dulce salada">
         <div class="blog-miniatura"><img src="assets/img/blog/desayunos-que-se-repiten.jpg" alt="Mesa de brunch con pan tostado, huevos, aguacate, tomates y quesos para compartir" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-11-11">11 nov 2026</time>
@@ -96,7 +105,7 @@
           <p class="blog-extracto">Siete desayunos fáciles con pan sin gluten para mañanas a mil: tostadas, salmón con cottage, tostadas francesas, veggies y tabla de brunch.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="blanco" data-sabores="salada">
         <div class="blog-miniatura"><img src="assets/img/blog/honey-bacon-grilled-cheese.jpg" alt="Grilled cheese de Pan Blanco con queso derretido y tocineta, cortado a la mitad" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-11-11">11 nov 2026</time>
@@ -104,7 +113,7 @@
           <p class="blog-extracto">Grilled cheese de Pan Blanco con gouda, mozzarella y tocineta extra crujiente, dorado lento en mantequilla y terminado con miel. Sin gluten.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="galletas" data-sabores="dulce">
         <div class="blog-miniatura"><img src="assets/img/blog/galletas-recien-horneadas.jpg" alt="Bandeja con galletas de chocolate chips recién horneadas junto al pote de Cookie Dough True Food" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-11-11">11 nov 2026</time>
@@ -112,7 +121,7 @@
           <p class="blog-extracto">Cómo hornear la masa de galletas True Food: del congelador al horno, 10 minutos, y tienes galletas con chocolate 70% recién hechas.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="blanco" data-sabores="dulce">
         <div class="blog-miniatura"><img src="assets/img/blog/cinnamon-roll-french-toast.jpg" alt="Cinnamon roll french toast de Pan Blanco bañado con glaseado de queso crema" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-11-11">11 nov 2026</time>
@@ -120,7 +129,7 @@
           <p class="blog-extracto">French toast de Pan Blanco con relleno de canela y tapa dulce, dorado en mantequilla y bañado con glaseado de queso crema. Sin gluten.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="semillas" data-sabores="salada">
         <div class="blog-miniatura"><img src="assets/img/blog/tarta-queso-de-cabra-prosciutto.jpg" alt="Tarta de queso de cabra sobre base crujiente de Pan de Semillas, con prosciutto y flores comestibles encima" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-10-30">30 oct 2026</time>
@@ -128,7 +137,7 @@
           <p class="blog-extracto">Receta de tarta sin gluten con base crujiente de Pan de Semillas, crema de queso de cabra con limón y miel, y prosciutto. Un aperitivo fácil para recibir.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="galletas" data-sabores="dulce">
         <div class="blog-miniatura"><img src="assets/img/blog/apple-cookie-sundae.jpg" alt="Apple Cookie Sundae sin gluten en molde de vidrio, con galleta dorada y helado, junto al pote de Cookie Dough True Food" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-10-30">30 oct 2026</time>
@@ -136,7 +145,7 @@
           <p class="blog-extracto">Postre sin gluten de manzana horneada con canela, Cookie Dough True Food recién salido del horno y helado encima. Una receta fácil: 12 minutos de horno.</p>
         </div><span class="blog-flecha" aria-hidden="true">↗</span>
       </li>
-      <li class="blog-item">
+      <li class="blog-item" data-productos="frances semillas" data-sabores="salada">
         <div class="blog-miniatura"><img src="assets/img/blog/aperitivo-tocineta-miel.jpg" alt="Plato de queso crema cubierto de tocineta y nueces caramelizadas con miel, con tostadas de pan al lado" loading="lazy"></div>
         <div class="blog-texto">
           <time datetime="2026-10-30">30 oct 2026</time>
